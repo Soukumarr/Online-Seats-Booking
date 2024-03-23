@@ -1,86 +1,44 @@
 import React, { useState } from "react";
-import styles from "./SigninForm.css";
-const SigninForm = (props) => {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+import "./SigninForm.css";
+import { useNavigate } from "react-router-dom"; 
 
-  const [errors, setErrors] = useState({});
+const SigninForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Initialize useHistory
 
-  const onUpdateField = (e) => {
-    const nextFormState = {
-      ...form,
-      [e.target.name]: e.target.value,
-    };
-    setForm(nextFormState);
-  };
-
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    let errors = {};
-    if (!form.email) {
-      errors.email = "Email is required!!!";
-      alert(errors.email);
-    } else if (!form.password) {
-      errors.password = "Password is required!!!";
-      alert(errors.password);
-    } else if (!form.confirmPassword) {
-      errors.confirmPassword = "Confirm Password is required!!!";
-      alert(errors.confirmPassword);
-    }
-    setErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      alert(JSON.stringify(form, null, 2));
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle login logic here
+    navigate("/seatbook");
   };
 
   return (
-    <form className={styles.form} onSubmit={onSubmitForm}>
-      <div className={styles.formGroup}>
-        <label className={styles.formLabel}>Email</label>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="form">
+        <h3>Login</h3>
         <input
-          className={styles.formField}
           type="text"
-          aria-label="Email field"
-          name="email"
-          value={form.email}
-          onChange={onUpdateField}
-          placeholder="Enter your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Username"
+          id="input"
+          required
         />
-      </div>
-      <div className={styles.formGroup}>
-        <label className={styles.formLabel}>Password</label>
         <input
-          className={styles.formField}
           type="password"
-          aria-label="Password field"
-          name="password"
-          value={form.password}
-          onChange={onUpdateField}
-          placeholder="********"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          id="input"
+          required
         />
-      </div>
-      <div className={styles.formGroup}>
-        <label className={styles.formLabel}>Confirm Password</label>
-        <input
-          className={styles.formField}
-          type="password"
-          aria-label="Confirm password field"
-          name="confirmPassword"
-          value={form.confirmPassword}
-          onChange={onUpdateField}
-          placeholder="********"
-        />
-      </div>
-      <div className={styles.formActions}>
-        <button className={styles.formSubmitBtn} type="submit">
-          Login
-        </button>
-      </div>
-    </form>
+        <button type="submit">Login</button>
+        <p className="forgot-password">
+          Forgot <a href="#">password?</a>
+        </p>
+      </form>
+    </div>
   );
 };
-
 export default SigninForm;

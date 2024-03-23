@@ -1,94 +1,39 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
-import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
+import {HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const [click, setClick] = useState(false);
+   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleClick = () => setClick(!click);
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
-            <span>Awfis</span>
-            {/* <i className="fas fa-code"></i> */}
-            <span className="icon">{/* <CodeIcon /> */}</span>
-          </NavLink>
-
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/about"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                About
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/contact"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Contact Us
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/signin"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Sign In
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exactw
-                to="/register"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Register Now
-              </NavLink>
-            </li>
-          </ul>
-          <div className="nav-icon" onClick={handleClick}>
-            {/* <i className={click ? "fas fa-times" : "fas fa-bars"}></i> */}
-
-            {click ? (
-              <span className="icon">
-                <HamburgetMenuClose />
-              </span>
-            ) : (
-              <span className="icon">
-                <HamburgetMenuOpen />{" "}
-              </span>
-            )}
-          </div>
+      <nav>
+        <Link to="/" className="title">
+          Website
+        </Link>
+        <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+        <ul className={menuOpen ? "open" : ""}>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/services">Services</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
+          <li>
+            <NavLink to="/signup">Signup</NavLink>
+          </li>
+        </ul>
       </nav>
     </>
   );
