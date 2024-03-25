@@ -100,7 +100,7 @@ function Seatbooking() {
   var items = list.map((i) => {
     return (
       <div className="grid-item">
-        <div className= {styles.container}>
+        <div className="container3">
           <button
             className="btn"
             style={{ margin: 10 }}

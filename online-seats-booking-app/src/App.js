@@ -10,6 +10,7 @@ import Seatbooking from "./components/Pages/Seatbooking";
 import { Calender } from "./components/Pages/calendar/Calender";
 import { Demo } from "./components/Card/Demo";
 import { useNavigate } from "react-router-dom";
+import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/seatbook" element={<Seatbooking />} />
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/layout" element={<SeatLayout />} />
           </Routes>
         </div>
 
