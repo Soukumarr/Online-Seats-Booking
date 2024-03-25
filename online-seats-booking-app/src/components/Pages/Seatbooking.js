@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./Seatbooking.css"; // Import the CSS from a separate file
+import styles from './Seatbooking.module.css'
 import Modal from "./Modal";
 import { useEffect } from "react";
 import list from "./Data";
+
 
 function Seatbooking() {
   // const [book, setbook] = useState([]);
@@ -99,7 +100,7 @@ function Seatbooking() {
   var items = list.map((i) => {
     return (
       <div className="grid-item">
-        <div className="container">
+        <div className= {styles.container}>
           <button
             className="btn"
             style={{ margin: 10 }}

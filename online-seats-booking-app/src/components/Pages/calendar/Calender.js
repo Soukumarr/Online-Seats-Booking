@@ -1,6 +1,6 @@
 import React from "react";
-import {CardComponent } from "../Card/CardComponent";
-import { WeekBar, WeeksBar } from "./week-bar/WeeksBar";
+import {CardComponent } from "../../Card/CardComponent";
+import { WeekBar, WeeksBar } from "../week-bar/WeeksBar";
 
 export const Calender = ()=> {
 
@@ -14,7 +14,7 @@ export const Calender = ()=> {
 
             <div  className="grid-container">
             
-            <CardComponent day={"Monday"} office={"XYZ"}class="grid-item"/>
+            <CardComponent day={"Monday"} office={"GK-Mall"} time={"9:00 - 18:00"} desk={"3"} floor={3} class="grid-item"/>
             <CardComponent day={"Tuesday"} class="grid-item" />
             <CardComponent day={"Wednesday"} class="grid-item"/>
             <CardComponent day={"Thursday"} class="grid-item"/>

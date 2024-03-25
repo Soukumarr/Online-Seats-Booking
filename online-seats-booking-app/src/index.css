@@ -19,8 +19,8 @@ code {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border: "1px solid #ddd";
-  padding: 10;
   margin: 10;
+  border-radius: 50px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -36,7 +36,8 @@ code {
 
 /* Add some padding inside the card container */
 .container {
-  padding: 2px 16px;
+  padding-left: 50px;
+  padding-top: 30px ;
 }
 .plus-button-wrapper {
   display: flex; /* Make container a flex container */
@@ -66,7 +67,7 @@ code {
 /* GRID CSS */
 .grid-container {
   display: grid;
-  grid-template-columns: 20% 20% 20%;
+  grid-template-columns: 30% 30% 30%;
   gap: 50px 50px;
   justify-content: center;
   margin-top: 70px;
