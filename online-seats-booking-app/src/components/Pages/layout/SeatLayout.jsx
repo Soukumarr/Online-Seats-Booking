@@ -43,7 +43,7 @@ export const SeatLayout = () => {
             );
           })}
         </div>
-         <h3>Seats Available: {noOfSeats}</h3>
+         <h3 className={styles.availableSeat}>Seats Available: {noOfSeats}</h3>
       </div>
     </div>
   );

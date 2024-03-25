@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SeatLayout.module.css";
 
 export const SeatGrid = (props) => {
@@ -8,18 +8,19 @@ export const SeatGrid = (props) => {
   const [items, setItems] = useState(
     Array.from({ length: props.rows * props.columns }).fill("white")
   );
-
+  console.log(`seat ${items.at(5) == "white" ? 'hoverable' : ''}`)
   const handleClick = (seatIndex) => {
     // Create a copy of the seatColors array to avoid mutation
     const updatedColors = [...items];
 
     if (updatedColors[seatIndex] == "white") {
       updatedColors[seatIndex] = "green";
+
       props.onSelect(-1);
 
     } else if (updatedColors[seatIndex] == "green") {
       updatedColors[seatIndex] = "white";
-      props.onSelect(1);
+          props.onSelect(1);
     }
 
     // Update the state with the modified array
@@ -33,11 +34,12 @@ export const SeatGrid = (props) => {
   return (
     <div>
       <div className={styles.innerGridContainer} style={gridStyles}>
-        {items.map((color, index) => (
-          <div
+        {
+        items.map((color, index) => (
+            <div
             key={index}
-            className={styles.seat}
-            style={{ backgroundColor: color }}
+            className={`${styles.seat} ${items.at(index)=="white" ? styles.hoverable : ''}`}
+            style={{ '--seat-color': items.at(index) }}
             onClick={() => handleClick(index)}
           ></div>
         ))}
