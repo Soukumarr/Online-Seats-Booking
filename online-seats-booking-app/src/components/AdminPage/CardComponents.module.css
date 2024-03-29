@@ -1,0 +1,70 @@
+.clock {
+    font-size:36px;
+}
+
+.floor {
+
+    font-size: 18px;
+}
+body{
+  background-color: rgba(0, 0, 0, 0.801)
+}
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 black;
+    transition: 0.3s;
+    border: "1px solid #ddd";
+    margin: 5;
+    border-radius: 100px;
+    background-color: white;
+    width: 400px;
+    height: 250px;
+   
+  }
+   
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 white;
+   
+  }
+  .plus-button:hover {
+    background-color: yellow;
+    color: black;
+  }
+   
+   
+  /* Add some padding inside the card container */
+  .container {
+    padding-left: -15px;
+    padding-top: 30px ;
+   
+  }
+  .plus-button-wrapper {
+    display: flex; /* Make container a flex container */
+    justify-content: flex-end; /* Align items to the end of the container */
+    align-items: flex-end;
+    margin-bottom: 20px;
+    margin-right: 10px
+  }
+   
+  .plus-button {
+    width: 50px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #4CAF50; /* Change background color */
+    color: white; /* Change text color */
+    border: none;
+    border-radius: 50%; /* Make the button circular */
+    cursor: pointer; /* Indicate clickable area */
+    font-size: 20px; /* Adjust font size for plus sign */
+    display: flex; /* Allow centering the plus sign */
+    justify-content: center; /* Center the plus sign horizontally */
+    align-items: center; /* Center the plus sign vertically */
+   
+  }
+  b{
+    font-size: 20px;
+  }
+  /* .CardComponent_container__Ra32M {
+    padding-left: -20px;
+    padding-top: 20px;
+  }  */

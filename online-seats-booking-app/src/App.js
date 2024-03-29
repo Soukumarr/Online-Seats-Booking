@@ -11,6 +11,7 @@ import { Calender } from "./components/Pages/calendar/Calender";
 import { Demo } from "./components/Card/Demo";
 import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
+import { Grid } from "./components/AdminPage/Grid";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/layout" element={<SeatLayout />} />
+            <Route path="/admin" element={<Grid />} />
           </Routes>
         </div>
 
