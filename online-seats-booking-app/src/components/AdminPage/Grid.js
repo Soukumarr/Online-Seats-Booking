@@ -11,9 +11,22 @@ export const Grid = () => {
     // Add more cards as needed
   ]);
   const [newCard, setNewCard] = useState({ location: "", office: "", seats: "", floor: "" });
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  };
 
   const handleAddCard = (event) => {
     event.preventDefault();
+    if (newCard.floor > 10) {
+      alert("You cannot add more than 10 floors.");
+      return;
+    }
+    if (newCard.seats > 100) {
+      alert("You cannot add more than 100 seats.");
+      return;
+    }
     setCards([...cards, newCard]);
     setNewCard({ location: "", office: "", seats: "", floor: "" }); // Reset the form
   };
@@ -28,6 +41,11 @@ export const Grid = () => {
     console.log(edit);
     setEdit(!edit);
   }
+  const handleDeleteCard = (index) => {
+    const newCards = [...cards];
+    newCards.splice(index, 1);
+    setCards(newCards);
+  };
 
   return (
     <div>
@@ -54,19 +72,36 @@ export const Grid = () => {
       </form>}
       
 
-      <div className={styles.gridContainer}>
+      <div className={styles.box}>
         {cards.map((card, index) => (
           <CardComponent
-          onClick
+          onClick={() => handleCardClick(card)}
             key={index}
             location={card.location}
             office={card.office}
             seats={card.seats}
             floor={card.floor}
-            className={styles.gridItem}
+            onDelete={() => handleDeleteCard(index)}
+            className={styles.fgh}
           />
         ))}
       </div>
+      {selectedCard && (
+        <table>
+          <thead>
+            <tr>
+              <th>Floors</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedCard.floors.map((floor, index) => (
+              <tr key={index}>
+                <td>{floor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

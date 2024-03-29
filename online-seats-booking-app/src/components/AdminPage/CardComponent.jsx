@@ -21,8 +21,8 @@ export const CardComponent = (props) => {
   };
 
   return (
-    <div className={styles.card}>
-      <div className={styles.container}>
+    <div className={styles.cardnew}>
+      <div className={styles.containernew}>
         {isEditing ? (
           <form onSubmit={handleSave}>
             <label>
@@ -58,20 +58,19 @@ export const CardComponent = (props) => {
               </span>
               <br></br>
             </p>
-            <span className={styles.floor}><b>
+            <span className={styles.floornew}><b>
               Total Floors :
               {floor == undefined && ""}
               <span style={{ marginLeft: '5px' }}>
                 {floor}
               </span>
             </b></span>
-            <div className="plus-button-wrapper">
-              <button class="plus-button" onClick={handleClick}>
+            <div className={styles.plusButtonWrapper}>
+              <button className={styles.plusButton} onClick={handleClick}>
                 Edit
               </button>
-              {/* <button class="plus-button" onClick={handleClick}>
-+
-</button> */}
+            
+               <button className={styles.plusButton} onClick={props.onDelete}>Delete</button>
             </div>
           </>
         )}
@@ -88,57 +87,3 @@ export const CardComponent = (props) => {
 
 
 
-
-// import { useRedirect } from "./useRedirect";
-// import styles from "./CardComponent.module.css";
-
-
-// export const CardComponent = (props) => {
-//   const redirectTo = useRedirect();
-
-//   const handleClick = () => {
-//     // let newColor = buttonColor === 'green' ? 'red' : 'green'; // Toggle color
-//     // setButtonColor(newColor);
-//     console.log("Clicked!!");
-//     redirectTo("/seatbook");
-//   };
-
-//   return (
-//     <div class={styles.card}>
-//       <div class={styles.container}>
-//         <h4>
-//           <b>{props.location}</b>
-//         </h4>
-//         <h6>
-//           <b>
-//             {props.office}
-//           </b>
-//         </h6>
-//         <p style={{ fontSize: "20px", color: "gray" }}>
-//           <span style={{ marginLeft: "50px" }}>
-//             SeatingCapacity
-//             {props.seats == undefined && "     ---"}
-//             {props.seats != undefined && " " + props.seats}
-//           </span>
-//           <br></br>
-//         </p>
-//         <span className={styles.floor}><b>
-//           FLOOR : 
-//           {props.floor == undefined && ""}
-//           <span style={{marginLeft:'5px'}}> 
-//           {props.floor}
-//           </span>
-
-//         </b>
-//           </span>
-
-//         {/* add button for booking  */}
-//         <div className="plus-button-wrapper">
-{/* <button class="plus-button" onClick={handleClick}>
-+
-</button> */}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };

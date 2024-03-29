@@ -1,16 +1,17 @@
 
 
 /* GRID CSS */
-.gridContainer {
+.box {
   display: grid;
   grid-template-columns: 30% 30% 30%;
   gap: 50px 50px;
   justify-content: center;
   margin-top: 70px;
   margin-bottom: 70px;
+
 }
  
-.gridItem {
+.fgh {
   display: inline-grid;
   grid-template-columns: 1fr;
   
