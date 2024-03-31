@@ -83,66 +83,11 @@ export const Grid = () => {
             floor={card.floor}
             onDelete={() => handleDeleteCard(index)}
             className={styles.fgh}
+            selectedCard={selectedCard}
           />
         ))}
       </div>
-      {selectedCard && (
-        <table>
-          <thead>
-            <tr>
-              <th>Floors</th>
-            </tr>
-          </thead>
-          <tbody>
-            {selectedCard.floors.map((floor, index) => (
-              <tr key={index}>
-                <td>{floor}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import {CardComponent } from "./CardComponent";
-// import "./Calender.css";
-
-
-// export const Calender = ()=> {
-
-//     return (
-//         <div>
-//             <h1>
-//                 Admin DashBorad
-//             </h1>
-
-           
-
-//             <div  className="grid-container">
-            
-//             <CardComponent location={"Sarjah"} office={"Corporate Square"}  seats={"35"} floor={5} class="grid-item"/>
-//             <CardComponent location={"Columbo"} office={"Tech Park"}  seats={"45"} floor={3} class="grid-item" />
-//             <CardComponent location={"Bangalore"} office={"Giga Tower"}  seats={"56"} floor={4} class="grid-item"/>
-//             <CardComponent location={"Pune"} office={"GK-Mall"}  seats={"48"} floor={5} class="grid-item"/>
-//             <CardComponent location={"Chennai"} office={"Skyline"}  seats={"3"} floor={2}  class="grid-item" /> 
-//             <CardComponent location={"Hyderabad"} office={"Enterprise Complex"}  seats={"40"} floor={3} class="grid-item" />         
-//             </div>
-//         </div>
-//     )
-
-// }

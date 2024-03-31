@@ -70,3 +70,16 @@ body{
     padding-left: -20px;
     padding-top: 20px;
   }  */
+  /* .tableScroll {
+    max-height: 100px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+  } */
+  .dropdownScroll {
+    max-height: 1000px; 
+    overflow-y: auto;
+   width: 200%;
+   font-size: 40px;
+   margin-left: 50px;
+  }
