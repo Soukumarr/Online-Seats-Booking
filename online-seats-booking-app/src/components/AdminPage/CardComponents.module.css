@@ -14,12 +14,14 @@ body{
     box-shadow: 0 4px 8px 0 black;
     transition: 0.3s;
     border: "1px solid #ddd";
-    margin: 5;
-    border-radius: 100px;
+    margin : 0px 20px 0px 20px;
+    border-radius: 50px;
     background-color: white;
-    width: 400px;
-    height: 250px;
    
+  }
+
+  .cardnew:target {
+    height: 500px;
   }
    
   /* On mouse-over, add a deeper shadow */

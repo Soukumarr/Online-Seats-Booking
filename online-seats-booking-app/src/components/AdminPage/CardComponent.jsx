@@ -42,36 +42,10 @@ export const CardComponent = (props) => {
   };
 
   return (
+
     <div className={styles.cardnew} onClick={handleCardClick}>
       <div className={styles.containernew}>
-        {showTable ? (
-          props.selectedCard && (
-            <table >
-              <thead>
-                <tr>
-                  <th>Floors</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-          <td>
-            <select size="3" className={styles.dropdownScroll}>
-              {Array.from({ length: props.selectedCard.floor }, (_, i) => i + 1).map((floor, index) => (
-                <option key={index} onClick={(e) => {
-                  e.stopPropagation(); // Prevent the card click event from being triggered
-                  handleFloorClick(floor);
-                }}>
-                  {floor}
-                </option>
-              ))}
-            </select>
-          </td>
-        </tr>
-              </tbody>
-            </table>
-          )
-        ) : (
-          <>
+        <>
             {isEditing ? (
   <form onSubmit={handleSave}>
     <label>
@@ -112,14 +86,40 @@ export const CardComponent = (props) => {
                 </b></span>
                 <div className={styles.plusButtonWrapper}>
                   <button className={styles.plusButton} onClick={handleClick}>
-                    Edit
+                  Edit
                   </button>
                   <button className={styles.plusButton} onClick={props.onDelete}>Delete</button>
                 </div>
               </>
             )}
           </>
-        )}
+
+        
+          {(props.selectedCard && showTable) && (
+            <table >
+              <thead>
+                <tr>
+                  <th>Floors</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+          <td>
+            <select size="3" className={styles.dropdownScroll}>
+              {Array.from({ length: props.selectedCard.floor }, (_, i) => i + 1).map((floor, index) => (
+                <option key={index} onClick={(e) => {
+                  e.stopPropagation(); // Prevent the card click event from being triggered
+                  handleFloorClick(floor);
+                }}>
+                  {floor}
+                </option>
+              ))}
+            </select>
+          </td>
+        </tr>
+              </tbody>
+            </table>
+          )}
       </div>
     </div>
   );

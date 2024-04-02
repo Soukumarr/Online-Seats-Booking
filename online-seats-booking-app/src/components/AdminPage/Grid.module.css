@@ -3,8 +3,9 @@
 /* GRID CSS */
 .box {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  gap: 50px 50px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 50px;
   justify-content: center;
   margin-top: 70px;
   margin-bottom: 70px;
@@ -14,6 +15,7 @@
 .fgh {
   display: inline-grid;
   grid-template-columns: 1fr;
+  height: 500px;
   
 }
  

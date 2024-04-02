@@ -8,6 +8,10 @@ export const Grid = () => {
   const [cards, setCards] = useState([
     { location: "Sarjah", office: "Corporate Square", seats: "35", floor: 5 },
     { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
+    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
+    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
+    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
+    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 }
     // Add more cards as needed
   ]);
   const [newCard, setNewCard] = useState({ location: "", office: "", seats: "", floor: "" });
