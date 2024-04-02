@@ -5,13 +5,21 @@ export const SeatGrid = (props) => {
   // bY CHANGING ELEMENTS OF THIS ARRAY we can alter number of rows and columns
   // Later from backend we will fetch an array like below and modify our code to work for the elements inside it
   // for now we can set the lenght from props and alter the styling
+
+  // var len = props.rows * props.columns
   const [items, setItems] = useState(
     Array.from({ length: props.rows * props.columns }).fill("white")
   );
+
+  console.log(items.length)
   console.log(`seat ${items.at(5) == "white" ? 'hoverable' : ''}`)
   const handleClick = (seatIndex) => {
     // Create a copy of the seatColors array to avoid mutation
     const updatedColors = [...items];
+
+    if(props.edit) {
+      
+    }
 
     if (updatedColors[seatIndex] == "white") {
       updatedColors[seatIndex] = "green";
@@ -39,7 +47,7 @@ export const SeatGrid = (props) => {
             <div
             key={index}
             className={`${styles.seat} ${items.at(index)=="white" ? styles.hoverable : ''}`}
-            style={{ '--seat-color': items.at(index) }}
+            style={{ '--seat-color': color}}
             onClick={() => handleClick(index)}
           ></div>
         ))}
@@ -47,3 +55,4 @@ export const SeatGrid = (props) => {
     </div>
   );
 };
+

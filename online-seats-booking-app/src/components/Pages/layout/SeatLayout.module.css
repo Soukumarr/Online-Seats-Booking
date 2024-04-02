@@ -1,5 +1,6 @@
 :root {
     --seat-color: #ffffff; /* Initial color */
+    --button-font-size: large;
   }
 
 
@@ -16,6 +17,7 @@
     justify-content: center;
     margin: 100px;
     margin-top: 25px;
+    margin-bottom: 25px;
     padding: 50px;
 
 }
@@ -23,6 +25,7 @@
 .outerGridItem {
     display: inline-grid;
     background-color: rgb(247 228 4 / 58%);
+    border-radius: 10px;
 }
 
 .innerGridContainer {
@@ -36,72 +39,135 @@
 
 .seat {
     border: 2px solid black;
-    padding: 20px;
+    padding: 18px;
     background-color: var(--seat-color);
-    margin: 2px;
+    margin: 3px;
     border-radius: 10px;
 }
 
 .hoverable:hover {
-    background-color: rgba(1, 23, 189, 0.427);
+    background-color: rgba(255, 255, 255, 0.5);
     /* No background change */
     box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.5);
 }
+
+/* Buttons */
+
+.buttonsContainer {
+    margin-bottom: 150px;
+    justify-content: center;
+    display: flex;
+}
+
+button {
+    padding: 20px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: padding 0.3s, font-size 0.3s;
+    font-size: var(--button-font-size)
+
+}
+
 
 .resetButton {
     background-color: #9b9898;
     /* Light gray */
     color: #4a4949;
-    /* Dark gray */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    /* Add hover effect */
 }
 
 .resetButton:hover {
     background-color: #dddddd;
+    padding: 22px 44px;
     /* Slightly lighter gray on hover */
 
-}
-
-.buttonsContainer {
-    margin-top: 150px;
-    justify-content: center;
-    display: flex;
 }
 
 
 .saveButton {
     background-color: #4CAF50;
-    /* Green */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    /* Add hover effect */
+   
 }
 
 .saveButton:hover {
     background-color: #3e8e41;
+    padding: 22px 44px;
     /* Darker green on hover */
+}
+
+.editButton {
+    background-color:crimson;
 }
 
 .smallContainer {
 
     display: flex;
     justify-content: space-between;
-
-    width: 20%;
+    width: 25%;
 }
 
 .availableSeat {
-    background-color: rgba(255, 255, 0, 0.2);
+    background-color: rgb(16 24 108 / 64%);
+    color: white;
     text-shadow: 0px 0px 2px rgba(255, 255, 0, 0.5);
     margin-left: 700px;
     margin-right: 700px;
+    margin-top: 25  px;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+
+
+/* SIDE BAR */
+
+
+.sidebar {
+    width: 200px;
+    background-color: #0d1629bf;
+    color: white;
+    height: 100vh; /* Full height */
+    border-radius: 10px;
+  }
+  
+  .sidebarHeader {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #222;
+  }
+  
+  .sidebarMenu {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebarMenuItem {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .sidebarMenuItem:hover {
+    background-color: #444;
+  }
+
+
+
+
+  /* CONTAINER SECTION */
+
+
+.contSection {
+    display: grid;
+    grid-template-columns: 10% 90%;
+
+}
+
+
+/* WORKPLACE */
+
+.workplace {
+
+    display: grid;
 }
