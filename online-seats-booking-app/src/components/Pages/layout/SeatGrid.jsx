@@ -1,39 +1,51 @@
 import { useEffect, useState } from "react";
 import styles from "./SeatLayout.module.css";
+import Seat from './Seat'
+import { useRef } from "react";
 
 export const SeatGrid = (props) => {
   // bY CHANGING ELEMENTS OF THIS ARRAY we can alter number of rows and columns
   // Later from backend we will fetch an array like below and modify our code to work for the elements inside it
   // for now we can set the lenght from props and alter the styling
 
-  // var len = props.rows * props.columns
-  const [items, setItems] = useState(
+
+
+  let [seats, setSeats] = useState(
     Array.from({ length: props.rows * props.columns }).fill("white")
   );
 
-  console.log(items.length)
-  console.log(`seat ${items.at(5) == "white" ? 'hoverable' : ''}`)
-  const handleClick = (seatIndex) => {
-    // Create a copy of the seatColors array to avoid mutation
-    const updatedColors = [...items];
+  // const resetArray = useRef([...seats]);
+  const resetArray = [];
 
+  
+  console.log(`seat ${seats.at(5) == "white" ? 'hoverable' : ''}`)
+  const handleClick = (index) => {
+    // Create a copy of the seatColors array to avoid mutation
+    const updatedColors = [...seats];
+    
     if(props.edit) {
+
+      if (updatedColors[index] == "white") {
+        updatedColors[index] = "green";
+  
+        props.onSelect(-1);
+  
+      } else if (updatedColors[index] == "green") {
+        updatedColors[index] = "white";
+            props.onSelect(1);
+      }
+  
+      // Update the state with the modified array
+      setSeats(updatedColors);
       
     }
-
-    if (updatedColors[seatIndex] == "white") {
-      updatedColors[seatIndex] = "green";
-
-      props.onSelect(-1);
-
-    } else if (updatedColors[seatIndex] == "green") {
-      updatedColors[seatIndex] = "white";
-          props.onSelect(1);
-    }
-
-    // Update the state with the modified array
-    setItems(updatedColors);
   };
+
+  const handleReset = () => {
+    console.log("Handel Reset Called ")
+    // setSeats(resetArray);
+    console.log(resetArray)
+  }
 
   var gridStyles = {
     gridTemplateColumns: "repeat(" + props.columns + ", 1fr)",
@@ -43,15 +55,16 @@ export const SeatGrid = (props) => {
     <div>
       <div className={styles.innerGridContainer} style={gridStyles}>
         {
-        items.map((color, index) => (
+        seats.map((color, index) => (
             <div
             key={index}
-            className={`${styles.seat} ${items.at(index)=="white" ? styles.hoverable : ''}`}
+            className={`${styles.seat} ${seats.at(index)=="white" ? styles.hoverable : ''}`}
             style={{ '--seat-color': color}}
             onClick={() => handleClick(index)}
           ></div>
         ))}
       </div>
+      <button onClick={()=> handleReset()}>Reset</button>
     </div>
   );
 };
