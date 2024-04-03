@@ -1,8 +1,8 @@
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Pages/Home";
-import { About } from "./components/Pages/About";
+import About from "./components/Pages/About/About.jsx";
 import { Signin } from "./components/Pages/Signin";
 import { Contact } from "./components/Pages/Contact";
 import { Signup } from "./components/Pages/Signup";
@@ -13,11 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 
 function App() {
-
   return (
     <>
       <Router>
-        <NavBar />
+        <Navbar />
 
         <div className="pages">
           <Routes>
@@ -32,7 +31,6 @@ function App() {
             <Route path="/layout" element={<SeatLayout />} />
           </Routes>
         </div>
-
       </Router>
     </>
   );
