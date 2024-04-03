@@ -11,7 +11,9 @@ import { Calender } from "./components/Pages/calendar/Calender";
 import { Demo } from "./components/Card/Demo";
 import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
-import LoginForm from "./components/Pages/LoginForm";
+import Userprofile from "./components/Pages/Userprofile";
+import Bookings from "./components/Pages/Bookings";
+import Resetpassword from "./components/Pages/ResetPassword";
 
 function App() {
 
@@ -31,8 +33,9 @@ function App() {
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/layout" element={<SeatLayout />} />
-            <Route path="/login" element={<LoginForm />} />
-
+            <Route path="/userprofile" element={<Userprofile/>} />
+            <Route path="/bookings" element={<Bookings/>} />
+            <Route path="/resetpassword" element={<Resetpassword/> } />
           </Routes>
         </div>
 

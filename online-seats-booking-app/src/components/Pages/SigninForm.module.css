@@ -1,9 +1,6 @@
-body{
-    background: #ffffff;
-}
- 
+
 form {
-  background-color: white;
+ 
  
  
   margin-left: 140px;
@@ -19,7 +16,7 @@ form {
   height: 50px;
   background-color: #ecd5de;
   width:100%;
-  
+  justify-content: center;
     
 }
 .navheading a {
@@ -30,23 +27,37 @@ form {
   
 } */
 
+.navheading table{
+  padding: 12px;
+  border: 1px solid #ffffff;
+  
+}
+
+
 
 .navheading table td {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ffffff;
 }
-.navheading table td:hover{
- border-color: black;
-}
+/* .navheading table td:hover{
+ 
+ background-color: rgb(252, 247, 247);
+} */
 
+.navheading table td:hover{
+  border: 1px solid black;
+  color:rgb(17, 17, 97);
+  background-color: rgb(240, 230, 230);;
+  
+}
 .header{
-  height: 120px;
+  height: 100px;
  
   
 
 }
 h1{
-  margin-top: 50px;;
+  margin-top: 10px;;
 }
 /* .heading{
   margin-top: 80px;
@@ -57,6 +68,7 @@ h1{
   height:150px;
   margin-top: 0px;
   background-color: #ecd5de;
+ 
   /* background:linear-gradient(120deg, #f1c9e4,#ce8fa7); */
 }
 
@@ -72,6 +84,7 @@ h1{
   margin-left:44rem;
   width:32rem;
   border-radius:14px;
+  align-items: center;
   
 }
 
@@ -92,16 +105,16 @@ h1{
 }
 
 .signupform:hover{
-  transform: translate(-7px) scale(1.06);
+  transform: translate(-7px) scale(1.04);
   box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
   border: 1px solid black;
 }
 
 .signinlink a{
-  color:rgb(250, 249, 249);
+  color:white;
 }
 .container{
-  max-width:90rem;
+  max-width:80rem;
   margin-left:200rem;
   
  
@@ -112,14 +125,13 @@ h1{
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  margin-left: 200px;
+  align-items: center;
  
 }
 
 .formLabel {
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   margin-bottom: 0.25rem;
-  margin-left: 200px;
   
 }
 
@@ -127,18 +139,21 @@ h1{
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  align-items: center;
+  
  
 }
 
 .formsLabel {
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
+ 
   
 }
 .formField {
   padding: 0.5em;
   width:28rem;
-  margin-left: 2rem;
+  
   
   border-radius:14px;
 }
@@ -151,7 +166,7 @@ h1{
   width:16rem;
   height:2rem;
   align-items: center;
-  margin-left: 8rem;
+ 
   border-radius:14px;
 }
 .formDropdown:hover{
@@ -169,7 +184,7 @@ h1{
 .formInput {
   padding: 0.5em;
   width:28rem;
-  margin-left: 2rem;
+ 
   border-radius:14px;
 }
 .formInput:hover{
@@ -203,7 +218,7 @@ h1{
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 10px 30px 0 30px;
+  margin: 10px 20px 0 30px;
   
   font-weight: 500;
 }
@@ -213,10 +228,19 @@ h1{
   border: 1px solid black;
   box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
 }
+
+.forgotpassword{
+  margin-left: 150px;
+  padding: 1rem;
+}
+.signinlink{
+  margin-left: 120px;
+}
+
 .formInputs{
   padding: 0.5rem;
   width: 600px;
-  margin-left: 100px;
+  margin-left: 20px;
   border-radius:14px;
 }
 .formInputs:hover{
@@ -227,11 +251,16 @@ background-color: rgb(214, 209, 209);
   height:57px;
  
 }
+.profileform{
+  align-items: center;
+}
 
 .userform{
   border: 1px solid black;
+  color: white;
   margin-top: 40px;
   width:800px;
+  align-items: center;
   padding: 5px;
   margin-left: 400px;
   border-radius: 14px;
@@ -239,6 +268,7 @@ background-color: rgb(214, 209, 209);
 }
 .contactform{
   border: 1px solid black;
+  color:white;
   border-radius: 14px;
   margin-top: 30px;
   width:800px;
@@ -247,8 +277,11 @@ background-color: rgb(214, 209, 209);
   background: linear-gradient(1750deg,rgb(202, 168, 168),white);
 }
 
+
 .resetform{
+  
   border: 1px solid black;
+  color:white;
   margin-top: 40px;
   width:600px;
   padding: 5px;
@@ -275,7 +308,7 @@ background-color: rgb(214, 209, 209);
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 30px 170px 0 70px;
+  margin: 30px 150px 0 70px;
   
   font-weight: 500;
 }
@@ -290,7 +323,7 @@ background-color: rgb(214, 209, 209);
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 30px 70px 0 70px;
+  margin: 30px 50px 0 70px;
   
   font-weight: 500;
 
@@ -300,4 +333,13 @@ background-color: rgb(214, 209, 209);
   border: 1px solid black;
   box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
 
+}
+
+.heading{
+  margin-left: 150px;
+  padding: 1rem;;
+  
+}
+.userheading{
+  margin-left: 320px;
 }

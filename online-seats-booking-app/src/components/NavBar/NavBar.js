@@ -66,7 +66,7 @@ function NavBar() {
             <li className="nav-item">
               <NavLink
                 exactw
-                to="/register"
+                to="/signup"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}

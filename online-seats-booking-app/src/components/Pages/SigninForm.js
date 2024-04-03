@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './LoginForm.module.css';
+import styles from './SigninForm.module.css';
 import { Button, Dropdown } from 'antd';
  
 const SigninForm = () => {
@@ -26,7 +26,7 @@ const onSubmitForm=e=>
     const passwordValid= validatePassword(form.password);
     const confirmPasswordValid=validatePassword(form.password);
     if(!passwordValid){
-      alert('Password must be at least 8 characters long and contain at least one special character');
+      alert('Password must be at least 8 characters long and contain at least one lowercase letter, uppercase letter, number, and special character.');
       return;
     }
     
@@ -49,7 +49,8 @@ const handleGoogleLogin = () => {
 return(
     <div>
     <form className={styles.loginform} onSubmit={onSubmitForm}>
-        <h2>Login</h2>
+       
+       
         <div className={styles.formGroup}>
             <label className={styles.formLabel}><h3>Email</h3> </label>
             <input type="email"
