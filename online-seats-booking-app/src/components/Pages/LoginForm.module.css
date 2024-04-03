@@ -1,0 +1,338 @@
+body{
+    background: white;
+    
+}
+form {
+    background-color: white;
+   
+   
+    margin-left: 140px;
+    padding:1x ;
+}
+.navheading{
+    /* background-color: #f5d7dd; */
+    /* display:flex; */
+    /* width:1200px; */
+    /* height:40px; */
+   
+    display: flex;
+    height: 50px;
+    background-color: #ecd5de;
+    width:100%;
+    
+      
+}
+.navheading a {
+    margin-right: 16px;
+  }
+/* .navheading table{
+    width:100%;
+    
+} */
+
+
+.navheading table td {
+    padding: 10px;
+    border: 1px solid #ffffff;
+}
+.navheading table td:hover{
+   border-color: black;
+}
+
+.header{
+    height: 120px;
+   
+    
+
+}
+h1{
+    margin-top: 50px;;
+}
+/* .heading{
+    margin-top: 80px;
+} */
+
+.userprofile{
+    /* background:linear-gradient(120deg, #ebcacf,#d3156d); */
+    height:150px;
+    margin-top: 0px;
+    background-color: #ecd5de;
+    /* background:linear-gradient(120deg, #f1c9e4,#ce8fa7); */
+}
+
+.editprofileform{
+   margin-left: 1200px;
+}
+.loginform{
+    background:linear-gradient(130deg,rgb(126, 126, 160),pink);
+    color:rgb(252, 249, 249);
+    padding:0.3rem;
+    max-height:44rem;
+    margin-top: 4rem;
+    margin-left:44rem;
+    width:32rem;
+    border-radius:14px;
+    
+}
+
+.loginform:hover{
+    transform: translate(-7px) scale(1.08);
+    box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+    border: 2px solid black;
+}
+.signupform{
+    background:linear-gradient(130deg,rgb(126, 126, 160),pink);
+    color:white;
+    padding: 0.3rem;
+    min-height: 44rem;
+    margin-left: 44rem;
+    width:32rem;
+    margin-top: 4rem;
+    border-radius:14px;
+}
+
+.signupform:hover{
+    transform: translate(-7px) scale(1.06);
+    box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+    border: 1px solid black;
+}
+
+.signinlink a{
+    color:white;
+}
+.container{
+    max-width:80rem;
+    margin-left:200rem;
+    
+   
+}
+
+ 
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    
+   
+}
+ 
+.formLabel {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    margin-left: 180px;
+    
+}
+ 
+.formsGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+   
+}
+ 
+.formsLabel {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    
+}
+.formField {
+    padding: 0.5em;
+    width:28rem;
+    margin-left: 2rem;
+    
+    border-radius:14px;
+}
+.formField:hover{
+    background-color: rgb(182, 178, 178);
+    border: 1px solid black;
+    box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+}
+.formDropdown{
+    width:16rem;
+    height:2rem;
+    align-items: center;
+    margin-left: 8rem;
+    border-radius:14px;
+}
+.formDropdown:hover{
+    background-color: rgb(182, 178, 178);
+    border: 1px solid black;
+    box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+}
+
+.forgotpassword{
+    color: white;
+}
+.forgotpassword a{
+    color:white;
+}
+.formInput {
+    padding: 0.5em;
+    width:28rem;
+    margin-left: 2rem;
+    border-radius:14px;
+}
+.formInput:hover{
+    background-color: rgb(182, 178, 178);
+    
+    border: 1px solid black;
+    box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+}
+ 
+.formFieldError {
+    border: 1px solid #e11d48;
+}
+ 
+.formFieldErrorMessage {
+    color: 1px solid #e11d48;
+}
+ 
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 11rem;
+    min-width:8rem;
+}
+/* .social-login{
+    padding: 20px;
+} */
+ 
+.formSubmitBtn {
+    padding: 0.5rem 0.7rem;
+    min-width: 7rem;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    margin: 10px 30px 0 30px;
+    
+    font-weight: 500;
+}
+
+.formSubmitBtn:hover{
+    background-color: rgb(182, 178, 178);
+    border: 1px solid black;
+    box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
+}
+.formInputs{
+    padding: 0.5rem;
+    width: 600px;
+    margin-left: 100px;
+    border-radius:14px;
+}
+.formInputs:hover{
+background-color: rgb(214, 209, 209);
+}
+.sociallogin{
+    padding-bottom: 2rem;
+    height:57px;
+   
+}
+
+.userform{
+    border: 1px solid black;
+    margin-top: 40px;
+    width:800px;
+    padding: 5px;
+    margin-left: 400px;
+    border-radius: 14px;
+    background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+}
+.contactform{
+    border: 1px solid black;
+    border-radius: 14px;
+    margin-top: 30px;
+    width:800px;
+    padding: 5px;
+    margin-left: 400px;
+    background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+}
+
+.resetform{
+    border: 1px solid black;
+    margin-top: 40px;
+    width:600px;
+    padding: 5px;
+    margin-left: 650px;
+    border-radius: 14px;
+    background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+}
+.formFields{
+    padding: 0.5em;
+    width:28rem;
+    margin-left: 4rem;
+    
+    border-radius:14px;
+}
+
+.formFields:hover{
+
+background-color: rgb(214, 209, 209);
+}
+
+.formBtn{
+    padding: 0.5rem 0.7rem;
+    min-width: 7rem;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    margin: 30px 170px 0 70px;
+    
+    font-weight: 500;
+}
+.formBtn:hover{
+    background-color: rgb(182, 178, 178);
+    border: 1px solid black;
+    box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
+}
+.resetformBtn{
+    padding: 0.5rem 0.7rem;
+    min-width: 7rem;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    margin: 30px 70px 0 70px;
+    
+    font-weight: 500;
+
+}
+.resetformBtn:hover{
+    background-color: rgb(182, 178, 178);
+    border: 1px solid black;
+    box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
+
+}
+/* 
+.navbar-sider {
+    height: 100%;
+    padding: 2rem 1rem;
+    text-align: left;
+    border-right: none;
+  }
+  
+  .navbar-logo {
+    margin-bottom: 1.5rem;
+  }
+  
+  .navbar-menu {
+    text-align: left;
+  }
+  
+  .navbar-menu a {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    display: block;
+    padding: 0.25rem 0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-left: 2px solid transparent;
+  }
+  
+  .navbar-menu a:hover {
+    border-left: 2px solid #fff;
+  }
+  
+  .navbar-menu a.active {
+    border-left: 2px solid #fff;
+  } */
+
+ 
