@@ -1,8 +1,8 @@
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Pages/Home";
-import { About } from "./components/Pages/About";
+import About from "./components/Pages/About/About.jsx";
 import { Signin } from "./components/Pages/Signin";
 import { Contact } from "./components/Pages/Contact";
 import { Signup } from "./components/Pages/Signup";
@@ -16,11 +16,10 @@ import Bookings from "./components/Pages/Bookings";
 import Resetpassword from "./components/Pages/ResetPassword";
 
 function App() {
-
   return (
     <>
       <Router>
-        <NavBar />
+        <Navbar />
 
         <div className="pages">
           <Routes>
@@ -38,7 +37,6 @@ function App() {
             <Route path="/resetpassword" element={<Resetpassword/> } />
           </Routes>
         </div>
-
       </Router>
     </>
   );
