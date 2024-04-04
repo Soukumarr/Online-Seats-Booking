@@ -19,7 +19,7 @@
     gap: 50px 50px;
     justify-content: center;
     margin: 100px;
-    margin-top: 25px;
+    margin-top: 0px;
     margin-bottom: 25px;
     padding: 50px;
 /* 
@@ -181,4 +181,51 @@ button {
 .workplace {
 
     display: grid;
+}
+
+
+/* POPUP */
+
+
+.popupRow {
+
+    background-color: #444;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid;
+
+}
+
+.popupRow:hover {
+
+    background-color: #222;
+    
+}
+
+.info {
+    /* background-color: #444; */
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    justify-content: center;
+    height:90
+
+}
+
+.infoElement{
+    grid-template-columns: repeat(6, 1fr);
+    /* background-color: chartreuse; */
+    margin: 40px 50px 20px 50px;
+   justify-content: space-around;
+   display: flex;
+   flex-direction: row;
+
+}
+
+.infoColor {
+    border: 3px solid #ffff00a3;
+    padding: 15px    ;
+}
+
+.infoText {
+
 }
