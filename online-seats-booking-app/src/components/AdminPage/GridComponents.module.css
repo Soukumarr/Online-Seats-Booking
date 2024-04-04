@@ -11,7 +11,7 @@ body{
 }
 .cardnew {
     /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 black;
+    box-shadow: 0 10px 15px 0 rgb(27, 17, 172);
     transition: 0.3s;
     border: "1px solid #ddd";
     margin : 0px 20px 0px 20px;
@@ -51,7 +51,7 @@ body{
     gap: 20px;
   }
    
-  .plusButton {
+  .editButton {
     width: 60px; /* Adjust width as needed */
     height: 50px; /* Adjust height as needed */
     background-color: #4CAF50; /* Change background color */
@@ -63,7 +63,29 @@ body{
     display: flex; /* Allow centering the plus sign */
     justify-content: center; /* Center the plus sign horizontally */
     align-items: center; /* Center the plus sign vertically */
+    transition: all 0.3s ease;
    
+  }
+  .editButton:hover {
+    transform: scale(1.4);
+  }
+  .deleteButton {
+    width: 60px; 
+    height: 50px; 
+    background-color: #d43811; 
+    color: white; 
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer; 
+    font-size: 20px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: all 0.3s ease;
+   
+  }
+  .deleteButton:hover {
+    transform: scale(1.4);
   }
   b{
     font-size: 20px;
@@ -81,7 +103,22 @@ body{
   .dropdownScroll {
     max-height: 1000px; 
     overflow-y: auto;
-   width: 200%;
+   width: 1000%;
    font-size: 40px;
-   margin-left: 50px;
+   margin-left: -6px;
+   border: none;
+
   }
+  /* CSS */
+.dropdownScroll option {
+  text-align: center;
+  padding: 10px;
+  border: none;
+}
+
+.dropdownScroll option:hover {
+  background-color:  #add8e6/* Change this to the color you want */
+}
+.dropdownScroll:focus {
+  outline: none;
+}

@@ -1,23 +1,24 @@
 import React, { useState } from "react";
-import { CardComponent } from "./CardComponent";
+import { GridComponent } from "./GridComponent";
 import styles from "./Grid.module.css";
 
 
 
 export const Grid = () => {
   const [cards, setCards] = useState([
-    { location: "Sarjah", office: "Corporate Square", seats: "35", floor: 5 },
-    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
-    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
-    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
-    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 },
-    { location: "Columbo", office: "Tech Park", seats: "45", floor: 3 }
+    { id: 1, location: "Sarjah", office: "Corporate Square", seats: "35", availableSeats: "20", floor: 5 },
+    { id:2, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "10", floor: 3 },
+    { id:3, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "25", floor: 3 },
+    { id:4, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "30", floor: 3 },
+    { id:5, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "15", floor: 3 },
+    
     // Add more cards as needed
   ]);
   const [newCard, setNewCard] = useState({ location: "", office: "", seats: "", floor: "" });
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = (card) => {
+    
     setSelectedCard(card);
   };
 
@@ -45,16 +46,13 @@ export const Grid = () => {
     console.log(edit);
     setEdit(!edit);
   }
-  const handleDeleteCard = (index) => {
-    const newCards = [...cards];
-    newCards.splice(index, 1);
-    setCards(newCards);
+  const handleDeleteCard = (cardToDelete) => {
+    setCards(cards.filter((card) => card.id !== cardToDelete.id));
   };
-
   return (
     <div>
       <h1>Admin DashBorad</h1>
-      <button onClick={()=> handleEdit()}>Edit</button>
+      <button className={styles.newCard} onClick={()=> handleEdit()}>Add new card</button>
       { edit==true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
         <label>
           Location:
@@ -78,17 +76,18 @@ export const Grid = () => {
 
       <div className={styles.box}>
         {cards.map((card, index) => (
-          <CardComponent
-          onClick={() => handleCardClick(card)}
-            key={index}
-            location={card.location}
-            office={card.office}
-            seats={card.seats}
-            floor={card.floor}
-            onDelete={() => handleDeleteCard(index)}
-            className={styles.fgh}
-            selectedCard={selectedCard}
-          />
+         <GridComponent
+         onClick={() => handleCardClick(card)}
+         key={card.id}
+            {...card}
+         location={card.location}
+         office={card.office}
+         seats={card.seats}
+         floor={card.floor}
+         onDelete={() => handleDeleteCard(card)}
+         className={styles.fgh}
+         selectedCard={selectedCard}
+       />
         ))}
       </div>
       
