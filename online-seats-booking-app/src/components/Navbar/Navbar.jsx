@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import "./Navbar.css";
+import "../Common.css";
 import {FaTwitter, FaSkype,FaInstagram} from "react-icons/fa";
 import {IoMdRocket} from "react-icons/io";
 
@@ -13,7 +14,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar w-100 flex">
-      <div className="container w-100">
+      <div className="containerr w-100">
         <div className="navbar-content flex fw-7">
           <div className="brand-and-toggler flex flex-between w-100">
             <Link to="/" className="navbar-brand fs-26">
@@ -70,12 +71,14 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="navbar-btns">
+                <Link to="/login">
                 <button type="button" className="btn">
                   <IoMdRocket />{" "}
                   <span>
-                    <Link to="/login">get started</Link>
+                    get started
                   </span>
                 </button>
+                </Link>
               </div>
             </div>
           </div>
