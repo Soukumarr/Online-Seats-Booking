@@ -4,7 +4,7 @@ import "../../Common.css";
 import images from '../../../constants/images';
 
 
-const About = () => {
+export const About = () => {
   return (
     <section className="about section-p bg-dark" id="about">
       <div className="containerr">
