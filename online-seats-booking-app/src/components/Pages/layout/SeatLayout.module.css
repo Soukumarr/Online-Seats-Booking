@@ -1,5 +1,8 @@
 :root {
     --seat-color: #ffffff; /* Initial color */
+    --seat-default: inset 0px 0px 10px 0px rgba(31, 38, 135, 0.37);
+    --seat-booked: inset 0px 0px 10px 0px rgba(187, 16, 16, 0.674);
+    --seat-present: inset 0px 0px 10px 0px rgb(0 ,228 ,95 , 0.79);
     --button-font-size: large;
   }
 
@@ -19,6 +22,9 @@
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 50px;
+/* 
+    border: 10px outset black; */
+    border-radius: 30px;
 
 }
 
@@ -43,6 +49,11 @@
     background-color: var(--seat-color);
     margin: 3px;
     border-radius: 10px;
+/* 
+    background-color: var(--seat-color);
+    border-radius: 10px; 
+    padding: 20px;
+    box-shadow:inset 0px 0px 10px 0px rgba(31, 38, 135, 0.37);  */
 }
 
 .hoverable:hover {
