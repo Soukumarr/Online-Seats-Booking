@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import { Home } from "./components/Pages/Home";
 import About from "./components/Pages/About/About.jsx";
-// import { Signin } from "./components/Pages/Signin";
+import { SigninForm } from "./components/Pages/SigninForm.js";
 import { Contact } from "./components/Pages/Contact";
-// import { Signup } from "./components/Pages/Signup";
+import { Signup } from "./components/Pages/Signup";
 // import Seatbooking from "./components/Pages/Seatbooking";
 import { Calender } from "./components/Pages/calendar/Calender";
 import { Demo } from "./components/Card/Demo";
@@ -13,6 +13,9 @@ import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 import Header from "./components/Pages/Header/Header.jsx";
 import Footer from "./components/Pages/Footer/Footer.jsx";
+import Userprofile from "./components/Pages/Userprofile.js";
+import Bookings from "./components/Pages/Bookings";
+import Resetpassword from "./components/Pages/ResetPassword";
 import AdminDashboad from "./components/AdminDashboard/AdminDashboad";
 
 function App() {
@@ -26,12 +29,15 @@ function App() {
             <Route path="/" element={<Header />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            {/* <Route path="/signin" element={<Signin />} />
+            <Route path="/signin" element={<SigninForm />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/seatbook" element={<Seatbooking />} /> */}
+            {/* <Route path="/seatbook" element={<Seatbooking />} /> */}
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/layout" element={<SeatLayout />} />
+            <Route path="/userprofile" element={<Userprofile/>} />
+            <Route path="/bookings" element={<Bookings/>} />
+            <Route path="/resetpassword" element={<Resetpassword/> } />
             <Route path="/admin_dashboard" element={<AdminDashboad />}></Route>
           </Routes>
         </div>

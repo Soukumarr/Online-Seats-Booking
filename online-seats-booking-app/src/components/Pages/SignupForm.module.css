@@ -1,0 +1,38 @@
+/* body{
+    background: #985bda;
+} */
+ 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 55vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -60%);
+    background-color: white;
+    
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    height: 35vh;
+    width: 52vh;
+  }
+  
+  #input {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+  }
+  button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #371adb;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
