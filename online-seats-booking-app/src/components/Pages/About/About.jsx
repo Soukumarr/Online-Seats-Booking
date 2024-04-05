@@ -1,15 +1,16 @@
 import React from 'react';
 import "./About.css";
-// import images from '../../../constants/images';
+import "../../Common.css";
+import images from '../../../constants/images';
 
 
-const About = () => {
+export const About = () => {
   return (
     <section className="about section-p bg-dark" id="about">
-      <div className="container">
+      <div className="containerr">
         <div className="about-content grid text-center">
           <div className="content-left">
-            {/* <img src={images.about_main_img} alt="" /> */}
+            <img src={images.about_main_img} alt="" />
           </div>
           <div className="content-right">
             <div className="section-t">
