@@ -29,18 +29,14 @@ const Userprofile=()=>
     const onSubmitForm=e=>
     {
         e.preventDefault();
-        if (!validatePhoneNumber(form.phone)) {
-            alert("Please enter a valid 10-digit phone number.");
-            return;
-          }
+        if (form.phone.length !== 10) {
+      alert("Phone number must be exactly 10 digits.");
+      return; // Prevent form submission if invalid
+    }
         
         alert(JSON.stringify(form,null,2))
     }
 
-    const validatePhoneNumber = (phone) => {
-        const phoneRegex = /^\d{10}$/; // Matches exactly 10 digits
-        return phoneRegex.test(phone);
-      };
     
 
     const validatePassword=(password)=> {
@@ -63,9 +59,9 @@ const Userprofile=()=>
 
           <form className={styles.profileform} onSubmit={onSubmitForm}>
            <div className={styles.userform}>
-            <div className={styles.userheading}><h2> User Info</h2></div>
+            <div className={styles.userheading}><h3 className={styles.divtitle}> User Information</h3></div>
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>First Name:</h3> </label>
+                <label className={styles.formLabel}><h2>First Name</h2> </label>
                 <input type="text"
                 name="firstname"
                 onChange={onUpdateField}
@@ -73,7 +69,7 @@ const Userprofile=()=>
                 placeholder="First Name" required/>
             </div>
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Last Name:</h3> </label>
+                <label className={styles.formLabel}><h2>Last Name:</h2> </label>
                 <input type="text"
                 name="lastname"
                 onChange={onUpdateField}
@@ -83,10 +79,10 @@ const Userprofile=()=>
             </div>
 
             <div className={styles.contactform}>
-            <div className={styles.userheading}><h3> Contact Info</h3></div>
+            <div className={styles.userheading}><h3 className={styles.divtitle}> Contact Information</h3></div>
 
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Email:</h3> </label>
+                <label className={styles.formLabel}><h2>Email:</h2> </label>
                 <input type="email"
                 name="email"
                 onChange={onUpdateField}
@@ -103,7 +99,7 @@ const Userprofile=()=>
                 placeholder="Mobile Number" required/>
             </div> */}
              <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Phone Number:</h3> </label>
+                <label className={styles.formLabel}><h2>Phone Number:</h2> </label>
                 <input type="integer"
                 name="phone"
                 onChange={onUpdateField}
@@ -113,7 +109,7 @@ const Userprofile=()=>
           
             </div>
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Address:</h3> </label>
+                <label className={styles.formLabel}><h2>Address:</h2> </label>
                 <input type="text"
                 name="address"
                 onChange={onUpdateField}

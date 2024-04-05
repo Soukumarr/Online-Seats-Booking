@@ -17,9 +17,11 @@ form {
   background-color: #ecd5de;
   width:100%;
   justify-content: center;
+  margin-top: 0px;
     
 }
 .navheading a {
+  
   margin-right: 16px;
 }
 /* .navheading table{
@@ -28,8 +30,10 @@ form {
 } */
 
 .navheading table{
-  padding: 12px;
+  
+  margin-top: 0;
   border: 1px solid #ffffff;
+  
   
 }
 
@@ -51,22 +55,39 @@ form {
   
 }
 .header{
-  height: 100px;
+  height: 95px;
+  justify-content: center;
  
   
 
 }
 h1{
-  margin-top: 10px;;
+  margin-top: 10px;
+  text-align: center;
+  
+  
+}
+
+/* .divtitle{
+ margin-left:0px ;
+ 
+} */
+h3{
+  font-size: 3rem;
+  
+
 }
 /* .heading{
   margin-top: 80px;
 } */
-
+h2{
+  font-size: 2.5rem;
+  
+}
 .userprofile{
   /* background:linear-gradient(120deg, #ebcacf,#d3156d); */
   height:150px;
-  margin-top: 0px;
+  margin-top: 70px;
   background-color: #ecd5de;
  
   /* background:linear-gradient(120deg, #f1c9e4,#ce8fa7); */
@@ -77,14 +98,15 @@ h1{
 }
 .loginform{
   background:linear-gradient(130deg,rgb(126, 126, 160),pink);
-  color:white;
+  color:rgb(255, 255, 255);
   padding:0.3rem;
-  max-height:44rem;
-  margin-top: 4rem;
-  margin-left:44rem;
-  width:32rem;
+  
+  margin-top: 20rem;
+  margin-left:70rem;
+  width:53rem;
+  height:580px;
   border-radius:14px;
-  align-items: center;
+ justify-content: center;
   
 }
 
@@ -97,10 +119,11 @@ h1{
   background:linear-gradient(130deg,rgb(126, 126, 160),pink);
   color:white;
   padding: 0.3rem;
-  min-height: 44rem;
-  margin-left: 44rem;
-  width:32rem;
-  margin-top: 4rem;
+  min-height: 700px;
+  margin-left: 70rem;
+  margin-top:15rem;
+  width:55rem;
+  margin-top: 10rem;
   border-radius:14px;
 }
 
@@ -130,9 +153,10 @@ h1{
 }
 
 .formLabel {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  font-size: large;
   margin-bottom: 0.25rem;
-  
+  text-align: center;
 }
 
 .formsGroup {
@@ -152,7 +176,7 @@ h1{
 }
 .formField {
   padding: 0.5em;
-  width:28rem;
+  width:44rem;
   
   
   border-radius:14px;
@@ -163,11 +187,13 @@ h1{
   box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
 }
 .formDropdown{
-  width:16rem;
-  height:2rem;
+  width:20rem;
+  height:4rem;
   align-items: center;
- 
-  border-radius:14px;
+  text-align: center;
+  border-radius:12px;
+  
+  
 }
 .formDropdown:hover{
   background-color: rgb(182, 178, 178);
@@ -175,15 +201,14 @@ h1{
   box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
 }
 
-.forgotpassword{
+/* .forgotpassword{
   color: white;
-}
-.forgotpassword a{
-  color:white;
-}
+  margin-left: 30rem;
+} */
+
 .formInput {
   padding: 0.5em;
-  width:28rem;
+  width:44rem;
  
   border-radius:14px;
 }
@@ -201,7 +226,9 @@ h1{
 .formFieldErrorMessage {
   color: 1px solid #e11d48;
 }
-
+select {
+  appearance: none; /* Hide default appearance */
+}
 .formActions {
   display: flex;
   justify-content: flex-end;
@@ -213,12 +240,12 @@ h1{
 } */
 
 .formSubmitBtn {
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0.8rem;
   min-width: 7rem;
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 10px 20px 0 30px;
+  margin: 20px 120px 10px 30px;
   
   font-weight: 500;
 }
@@ -230,11 +257,17 @@ h1{
 }
 
 .forgotpassword{
-  margin-left: 150px;
+  margin-left: 160px;
   padding: 1rem;
 }
+.forgotpassword a{
+  color:white;
+}
 .signinlink{
-  margin-left: 120px;
+  margin-left: 100px;
+}
+.signinlink a:hover{
+  color:rgb(24, 24, 221);
 }
 
 .formInputs{
@@ -272,6 +305,7 @@ background-color: rgb(214, 209, 209);
   border-radius: 14px;
   margin-top: 30px;
   width:800px;
+  height: 500px;
   padding: 5px;
   margin-left: 400px;
   background: linear-gradient(1750deg,rgb(202, 168, 168),white);
@@ -281,6 +315,7 @@ background-color: rgb(214, 209, 209);
 .resetform{
   
   border: 1px solid black;
+  height: 500px;
   color:white;
   margin-top: 40px;
   width:600px;
@@ -308,7 +343,7 @@ background-color: rgb(214, 209, 209);
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 30px 150px 0 70px;
+  margin: 30px 210px 0 70px;
   
   font-weight: 500;
 }
@@ -323,7 +358,7 @@ background-color: rgb(214, 209, 209);
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 30px 50px 0 70px;
+  margin: 30px 120px 0 70px;
   
   font-weight: 500;
 
@@ -341,5 +376,6 @@ background-color: rgb(214, 209, 209);
   
 }
 .userheading{
-  margin-left: 320px;
+  text-align: center;
+  
 }

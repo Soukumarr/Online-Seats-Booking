@@ -12,10 +12,7 @@ const Resetpassword=()=>
             
         }
         );
-        const validatePassword = (newpassword) => {
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            return passwordRegex.test(newpassword);
-          };
+        
 
     const onUpdateField=e=>
     {
@@ -29,16 +26,33 @@ const Resetpassword=()=>
     const onSubmitForm=e=>
     {
         e.preventDefault();
-        const passwordValid = validatePassword(form.newpassword);
-        if (!passwordValid) {
-            alert('Password must be at least 8 characters long and contain at least one lowercase letter, uppercase letter, number, and special character.');
-            return;
-          }
-      
-          if (form.newpassword !== form.confirmpassword) {
-            alert('Passwords do not match');
-            return;
-          }
+        
+        let hasError = false;
+    let errorMessage = "";
+
+    if (form.newpassword.length < 8) {
+      hasError = true;
+      errorMessage = "Password must be at least 8 characters long, must contain at least one number, one lowercase letter, and one uppercase letter.";
+    } else {
+      const hasNumber = /\d/.test(form.newpassword);
+      const hasLowercase = /[a-z]/.test(form.newpassword);
+      const hasUppercase = /[A-Z]/.test(form.newpassword);
+
+      if (!hasNumber || !hasLowercase || !hasUppercase) {
+        hasError = true;
+        errorMessage =
+          "Password must contain at least one number, one lowercase letter, and one uppercase letter.";
+      } else if (form.newpassword !== form.confirmpassword) {
+        hasError = true;
+        errorMessage = "New password and confirm password don't match.";
+      }
+    }
+
+    if (hasError) {
+      alert(errorMessage);
+      return; // Prevent form submission if invalid
+    }
+        
         alert(JSON.stringify(form,null,2))
     } 
 
@@ -47,14 +61,14 @@ const Resetpassword=()=>
         <div className={styles.userprofile}>
           <header className={styles.header}>
             <br></br>
-            <h1>My Profile</h1>
+            <h1>Reset Password</h1>
             
           </header>
           
           <Navigationbar/>
           
         <form className={styles.resetform} onSubmit={onSubmitForm}>
-        <div className={styles.heading}><h2>Reset Password</h2></div>
+        
             
             <div className={styles.formGroup}>
                 <label className={styles.formLabel}><h3>Current Password</h3> </label>

@@ -10,15 +10,9 @@ const SignupForm = () => {
     role: "",
   });
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  
 
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
-  };
+  
 
   const onUpdateField = (e) => {
     const nextFormState = {
@@ -33,24 +27,35 @@ const SignupForm = () => {
   const onSubmitForm = (e) => {
     e.preventDefault();
 
-    const emailValid = validateEmail(form.email);
-    const passwordValid = validatePassword(form.password);
+    
 
-    if (!emailValid) {
-      alert('Please enter a valid email address.');
-      return;
+    let passwordValid = false;
+    let passwordErrorMessage = "";
+
+    if (form.password.length < 8) {
+      passwordValid = false;
+      passwordErrorMessage = "Password must be at least 8 characters long,must contain at least one number, one lowercase letter, and one uppercase letter.";
+    } else {
+      const hasNumber = /\d/.test(form.password);
+      const hasLowercase = /[a-z]/.test(form.password);
+      const hasUppercase = /[A-Z]/.test(form.password);
+
+      if (!hasNumber || !hasLowercase || !hasUppercase) {
+        passwordValid = false;
+        passwordErrorMessage =
+          "Password must contain at least one number, one lowercase letter, and one uppercase letter.";
+      } else if (form.password !== form.confirmPassword) {
+        passwordValid = false;
+        passwordErrorMessage = "Passwords do not match.";
+      } else {
+        passwordValid = true;
+      }
     }
 
-    if (!passwordValid) {
-      alert('Password must be at least 8 characters long and contain at least one lowercase letter, uppercase letter, number, and special character.');
-      return;
+    if (!passwordValid) { 
+      alert(passwordErrorMessage); 
+      return; 
     }
-
-    if (form.password !== form.confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
         alert(JSON.stringify(form,null,2))
     }
 
@@ -67,7 +72,7 @@ const SignupForm = () => {
         <form className={styles.signupform} onSubmit={onSubmitForm}>
             
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Email:</h3> </label>
+                <label className={styles.formLabel}><h2>Email:</h2> </label>
                 <input type="email"
                 name="email"
                 onChange={onUpdateField}
@@ -75,7 +80,7 @@ const SignupForm = () => {
                 placeholder="Enter your email" required />
             </div>
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Name:</h3> </label>
+                <label className={styles.formLabel}><h2>Name:</h2> </label>
                 <input type="text"
                 name="name"
                 onChange={onUpdateField}
@@ -83,7 +88,7 @@ const SignupForm = () => {
                 placeholder="Enter your name" required />
             </div>
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Role:</h3> </label>
+                <label className={styles.formLabel}><h2>Role:</h2> </label>
                     <select name="role" className={styles.formDropdown} onChange={onUpdateField} required>
                         <option value="admin"required>Admin</option>
                         <option value="user">User</option>
@@ -91,7 +96,7 @@ const SignupForm = () => {
             </div>
  
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Password:</h3> </label>
+                <label className={styles.formLabel}><h2>Password:</h2> </label>
                 <input type="password"
                 name="password"
                 value={form.password}
@@ -101,7 +106,7 @@ const SignupForm = () => {
             </div>
 
             <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Confirm Password:</h3> </label>
+                <label className={styles.formLabel}><h2>Confirm Password:</h2> </label>
                 <input type="password"
                 name="confirmPassword"
                 value={form.confirmPassword}

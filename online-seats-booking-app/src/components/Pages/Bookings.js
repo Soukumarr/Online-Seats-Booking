@@ -172,7 +172,7 @@ const Bookings = () =>
           <header className={styles.header}>
             <br></br>
             <div> 
-            <h1>My Profile</h1> 
+            <h1>My Bookings</h1> 
             </div>
             
             

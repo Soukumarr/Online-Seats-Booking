@@ -23,27 +23,37 @@ const onUpdateField=e=>
 const onSubmitForm=e=>
 {
     e.preventDefault();
-    const passwordValid= validatePassword(form.password);
-    const confirmPasswordValid=validatePassword(form.password);
-    if(!passwordValid){
-      alert('Password must be at least 8 characters long and contain at least one lowercase letter, uppercase letter, number, and special character.');
-      return;
+
+    
+
+    let hasError = false;
+    let errorMessage = "";
+
+    if (form.password.length < 8) {
+      hasError = true;
+      errorMessage = "Password must be at least 8 characters long, must contain at least one number, one lowercase letter, and one uppercase letter.";
+    } else {
+      const hasNumber = /\d/.test(form.password);
+      const hasLowercase = /[a-z]/.test(form.password);
+      const hasUppercase = /[A-Z]/.test(form.password);
+
+      if (!hasNumber || !hasLowercase || !hasUppercase) {
+        hasError = true;
+        errorMessage =
+          "Password must contain at least one number, one lowercase letter, and one uppercase letter.";
+      } 
+    }
+
+    if (hasError) {
+      alert(errorMessage);
+      return; 
     }
     
-    alert(JSON.stringify(form,null,2))
+    alert(JSON.stringify(form,null,2));
+   
+
+
 }
-
-const validatePassword=(password)=> {
-  const passwordRegex= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-return passwordRegex.test(password);
-}
-
-
-const handleGoogleLogin = () => {
-    window.location.href = "https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fmyaccount.google.com%2F&ddm=0&ec=GAlAwAE&flowEntry=AddSession&flowName=GlifWebSignIn&hl=en&service=accountsettings&theme=mn&dsh=S346832%3A1711285674106523";
-  };
-
-  
 
   
 return(
@@ -52,7 +62,7 @@ return(
        
        
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}><h3>Email</h3> </label>
+            <label className={styles.formLabel}><h2>Email</h2> </label>
             <input type="email"
             name="email"
             onChange={onUpdateField}
@@ -61,7 +71,7 @@ return(
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}><h3>Password</h3> </label>
+            <label className={styles.formLabel}><h2>Password</h2> </label>
             <input type="password"
             name="password"
             value={form.password}
@@ -71,7 +81,7 @@ return(
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}><h3>Role</h3> </label>
+            <label className={styles.formLabel}><h2>Role</h2> </label>
                 <select name="role" className={styles.formDropdown} onChange={onUpdateField} required >
                     <option value="admin">Admin</option>
                     <option value="user">User</option>
@@ -105,98 +115,3 @@ export default SigninForm;
 
 
 
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import styles from "./SigninForm.css";
-// const SigninForm = (props) => {
-//   const [form, setForm] = useState({
-//     email: "",
-//     password: "",
-//     confirmPassword: "",
-//   });
-
-//   const [errors, setErrors] = useState({});
-
-//   const onUpdateField = (e) => {
-//     const nextFormState = {
-//       ...form,
-//       [e.target.name]: e.target.value,
-//     };
-//     setForm(nextFormState);
-//   };
-
-//   const onSubmitForm = (e) => {
-//     e.preventDefault();
-//     let errors = {};
-//     if (!form.email) {
-//       errors.email = "Email is required!!!";
-//       alert(errors.email);
-//     } else if (!form.password) {
-//       errors.password = "Password is required!!!";
-//       alert(errors.password);
-//     } else if (!form.confirmPassword) {
-//       errors.confirmPassword = "Confirm Password is required!!!";
-//       alert(errors.confirmPassword);
-//     }
-//     setErrors(errors);
-//     if (Object.keys(errors).length === 0) {
-//       alert(JSON.stringify(form, null, 2));
-//     }
-//   };
-
-//   return (
-//     <form className={styles.form} onSubmit={onSubmitForm}>
-//       <div className={styles.formGroup}>
-//         <label className={styles.formLabel}>Email</label>
-//         <input
-//           className={styles.formField}
-//           type="text"
-//           aria-label="Email field"
-//           name="email"
-//           value={form.email}
-//           onChange={onUpdateField}
-//           placeholder="Enter your email address"
-//         />
-//       </div>
-//       <div className={styles.formGroup}>
-//         <label className={styles.formLabel}>Password</label>
-//         <input
-//           className={styles.formField}
-//           type="password"
-//           aria-label="Password field"
-//           name="password"
-//           value={form.password}
-//           onChange={onUpdateField}
-//           placeholder="********"
-//         />
-//       </div>
-//       <div className={styles.formGroup}>
-//         <label className={styles.formLabel}>Confirm Password</label>
-//         <input
-//           className={styles.formField}
-//           type="password"
-//           aria-label="Confirm password field"
-//           name="confirmPassword"
-//           value={form.confirmPassword}
-//           onChange={onUpdateField}
-//           placeholder="********"
-//         />
-//       </div>
-//       <div className={styles.formActions}>
-//         <button className={styles.formSubmitBtn} type="submit">
-//           Login
-//         </button>
-//       </div>
-//     </form>
-//   );
-// };
-
-// export default SigninForm;
