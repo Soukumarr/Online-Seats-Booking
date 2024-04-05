@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 import Header from "./components/Pages/Header/Header.jsx";
 import Footer from "./components/Pages/Footer/Footer.jsx";
+import { SeatBooking } from "./components/Pages/SeatBooking/SeatBookingPage.jsx";
+import { SeatsLayout } from "./components/Layout/SeatsLayout.jsx";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/layout" element={<SeatLayout />} />
+            <Route path="/booking" element={<SeatBooking />} />
+            <Route path="/bookseats" element={<SeatsLayout />} />
           </Routes>
         </div>
         <Footer/>
