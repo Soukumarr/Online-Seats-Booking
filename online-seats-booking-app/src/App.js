@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 import Header from "./components/Pages/Header/Header.jsx";
 import Footer from "./components/Pages/Footer/Footer.jsx";
+import AdminDashboad from "./components/AdminDashboard/AdminDashboad";
 
 function App() {
   return (
@@ -31,9 +32,10 @@ function App() {
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/layout" element={<SeatLayout />} />
+            <Route path="/admin_dashboard" element={<AdminDashboad />}></Route>
           </Routes>
         </div>
-        <Footer/>
+        <Footer />
       </Router>
     </>
   );
