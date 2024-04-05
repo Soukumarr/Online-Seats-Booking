@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './SigninForm.module.css';
 import { Button, Dropdown } from 'antd';
  
-const SigninForm = () => {
+export const SigninForm = () => {
   const [form,setForm] = useState(
     {
         email:"",
@@ -109,9 +109,5 @@ return(
     </div>
 );
 }
-export default SigninForm;
-
-
-
 
 
