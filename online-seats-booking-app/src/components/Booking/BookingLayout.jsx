@@ -12,8 +12,13 @@ const items = [
 ];
 
 export const BookingLayout = () => {
+
+  const options = ["Book Seat", "Swap Seat", "Cancle Request"];
+
+  const page = "booking"
+
   let [section1, setSection1] = useState(
-    Array.from({ length: 24 }).fill("white")
+    Array.from({ length: 24 }).fill("lightgreen")
   );
   let [section2, setSection2] = useState(
     Array.from({ length: 16 }).fill("white")
@@ -53,6 +58,7 @@ export const BookingLayout = () => {
     setReset(true);
   };
 
+ 
   return (
     <div>
       <div>
@@ -110,7 +116,9 @@ export const BookingLayout = () => {
                     <div className={styles.outerGridItem}>
                       <SeatGrid
                         onSelect={updateCount}
+                        page={page}
                         isSelected={isOpen}
+                        options={options}
                         setSelected={setIsOpen}
                         seats={section1}
                         setSeats={setSection1}
@@ -122,7 +130,9 @@ export const BookingLayout = () => {
                     <div className={styles.outerGridItem}>
                       <SeatGrid
                         onSelect={updateCount}
+                        page={page}
                         isSelected={isOpen}
+                        options={options}
                         setSelected={setIsOpen}
                         seats={section2}
                         setSeats={setSection2}
@@ -134,7 +144,9 @@ export const BookingLayout = () => {
                     <div className={styles.outerGridItem}>
                       <SeatGrid
                         onSelect={updateCount}
+                        page={page}
                         isSelected={isOpen}
+                        options={options}
                         setSelected={setIsOpen}
                         seats={section3}
                         setSeats={setSection3}
@@ -146,7 +158,9 @@ export const BookingLayout = () => {
                     <div className={styles.outerGridItem}>
                       <SeatGrid
                         onSelect={updateCount}
+                        page={page}
                         isSelected={isOpen}
+                        options={options}
                         setSelected={setIsOpen}
                         seats={section4}
                         setSeats={setSection4}
@@ -158,7 +172,9 @@ export const BookingLayout = () => {
                     <div className={styles.outerGridItem}>
                       <SeatGrid
                         onSelect={updateCount}
+                        page={page}
                         isSelected={isOpen}
+                        options={options}
                         setSelected={setIsOpen}
                         seats={section5}
                         setSeats={setSection5}
@@ -170,7 +186,9 @@ export const BookingLayout = () => {
                     <div className={styles.outerGridItem}>
                       <SeatGrid
                         onSelect={updateCount}
+                        page={page}
                         isSelected={isOpen}
+                        options={options}
                         setSelected={setIsOpen}
                         seats={section6}
                         setSeats={setSection6}

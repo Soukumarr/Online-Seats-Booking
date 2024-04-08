@@ -5,6 +5,8 @@ import { redirect } from "react-router";
 import { useRedirect } from "../../util/useRedirect";
 
 export const SeatLayout = () => {
+
+  const options = ["Allow Booking", "Accept Swap", "Cancle Booking", "Details"];
   let [section1, setSection1] = useState(
     Array.from({ length: 24 }).fill("white")
   );
@@ -140,7 +142,7 @@ export const SeatLayout = () => {
                       edit={edit}
                       isSelected={isOpen}
                       setSelected={setIsOpen}
-
+                      options={options}
                       seats={section1}
                       setSeats={setSection1}
                       key={1}
@@ -154,6 +156,7 @@ export const SeatLayout = () => {
                       state={pagestate}
                       isSelected={isOpen}
                       setSelected={setIsOpen}
+                      options={options}
                       edit={edit}
                       seats={section2}
                       setSeats={setSection2}
@@ -169,6 +172,7 @@ export const SeatLayout = () => {
                       state={pagestate}
                       isSelected={isOpen}
                       setSelected={setIsOpen}
+                      options={options}
                       edit={edit}
                       seats={section3}
                       setSeats={setSection3}
@@ -184,6 +188,7 @@ export const SeatLayout = () => {
                       state={pagestate}
                       isSelected={isOpen}
                       setSelected={setIsOpen}
+                      options={options}
                       edit={edit}
                       seats={section4}
                       setSeats={setSection4}
@@ -199,6 +204,7 @@ export const SeatLayout = () => {
                       state={pagestate}
                       isSelected={isOpen}
                       setSelected={setIsOpen}
+                      options={options}
                       edit={edit}
                       seats={section5}
                       setSeats={setSection5}
@@ -214,6 +220,7 @@ export const SeatLayout = () => {
                       state={pagestate}
                       isSelected={isOpen}
                       setSelected={setIsOpen}
+                      options={options}
                       edit={edit}
                       seats={section6}
                       setSeats={setSection6}
