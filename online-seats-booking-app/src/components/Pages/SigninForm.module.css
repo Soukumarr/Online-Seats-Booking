@@ -6,28 +6,29 @@ form {
   margin-left: 140px;
   padding:1x ;
 }
+.bookingtable td{
+  width: 200px;
+}
+/* .heading{
+  margin-top:1px;
+  
+  
+} */
 .navheading{
-  /* background-color: #f5d7dd; */
-  /* display:flex; */
-  /* width:1200px; */
-  /* height:40px; */
+ 
  
   display: flex;
   height: 50px;
-  background-color: #ecd5de;
-  width:100%;
-  justify-content: center;
-  margin-top: 0px;
+   width:100%;
+   margin-top: 0px;
+  margin-left:500px;
     
 }
 .navheading a {
   
   margin-right: 16px;
 }
-/* .navheading table{
-  width:100%;
-  
-} */
+
 
 .navheading table{
   
@@ -50,21 +51,38 @@ form {
 
 .navheading table td:hover{
   border: 1px solid black;
-  color:rgb(17, 17, 97);
-  background-color: rgb(240, 230, 230);;
+  color:rgb(171, 171, 219);
+  background-color: rgb(240, 230, 230);
   
 }
+
+button{
+  height:5rem;
+}
+
+.linkbutton{
+  color:black;
+  padding: 1rem;
+ width:20rem;
+  margin-right: 4rem;
+  
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
+  height:8rem;
+}
+.linkbutton:hover{
+  color: rgb(233, 233, 240);
+  
+  border:1px solid white;
+}
+  
 .header{
   height: 95px;
   justify-content: center;
- 
-  
-
 }
 h1{
-  margin-top: 10px;
-  text-align: center;
   
+  text-align: center;
+  font-size: 4rem;
   
 }
 
@@ -85,10 +103,13 @@ h2{
   
 }
 .userprofile{
-  /* background:linear-gradient(120deg, #ebcacf,#d3156d); */
-  height:150px;
-  margin-top: 70px;
-  background-color: #ecd5de;
+  /* background:linear-gradient(120deg, #ece7e8,#2e2729); */
+  
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
+  height:165px;
+  margin-top: 0px;
+  
+  
  
   /* background:linear-gradient(120deg, #f1c9e4,#ce8fa7); */
 }
@@ -96,12 +117,32 @@ h2{
 .editprofileform{
  margin-left: 1200px;
 }
-.loginform{
-  background:linear-gradient(130deg,rgb(126, 126, 160),pink);
+.swapseatform{
+ 
+  background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
   color:rgb(255, 255, 255);
   padding:0.3rem;
   
-  margin-top: 20rem;
+  margin-top: 8rem;
+  margin-bottom: 6rem;
+  margin-left:70rem;
+  width:53rem;
+  height:500px;
+  border-radius:14px;
+ justify-content: center;
+}
+.swapseatform:hover{
+  transform: translate(-7px) scale(1.08);
+  box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+  border: 2px solid black;
+}
+.loginform{
+  
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
+  color:rgb(255, 255, 255);
+  padding:0.3rem;
+  margin-top: 8rem;
+  margin-bottom: 6rem;
   margin-left:70rem;
   width:53rem;
   height:580px;
@@ -116,16 +157,19 @@ h2{
   border: 2px solid black;
 }
 .signupform{
-  background:linear-gradient(130deg,rgb(126, 126, 160),pink);
+ 
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
   color:white;
   padding: 0.3rem;
   min-height: 700px;
-  margin-left: 70rem;
-  margin-top:15rem;
+  margin-left: 68rem;
+ 
   width:55rem;
-  margin-top: 10rem;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
   border-radius:14px;
 }
+
 
 .signupform:hover{
   transform: translate(-7px) scale(1.04);
@@ -133,9 +177,7 @@ h2{
   border: 1px solid black;
 }
 
-.signinlink a{
-  color:white;
-}
+
 .container{
   max-width:80rem;
   margin-left:200rem;
@@ -257,15 +299,18 @@ select {
 }
 
 .forgotpassword{
-  margin-left: 160px;
+  margin-left: 180px;
   padding: 1rem;
 }
 .forgotpassword a{
   color:white;
 }
 .signinlink{
-  margin-left: 100px;
+  margin-left: 130px;
+  color:white;
+  
 }
+
 .signinlink a:hover{
   color:rgb(24, 24, 221);
 }
@@ -297,7 +342,8 @@ background-color: rgb(214, 209, 209);
   padding: 5px;
   margin-left: 400px;
   border-radius: 14px;
-  background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+  
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
 }
 .contactform{
   border: 1px solid black;
@@ -308,7 +354,8 @@ background-color: rgb(214, 209, 209);
   height: 500px;
   padding: 5px;
   margin-left: 400px;
-  background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+  
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
 }
 
 
@@ -322,7 +369,8 @@ background-color: rgb(214, 209, 209);
   padding: 5px;
   margin-left: 650px;
   border-radius: 14px;
-  background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+  
+background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue));
 }
 .formFields{
   padding: 0.5em;
@@ -343,7 +391,7 @@ background-color: rgb(214, 209, 209);
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 30px 210px 0 70px;
+  margin: 30px 220px 0 70px;
   
   font-weight: 500;
 }
@@ -358,7 +406,7 @@ background-color: rgb(214, 209, 209);
   background-color: white;
   color: black;
   border-radius: 5px;
-  margin: 30px 120px 0 70px;
+  margin: 30px 130px 0 70px;
   
   font-weight: 500;
 
@@ -379,3 +427,5 @@ background-color: rgb(214, 209, 209);
   text-align: center;
   
 }
+
+

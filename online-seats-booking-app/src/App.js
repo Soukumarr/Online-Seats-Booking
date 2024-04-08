@@ -16,6 +16,8 @@ import Footer from "./components/Pages/Footer/Footer.jsx";
 import Userprofile from "./components/Pages/Userprofile";
 import Bookings from "./components/Pages/Bookings";
 import Resetpassword from "./components/Pages/ResetPassword";
+import History from "./components/Pages/History.js";
+import Seatswapform from "./components/Pages/Seatswapform.js";
 
 function App() {
   return (
@@ -37,6 +39,9 @@ function App() {
             <Route path="/userprofile" element={<Userprofile/>} />
             <Route path="/bookings" element={<Bookings/>} />
             <Route path="/resetpassword" element={<Resetpassword/> } />
+            <Route path="/history" element={<History/>} />
+            <Route path="/seatswap" element={<Seatswapform/>} />
+          
           </Routes>
         </div>
         <Footer/>
