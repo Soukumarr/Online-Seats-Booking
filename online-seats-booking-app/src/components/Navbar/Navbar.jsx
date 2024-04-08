@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import "../Common.css";
-import {FaTwitter, FaSkype,FaInstagram} from "react-icons/fa";
-import {IoMdRocket} from "react-icons/io";
+import {
+  FaTwitter,
+  FaSkype,
+  FaInstagram,
+  FaRegUserCircle,
+} from "react-icons/fa";
+import { IoMdRocket } from "react-icons/io";
 
 const Navbar = () => {
-
-    const [navToggle, setNavToggle] = useState(false);
-    const navHandler = () => {
-        setNavToggle(prevData => !prevData);
-    }
+  const [navToggle, setNavToggle] = useState(false);
+  const navHandler = () => {
+    setNavToggle((prevData) => !prevData);
+  };
 
   return (
     <nav className="navbar w-100 flex">
@@ -41,13 +45,13 @@ const Navbar = () => {
             <div className="navbar-collapse-content">
               <ul className="navbar-nav">
                 <li className="text-white">
-                  <Link to="/about">About</Link>
+                  <Link to={"/about"}>About</Link>
                 </li>
                 <li className="text-white">
-                  <Link to="/">Features</Link>
+                  <Link to="/layout">Bookings</Link>
                 </li>
                 <li className="text-white">
-                  <Link to="/">Pricing</Link>
+                  <Link to="/calender">Calender</Link>
                 </li>
                 <li className="text-white">
                   <Link to="/">Contacts</Link>
@@ -71,21 +75,23 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="navbar-btns">
-                <Link to="/login">
-                <button type="button" className="btn">
-                  <IoMdRocket />{" "}
-                  <span>
-                    get started
-                  </span>
-                </button>
+                <Link to="/signin">
+                  <button type="button" className="btn">
+                    <IoMdRocket /> <span>login</span>
+                  </button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="userprofile">
+        <Link to="/userprofile" className="flex flex-center text-white">
+          <FaRegUserCircle size={45} />
+        </Link>
+      </div>
     </nav>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

@@ -23,7 +23,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-
+        {/* <Navbar op1="Dashboard" op2="Profile"/> */}
         <div className="pages">
           <Routes>
             <Route path="/" element={<Header />} />
@@ -35,9 +35,9 @@ function App() {
             <Route path="/calender" element={<Calender />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/layout" element={<SeatLayout />} />
-            <Route path="/userprofile" element={<Userprofile/>} />
-            <Route path="/bookings" element={<Bookings/>} />
-            <Route path="/resetpassword" element={<Resetpassword/> } />
+            <Route path="/userprofile" element={<Userprofile />} />
+            <Route path="/bookings" element={<Bookings />} />
+            <Route path="/resetpassword" element={<Resetpassword />} />
             <Route path="/admin_dashboard" element={<AdminDashboad />}></Route>
           </Routes>
         </div>
