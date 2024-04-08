@@ -1,0 +1,53 @@
+
+
+.custom-datepicker {
+    color: black;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%; /* Make the input field fill its container */
+    height: 40px; /* Increase the height of the input field */
+    font-size: 16px; /* Increase the font size of the input field */
+  }
+
+.react-datepicker__month-container{
+    width: 250px;
+    height: 250px;
+    float: unset;
+}
+
+.react-datepicker__month {
+    box-sizing: content-box;
+}
+
+
+.custom-datepicker-container {
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  /* Increase the size of the calendar popup */
+  .react-datepicker {
+    font-size: 14px; /* Increase the font size of the calendar */
+   
+  }
+  
+  /* Increase the size of the calendar day */
+  .react-datepicker__day {
+    cursor: pointer;
+    margin: 0.666rem !important;
+    font-size: small;
+
+  }
+
+  .react-datepicker__day-name {
+font-size: small!important;
+margin: 7px!important;
+  }
+
+  .react-datepicker-popper {
+    transform: translate(30px, 315px);
+  }
+
+
+.react-datepicker__current-month{
+    font-size: 1.944rem !important;
+}

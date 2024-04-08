@@ -319,6 +319,8 @@ select {
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0.95;
+    font-family: var(--fnt-base);
+    font-size: 1.9rem;
 }
 
 .btn-blue {

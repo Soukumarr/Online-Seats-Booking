@@ -1,0 +1,381 @@
+
+form {
+ 
+ 
+ 
+  margin-left: 140px;
+  padding:1x ;
+}
+.navheading{
+  /* background-color: #f5d7dd; */
+  /* display:flex; */
+  /* width:1200px; */
+  /* height:40px; */
+ 
+  display: flex;
+  height: 50px;
+  background-color: #ecd5de;
+  width:100%;
+  justify-content: center;
+  margin-top: 0px;
+    
+}
+.navheading a {
+  
+  margin-right: 16px;
+}
+/* .navheading table{
+  width:100%;
+  
+} */
+
+.navheading table{
+  
+  margin-top: 0;
+  border: 1px solid #ffffff;
+  
+  
+}
+
+
+
+.navheading table td {
+  padding: 12px;
+  border: 1px solid #ffffff;
+}
+/* .navheading table td:hover{
+ 
+ background-color: rgb(252, 247, 247);
+} */
+
+.navheading table td:hover{
+  border: 1px solid black;
+  color:rgb(17, 17, 97);
+  background-color: rgb(240, 230, 230);;
+  
+}
+.header{
+  height: 95px;
+  justify-content: center;
+ 
+  
+
+}
+h1{
+  margin-top: 10px;
+  text-align: center;
+  
+  
+}
+
+/* .divtitle{
+ margin-left:0px ;
+ 
+} */
+h3{
+  font-size: 3rem;
+  
+
+}
+/* .heading{
+  margin-top: 80px;
+} */
+h2{
+  font-size: 2.5rem;
+  
+}
+.userprofile{
+  /* background:linear-gradient(120deg, #ebcacf,#d3156d); */
+  height:150px;
+  margin-top: 70px;
+  background-color: #ecd5de;
+ 
+  /* background:linear-gradient(120deg, #f1c9e4,#ce8fa7); */
+}
+
+.editprofileform{
+ margin-left: 1200px;
+}
+.loginform{
+  background:linear-gradient(130deg,rgb(126, 126, 160),pink);
+  color:rgb(255, 255, 255);
+  padding:0.3rem;
+  
+  margin-top: 20rem;
+  margin-left:70rem;
+  width:53rem;
+  height:580px;
+  border-radius:14px;
+ justify-content: center;
+  
+}
+
+.loginform:hover{
+  transform: translate(-7px) scale(1.08);
+  box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+  border: 2px solid black;
+}
+.signupform{
+  background:linear-gradient(130deg,rgb(126, 126, 160),pink);
+  color:white;
+  padding: 0.3rem;
+  min-height: 700px;
+  margin-left: 70rem;
+  margin-top:15rem;
+  width:55rem;
+  margin-top: 10rem;
+  border-radius:14px;
+}
+
+.signupform:hover{
+  transform: translate(-7px) scale(1.04);
+  box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+  border: 1px solid black;
+}
+
+.signinlink a{
+  color:white;
+}
+.container{
+  max-width:80rem;
+  margin-left:200rem;
+  
+ 
+}
+
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  align-items: center;
+ 
+}
+
+.formLabel {
+  margin-top: 3rem;
+  font-size: large;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.formsGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  align-items: center;
+  
+ 
+}
+
+.formsLabel {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+ 
+  
+}
+.formField {
+  padding: 0.5em;
+  width:44rem;
+  
+  
+  border-radius:14px;
+}
+.formField:hover{
+  background-color: rgb(182, 178, 178);
+  border: 1px solid black;
+  box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+}
+.formDropdown{
+  width:20rem;
+  height:4rem;
+  align-items: center;
+  text-align: center;
+  border-radius:12px;
+  
+  
+}
+.formDropdown:hover{
+  background-color: rgb(182, 178, 178);
+  border: 1px solid black;
+  box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+}
+
+/* .forgotpassword{
+  color: white;
+  margin-left: 30rem;
+} */
+
+.formInput {
+  padding: 0.5em;
+  width:44rem;
+ 
+  border-radius:14px;
+}
+.formInput:hover{
+  background-color: rgb(182, 178, 178);
+  
+  border: 1px solid black;
+  box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+}
+
+.formFieldError {
+  border: 1px solid #e11d48;
+}
+
+.formFieldErrorMessage {
+  color: 1px solid #e11d48;
+}
+select {
+  appearance: none; /* Hide default appearance */
+}
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 11rem;
+  min-width:8rem;
+}
+/* .social-login{
+  padding: 20px;
+} */
+
+.formSubmitBtn {
+  padding: 0.5rem 0.8rem;
+  min-width: 7rem;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  margin: 20px 120px 10px 30px;
+  
+  font-weight: 500;
+}
+
+.formSubmitBtn:hover{
+  background-color: rgb(182, 178, 178);
+  border: 1px solid black;
+  box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
+}
+
+.forgotpassword{
+  margin-left: 160px;
+  padding: 1rem;
+}
+.forgotpassword a{
+  color:white;
+}
+.signinlink{
+  margin-left: 100px;
+}
+.signinlink a:hover{
+  color:rgb(24, 24, 221);
+}
+
+.formInputs{
+  padding: 0.5rem;
+  width: 600px;
+  margin-left: 20px;
+  border-radius:14px;
+}
+.formInputs:hover{
+background-color: rgb(214, 209, 209);
+}
+.sociallogin{
+  padding-bottom: 2rem;
+  height:57px;
+ 
+}
+.profileform{
+  align-items: center;
+}
+
+.userform{
+  border: 1px solid black;
+  color: white;
+  margin-top: 40px;
+  width:800px;
+  align-items: center;
+  padding: 5px;
+  margin-left: 400px;
+  border-radius: 14px;
+  background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+}
+.contactform{
+  border: 1px solid black;
+  color:white;
+  border-radius: 14px;
+  margin-top: 30px;
+  width:800px;
+  height: 500px;
+  padding: 5px;
+  margin-left: 400px;
+  background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+}
+
+
+.resetform{
+  
+  border: 1px solid black;
+  height: 500px;
+  color:white;
+  margin-top: 40px;
+  width:600px;
+  padding: 5px;
+  margin-left: 650px;
+  border-radius: 14px;
+  background: linear-gradient(1750deg,rgb(202, 168, 168),white);
+}
+.formFields{
+  padding: 0.5em;
+  width:28rem;
+  margin-left: 4rem;
+  
+  border-radius:14px;
+}
+
+.formFields:hover{
+
+background-color: rgb(214, 209, 209);
+}
+
+.formBtn{
+  padding: 0.5rem 0.7rem;
+  min-width: 7rem;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  margin: 30px 210px 0 70px;
+  
+  font-weight: 500;
+}
+.formBtn:hover{
+  background-color: rgb(182, 178, 178);
+  border: 1px solid black;
+  box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
+}
+.resetformBtn{
+  padding: 0.5rem 0.7rem;
+  min-width: 7rem;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  margin: 30px 120px 0 70px;
+  
+  font-weight: 500;
+
+}
+.resetformBtn:hover{
+  background-color: rgb(182, 178, 178);
+  border: 1px solid black;
+  box-shadow: 0 25px 25px rgba(0,0,0, 0.5);
+
+}
+
+.heading{
+  margin-left: 150px;
+  padding: 1rem;;
+  
+}
+.userheading{
+  text-align: center;
+  
+}

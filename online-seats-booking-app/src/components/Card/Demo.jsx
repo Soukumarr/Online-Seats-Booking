@@ -1,42 +1,45 @@
+import React, { useState } from "react";
+import styles from "../dropdown/FloorsDropDown.module.css";
 
+const items = [
+  { label: "Option 1", onClick: () => console.log("Option 1 clicked") },
+  { label: "Option 2", onClick: () => console.log("Option 2 clicked") },
+  { label: "Option 3", onClick: () => console.log("Option 3 clicked") },
+];
 
-import React, { useState } from 'react';
+export const Demo = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleButtonClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+    console.log(styles.dropdownArrow + (isMenuOpen ? "Open" : ""));
+  };
 
-export  const Demo = () => {
-  let data = Array.from({ length: 24 }).fill("white")
-  
-  const [selectedElementIndex, setSelectedElementIndex] = useState(null);
-  const options = ['Option 1', 'Option 2', 'Option 3'];
-
-  const handleElementClick = (index) => {
-    if(selectedElementIndex == index) {
-      setSelectedElementIndex(null)
+  const handleMenuItemClick = (item) => {
+    setIsMenuOpen(false);
+    if (item.onClick) {
+      item.onClick();
     }
-    else{
-      setSelectedElementIndex(index)
-    }
-    
-  } 
-
-  const renderItem = (item, index) => (
-    <div key={index} onClick={() => handleElementClick(index)}>
-      {item}
-      {selectedElementIndex === index && renderPopup(options)}
-    </div>
-  );
-
-  const renderPopup = (options) => (
-    <ul>
-      {options.map((option) => (
-        <li key={option}>{option}</li>
-      ))}
-    </ul>
-  );
+  };
 
   return (
     <div>
-      {data.map(renderItem)}
+      <ul className={styles.dropdownMenu}>
+        {items.map((item, index) => {
+          console.log("Iteration "+index)
+          return (
+            <li key={index} onClick={() => handleMenuItemClick(item)}>
+              {item.label}
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* <ul>
+        {items.map((item) => {
+          return <li>Om</li>;
+        })}
+      </ul> */}
     </div>
   );
 };
