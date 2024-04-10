@@ -135,6 +135,7 @@ export const SeatLayout = () => {
                   <div className={styles.outerGridItem}>
                     <SeatGrid
                       onSelect={updateCount}
+                      page={"layout"}
                       state={pagestate}
                       edit={edit}
                       isSelected={isOpen}
@@ -157,6 +158,7 @@ export const SeatLayout = () => {
                       seats={section2}
                       setSeats={setSection2}
                       key={2}
+                      page = {"layout"}
                       rows={4}
                       columns={4}
                     ></SeatGrid>
@@ -171,6 +173,7 @@ export const SeatLayout = () => {
                       seats={section3}
                       setSeats={setSection3}
                       key={3}
+                      page = {"layout"}
                       rows={4}
                       columns={6}
                     ></SeatGrid>
@@ -185,6 +188,7 @@ export const SeatLayout = () => {
                       seats={section4}
                       setSeats={setSection4}
                       key={4}
+                      page = {"layout"}
                       rows={4}
                       columns={6}
                     ></SeatGrid>
@@ -199,6 +203,7 @@ export const SeatLayout = () => {
                       seats={section5}
                       setSeats={setSection5}
                       key={5}
+                      page = {"layout"}
                       rows={4}
                       columns={4}
                     ></SeatGrid>
@@ -213,6 +218,7 @@ export const SeatLayout = () => {
                       seats={section6}
                       setSeats={setSection6}
                       key={6}
+                      page = {"layout"}
                       rows={4}
                       columns={6}
                     ></SeatGrid>

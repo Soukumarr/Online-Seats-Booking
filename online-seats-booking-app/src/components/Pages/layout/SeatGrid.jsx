@@ -37,26 +37,34 @@ export const SeatGrid = (props) => {
       setSelectedElementIndex(index);
     }
   };
+  let seatStyle= (index) => ({});
 
-  const seatStyle = (index) => ({
-    "--seat-color":
-      props.seats.at(index) == "white"
-        ? props.state == "layout"
-          ? props.seats.at(index)
-          : "rgb(0,0,0,0)"
-        : props.seats.at(index),
-    border:
-      (props.state == "view" || props.state == "booking") &&
-      props.seats.at(index) == "white"
-        ? "0px"
-        : "2px solid black",
-    zIndex: 10,
-    // Use ternary operator for conditional styles
-    // color: condition ? 'blue' : 'black',
-    // You can also use if-else statements, but it's more verbose
-    // color: condition ? 'blue' : condition2 ? 'green' : 'black',
-  });
 
+  if (props.page == "layout"){
+    seatStyle = (index) => ({
+
+      "--seat-color":
+        props.seats.at(index) == "white"  
+          ? props.state == "layout"
+            ? props.seats.at(index)
+            : "rgb(0,0,0,0)"
+          : props.seats.at(index),
+      border:
+        (props.state == "view" || props.state == "booking") &&
+        props.seats.at(index) == "white"
+          ? "0px"
+          : "2px solid black",
+      zIndex: 10
+      // Use ternary operator for conditional styles
+      // color: condition ? 'blue' : 'black',
+      // You can also use if-else statements, but it's more verbose
+      // color: condition ? 'blue' : condition2 ? 'green' : 'black',
+  
+    });
+  
+  }
+
+  
   const handleClick = (index) => {
     // Create a copy of the seatColors array to avoid mutation
     if (props.state == "booking") {

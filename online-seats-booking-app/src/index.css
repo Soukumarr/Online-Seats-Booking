@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.react-datepicker__day{
+  width: 2.7rem;
+  line-height: 3.7rem;
+  text-align: center;
+  margin: 0.856rem;
+}

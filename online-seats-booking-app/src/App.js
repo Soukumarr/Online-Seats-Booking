@@ -17,6 +17,13 @@ import Userprofile from "./components/Pages/Userprofile.js";
 import Bookings from "./components/Pages/Bookings";
 import Resetpassword from "./components/Pages/ResetPassword";
 import AdminDashboad from "./components/AdminDashboard/AdminDashboad";
+// import { SeatBooking } from "./components/Pages/SeatBooking/SeatBookingPage.jsx";
+import { BookingLayout, SeatsLayout } from "./components/Booking/BookingLayout.jsx";
+import FloorsDropDown from "./components/dropdown/FloorsDropDown.jsx";
+
+
+
+
 
 function App() {
   return (
@@ -39,6 +46,7 @@ function App() {
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/resetpassword" element={<Resetpassword />} />
             <Route path="/admin_dashboard" element={<AdminDashboad />}></Route>
+            <Route path="/bookseats" element={<BookingLayout />}></Route>
           </Routes>
         </div>
         <Footer />
