@@ -13,7 +13,7 @@ form {
   /* height:40px; */
  
   display: flex;
-  height: 50px;
+  height: 56px;
   background-color: #ecd5de;
   width:100%;
   justify-content: center;
@@ -57,6 +57,7 @@ form {
 .header{
   height: 95px;
   justify-content: center;
+  background-color: #ecd5de;
  
   
 
@@ -86,6 +87,7 @@ h2{
 }
 .userprofile{
   /* background:linear-gradient(120deg, #ebcacf,#d3156d); */
+  display: contents;
   height:150px;
   margin-top: 70px;
   background-color: #ecd5de;
