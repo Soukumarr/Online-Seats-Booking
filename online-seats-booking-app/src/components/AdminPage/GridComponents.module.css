@@ -1,0 +1,124 @@
+.clock {
+    font-size:36px;
+}
+
+.floornew {
+
+    font-size: 18px;
+}
+body{
+  background-color: rgba(0, 0, 0, 0.801)
+}
+.cardnew {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 10px 15px 0 rgb(27, 17, 172);
+    transition: 0.3s;
+    border: "1px solid #ddd";
+    margin : 0px 20px 0px 20px;
+    border-radius: 50px;
+    background-color: white;
+   
+  }
+
+  .cardnew:target {
+    height: 500px;
+  }
+   
+  /* On mouse-over, add a deeper shadow */
+  .cardnew:hover {
+    box-shadow: 0 8px 16px 0 white;
+   
+  }
+  .plus-button-new:hover {
+    background-color: yellow;
+    color: black;
+  }
+   
+   
+  /* Add some padding inside the card container */
+  .containernew {
+    padding-left: 35px;
+    padding-top: 30px ;
+    
+   
+  }
+  .plusButtonWrapper {
+    display: flex; /* Make container a flex container */
+    justify-content: flex-end; /* Align items to the end of the container */
+    align-items: flex-end;
+    margin-bottom: 20px;
+    margin-right: 45px;
+    gap: 20px;
+  }
+   
+  .editButton {
+    width: 60px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #4CAF50; /* Change background color */
+    color: white; /* Change text color */
+    border: none;
+    border-radius: 50%; /* Make the button circular */
+    cursor: pointer; /* Indicate clickable area */
+    font-size: 20px; /* Adjust font size for plus sign */
+    display: flex; /* Allow centering the plus sign */
+    justify-content: center; /* Center the plus sign horizontally */
+    align-items: center; /* Center the plus sign vertically */
+    transition: all 0.3s ease;
+   
+  }
+  .editButton:hover {
+    transform: scale(1.4);
+  }
+  .deleteButton {
+    width: 60px; 
+    height: 50px; 
+    background-color: #d43811; 
+    color: white; 
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer; 
+    font-size: 20px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: all 0.3s ease;
+   
+  }
+  .deleteButton:hover {
+    transform: scale(1.4);
+  }
+  b{
+    font-size: 20px;
+  }
+  /* .CardComponent_container__Ra32M {
+    padding-left: -20px;
+    padding-top: 20px;
+  }  */
+  /* .tableScroll {
+    max-height: 100px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+  } */
+  .dropdownScroll {
+    max-height: 1000px; 
+    overflow-y: auto;
+   width: 1000%;
+   font-size: 40px;
+   margin-left: -6px;
+   border: none;
+
+  }
+  /* CSS */
+.dropdownScroll option {
+  text-align: center;
+  padding: 10px;
+  border: none;
+}
+
+.dropdownScroll option:hover {
+  background-color:  #add8e6/* Change this to the color you want */
+}
+.dropdownScroll:focus {
+  outline: none;
+}

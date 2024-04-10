@@ -179,7 +179,7 @@ button {
 /* WORKPLACE */
 
 .workplace {
-
+    background-color: antiquewhite;
     display: grid;
 }
 
@@ -227,5 +227,29 @@ button {
 }
 
 .infoText {
+
+}
+
+/* Mid Section */
+
+
+.midSection {
+
+    /* background-color: #3e8e41; */
+    display: grid;
+    grid-template-columns: 20% 80%;
+
+}
+
+.ddContainer {
+    /* background-color: #222; */
+    display: grid;
+    justify-content: center;
+}
+
+/* Book Seats */
+
+.contSectionBooking {
+    display: grid;
 
 }
