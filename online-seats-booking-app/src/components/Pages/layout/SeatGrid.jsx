@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./SeatLayout.module.css";
 import Seat from "./Seat";
 import { useRef } from "react";
+import { BookSeatForm } from "../../Forms/BookSeatForm";
 
 export const SeatGrid = (props) => {
   // bY CHANGING ELEMENTS OF THIS ARRAY we can alter number of rows and columns
@@ -37,13 +38,11 @@ export const SeatGrid = (props) => {
     const updatedColors = [...props.seats];
     if (option == "Book Seat") {
         // Booking Logic
-
-        if (props.page == "booking") {
-          if (updatedColors[index] == "lightgreen") {
-            updatedColors[index] = "red";
-            setSelectedElementIndex(null)
-          } 
+        props.setBlur(true);
+        if (props.giveIndexForm != undefined) {
+          props.giveIndexForm(index, props.sectionKey)
         }
+        setSelectedElementIndex(null)
     }
     props.setSeats(updatedColors)
   }

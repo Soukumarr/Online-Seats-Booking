@@ -8,7 +8,7 @@ import { Contact } from "./components/Pages/Contact";
 import { Signup } from "./components/Pages/Signup";
 // import Seatbooking from "./components/Pages/Seatbooking";
 import { Calender } from "./components/Pages/calendar/Calender";
-import { Demo } from "./components/Card/Demo";
+import { Demo } from "./components/Card/Demo.jsx";
 import { useNavigate } from "react-router-dom";
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 import Header from "./components/Pages/Header/Header.jsx";
@@ -47,6 +47,7 @@ function App() {
             <Route path="/resetpassword" element={<Resetpassword/> } />
             <Route path="/admin_dashboard" element={<AdminDashboad />}></Route>
             <Route path="/bookseats" element={<BookingLayout />}></Route>
+
           </Routes>
         </div>
         <Footer />
