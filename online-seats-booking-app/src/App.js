@@ -24,6 +24,8 @@ import FloorsDropDown from "./components/dropdown/FloorsDropDown.jsx";
 
 
 
+import History from "./components/Pages/History.js";
+import Seatswapform from "./components/Pages/Seatswapform.js";
 
 function App() {
   return (
@@ -47,6 +49,9 @@ function App() {
             <Route path="/resetpassword" element={<Resetpassword />} />
             <Route path="/admin_dashboard" element={<AdminDashboad />}></Route>
             <Route path="/bookseats" element={<BookingLayout />}></Route>
+            <Route path="/history" element={<History/>} />
+            <Route path="/seatswap" element={<Seatswapform/>} />
+          
           </Routes>
         </div>
         <Footer />
