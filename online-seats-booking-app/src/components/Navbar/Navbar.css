@@ -7,6 +7,11 @@
     z-index: 999;
     display: flex;
 }
+.userprofile{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
 
 .navbar-brand {
     color: var(--clr-white);

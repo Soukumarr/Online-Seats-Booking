@@ -15,7 +15,7 @@ const Header = () => {
             <p className="text-lead">
               Welcome to Awfis - Your Convenient Seat Booking Solution
             </p>
-            <Link to="/login">
+            <Link to="/signin">
               <a href="/" className="btn header-btn btn-blue">
                 <FaPaperPlane /> <span> get started</span>
               </a>
