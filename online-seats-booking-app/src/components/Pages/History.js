@@ -2,8 +2,6 @@ import React from 'react';
 //import './index.css';
 import styles from './SigninForm.module.css';
 import Navigationbar from './Navigationbar';
-import Actions from './Actions';
-
 
 import { Table } from 'antd';
 const columns = [
@@ -35,7 +33,6 @@ const columns = [
     filterSearch: true,
     onFilter: (value, record) => record.location.includes(value),
     width: '30%',
-    className: 'loaction-column'
   },
   {
     title: 'Floor',
@@ -122,19 +119,6 @@ const columns = [
     dataIndex: 'status',
     
   },
-  {
-    title: 'Actions',
-    dataIndex: '',
-    render: () => (
-     
-      
-     <Actions/>
-     
-    
-        // <button onClick={handleSubmit}>Submit</button>
-     
-    ),
-  },
 ];
 const data = [
   {
@@ -174,7 +158,6 @@ const data = [
     status:'booked'
   },
   
-  
 ];
 const onChange = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
@@ -189,7 +172,7 @@ const Bookings = () =>
           <header className={styles.header}>
             <br></br>
             <div> 
-            <h1>My Bookings</h1> 
+            <h1>History</h1> 
             </div>
             
             
@@ -197,7 +180,7 @@ const Bookings = () =>
           
           <Navigationbar/>
       
-        <Table  className={styles.bookingtable} columns={columns} dataSource={data} onChange={onChange} />;
+        <Table columns={columns} dataSource={data} onChange={onChange} />;
         </div>
         
    );

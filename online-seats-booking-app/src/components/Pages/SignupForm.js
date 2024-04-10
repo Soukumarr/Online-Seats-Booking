@@ -68,7 +68,7 @@ const SignupForm = () => {
 
       
     return(
-        <div className={styles.signupcontainer}>
+       <div className={styles.signupcontainer}>
         <form className={styles.signupform} onSubmit={onSubmitForm}>
             
             <div className={styles.formGroup}>
@@ -133,7 +133,7 @@ const SignupForm = () => {
         </div> */}
 
         </form>
-        </div>
+       </div>
     );
 }
 
