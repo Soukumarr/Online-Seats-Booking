@@ -1,0 +1,92 @@
+.bookingForm {
+  color: wheat;
+  z-index: 1;
+  padding: 10px;
+  background-color: rgba(30, 22, 22, 0.567);
+  width: 500px;
+  text-align: center;
+  margin-left: 0px !important;
+  justify-content: center;
+  display: grid;
+  border-radius: 40px;
+  position: absolute;
+  /* Position the element absolutely */
+  top: 50%;
+  /* Place the top edge of the element at the vertical center of the container */
+  left: 50%;
+  /* Place the left edge of the element at the horizontal center of the container */
+  transform: translate(-50%, -50%);
+  /* Move the element up and left by 50% of its own width and height */
+
+}
+
+.longButton button {
+  background: none;
+  color: white;
+  font-weight: bold;
+  margin: 18px;
+}
+.longButton ul{
+  background-color: #3cba80f7;
+}
+.longButton li{
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.longButton li:hover{
+  color: black;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.bookButton {}
+
+.fieldLabel {}
+
+
+
+
+.timeForm {
+  width: 300px;
+  /* Set the width of the form */
+  margin-left: 0px;
+  z-index: 1000;
+}
+
+
+
+.formRow {
+  margin-bottom: 20px;
+  /* Add margin between rows */
+}
+
+.formLabel {
+  display: block;
+  /* Display labels as block elements */
+
+}
+
+.formInput {
+  width: calc(100% - 60px);
+  /* Set the width of input fields */
+
+  background: none;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.formButton {
+  width: 100%;
+  /* Set the width of the button */
+  background-color: aquamarine;
+}
+
+
+.formButton:hover {
+  background-color: rgba(127, 255, 212, 0.581);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}

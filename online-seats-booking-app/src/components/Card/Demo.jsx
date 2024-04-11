@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../dropdown/FloorsDropDown.module.css";
+import { BookSeatForm } from "../Forms/BookSeatForm";
 
 const items = [
   { label: "Option 1", onClick: () => console.log("Option 1 clicked") },
@@ -24,22 +25,7 @@ export const Demo = () => {
 
   return (
     <div>
-      <ul className={styles.dropdownMenu}>
-        {items.map((item, index) => {
-          console.log("Iteration "+index)
-          return (
-            <li key={index} onClick={() => handleMenuItemClick(item)}>
-              {item.label}
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* <ul>
-        {items.map((item) => {
-          return <li>Om</li>;
-        })}
-      </ul> */}
+      <BookSeatForm></BookSeatForm>
     </div>
   );
 };

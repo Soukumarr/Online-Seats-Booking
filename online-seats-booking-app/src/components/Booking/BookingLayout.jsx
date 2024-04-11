@@ -3,6 +3,7 @@ import styles from "../Pages/layout/SeatLayout.module.css";
 import { SeatGrid } from "../Pages/layout/SeatGrid";
 import FloorsDropDown from "../dropdown/FloorsDropDown";
 import DateSelector from "../datepicker/DateSelector";
+import { BookSeatForm } from "../Forms/BookSeatForm";
 
 // Dropdown list
 const items = [
@@ -12,10 +13,13 @@ const items = [
 ];
 
 export const BookingLayout = () => {
-
   const options = ["Book Seat", "Swap Seat", "Cancle Request"];
 
-  const page = "booking"
+  const page = "booking";
+
+  const [selectedSeat, setSelectedSeat] = useState(null);
+
+  const [blur, setBlur] = useState(false);
 
   let [section1, setSection1] = useState(
     Array.from({ length: 24 }).fill("lightgreen")
@@ -46,6 +50,57 @@ export const BookingLayout = () => {
     setNoOfSeats(value + noOfSeats);
   };
 
+  const handleSeatBook = (index, key) => {
+    console.log(index);
+    setSelectedSeat({
+      index,
+      key,
+    });
+  };
+
+  const updateSecton = (key, index, color) => {
+    var sec;
+    switch (key) {
+      case 1:
+        sec = section1;
+        if (sec[index] == "lightgreen"){ 
+        sec[index] = color;
+         setSection1(sec);}
+         break;
+      case 2:
+        sec = section2;
+        if (sec[index] == "lightgreen"){
+        sec[index] = color;
+        setSection2(sec);}
+        break;
+      case 3:
+        sec = section3;
+        if (sec[index] == "lightgreen"){
+        sec[index] = color;
+        setSection3(sec);}
+        break;
+      case 4:
+        sec = section4;
+        if (sec[index] == "lightgreen"){
+        sec[index] = color;
+        setSection4(sec);}
+        break;
+      case 5:
+        sec = section5;
+        if (sec[index] == "lightgreen"){
+        sec[index] = color;
+        setSection5(sec);}
+        break;
+      case 6:
+        sec = section6;
+        if (sec[index] == "lightgreen"){
+        sec[index] = color;
+        setSection6(sec);}
+        break;
+      default:
+        return null;
+    }
+  };
   const handleReset = () => {
     // window.location.reload();
     setSection1(Array.from({ length: 24 }).fill("white"));
@@ -58,10 +113,12 @@ export const BookingLayout = () => {
     setReset(true);
   };
 
- 
   return (
     <div>
-      <div>
+      <div className={styles.formContainer}>
+        {blur ? <BookSeatForm setBlur={setBlur} selectedSeat={selectedSeat} updateSection={updateSecton} /> : null}
+      </div>
+      <div className={blur ? styles.seatBookingContainer : {}}>
         {/* CONTAINER SECTION */}
         <div className={styles.contSectionBooking}>
           {/* EDIT WORKPLACE */}
@@ -118,11 +175,14 @@ export const BookingLayout = () => {
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
+                        giveIndexForm={handleSeatBook}
                         options={options}
+                        blur={blur}
+                        setBlur={setBlur}
                         setSelected={setIsOpen}
                         seats={section1}
                         setSeats={setSection1}
-                        key={1}
+                        sectionKey={1}
                         rows={4}
                         columns={6}
                       ></SeatGrid>
@@ -132,11 +192,14 @@ export const BookingLayout = () => {
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
+                        giveIndexForm={handleSeatBook}
                         options={options}
+                        blur={blur}
+                        setBlur={setBlur}
                         setSelected={setIsOpen}
                         seats={section2}
                         setSeats={setSection2}
-                        key={2}
+                        sectionKey={2}
                         rows={4}
                         columns={4}
                       ></SeatGrid>
@@ -146,11 +209,14 @@ export const BookingLayout = () => {
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
+                        giveIndexForm={handleSeatBook}
                         options={options}
+                        blur={blur}
+                        setBlur={setBlur}
                         setSelected={setIsOpen}
                         seats={section3}
                         setSeats={setSection3}
-                        key={3}
+                        sectionKey={3}
                         rows={4}
                         columns={6}
                       ></SeatGrid>
@@ -160,11 +226,14 @@ export const BookingLayout = () => {
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
+                        giveIndexForm={handleSeatBook}
                         options={options}
+                        blur={blur}
+                        setBlur={setBlur}
                         setSelected={setIsOpen}
                         seats={section4}
                         setSeats={setSection4}
-                        key={4}
+                        sectionKey={4}
                         rows={4}
                         columns={6}
                       ></SeatGrid>
@@ -174,11 +243,14 @@ export const BookingLayout = () => {
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
+                        giveIndexForm={handleSeatBook}
                         options={options}
+                        blur={blur}
+                        setBlur={setBlur}
                         setSelected={setIsOpen}
                         seats={section5}
                         setSeats={setSection5}
-                        key={5}
+                        sectionKey={5}
                         rows={4}
                         columns={4}
                       ></SeatGrid>
@@ -188,11 +260,14 @@ export const BookingLayout = () => {
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
+                        giveIndexForm={handleSeatBook}
                         options={options}
+                        blur={blur}
+                        setBlur={setBlur}
                         setSelected={setIsOpen}
                         seats={section6}
                         setSeats={setSection6}
-                        key={6}
+                        sectionKey={6}
                         rows={4}
                         columns={6}
                       ></SeatGrid>

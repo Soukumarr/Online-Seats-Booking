@@ -1,51 +1,47 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import styles from './SigninForm.module.css';
 //import Navbar from "./Navbar";
 import Navigationbar from "./Navigationbar";
 
 
-const Userprofile=()=>
-
-  {
-    const [form,setForm] = useState(
+const Userprofile = () => {
+    const [form, setForm] = useState(
         {
-            firstname:"",
-            lastName:"",
-            email:"",
-            phone:"",
-            address:"",
-            
+            firstname: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            address: "",
+
         }
-        );
-    const onUpdateField=e=>
-    {
-        const nextFormState={
+    );
+    const onUpdateField = e => {
+        const nextFormState = {
             ...form,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         }
         setForm(nextFormState)
     }
 
-    const onSubmitForm=e=>
-    {
+    const onSubmitForm = e => {
         e.preventDefault();
         if (form.phone.length !== 10) {
-      alert("Phone number must be exactly 10 digits.");
-      return; // Prevent form submission if invalid
-    }
-        
-        alert(JSON.stringify(form,null,2))
-    }
+            alert("Phone number must be exactly 10 digits.");
+            return; // Prevent form submission if invalid
+        }
 
-    
-
-    const validatePassword=(password)=> {
-      const passwordRegex= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
+        alert(JSON.stringify(form, null, 2))
     }
 
-    
-    
+
+
+    const validatePassword = (password) => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return passwordRegex.test(password);
+    }
+
+
+
 
     return (
         <div className={styles.userprofile}>

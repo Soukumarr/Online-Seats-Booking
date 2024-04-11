@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import styles from "./FloorsDropDown.module.css";
 
-const FloorsDropDown = ({ buttonText, menuItems }) => {
+const FloorsDropDown = ({ buttonText, menuItems, style ,props}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [buttonTitle, setButtonTitle] = useState(buttonText);
 
   const handleButtonClick = () => {
     setIsMenuOpen(!isMenuOpen);
-    console.log(styles.dropdownArrow + (isMenuOpen ? "Open" : ""));
   };
 
   const handleMenuItemClick = (item) => {
     setIsMenuOpen(false);
+    console.log(isMenuOpen)
     setButtonTitle(item.label);
   };
 
   return (
-    <div className={styles.longButtonWithDropdown}>
+    <div className={(style==undefined)? styles.longButtonWithDropdown:style}>
       <button className={styles.longButton} onClick={() => handleButtonClick()}>
         {buttonTitle} &#9660;
       </button>
