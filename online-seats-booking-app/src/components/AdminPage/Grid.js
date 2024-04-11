@@ -48,8 +48,8 @@ export const Grid = () => {
       name: newCard.office,
       location: newCard.location,
       floorCount: newCard.floor,
-      totalSeatCount: newCard.seats, 
-      availableSeatCount: 67
+      totalSeatCount: 0, 
+      availableSeatCount: 0
       
     };
     axios.post('http://localhost:8080/api/offices', office)
@@ -98,10 +98,10 @@ export const Grid = () => {
           Office:
           <input type="text" name="office" value={newCard.office} onChange={handleInputChange} />
         </label>
-        <label>
+        {/* <label>
           Seats:
           <input type="number" name="seats" value={newCard.seats} onChange={handleInputChange} />
-        </label>
+        </label> */}
         <label>
           Floor:
           <input type="number" name="floor" value={newCard.floor} onChange={handleInputChange} />
