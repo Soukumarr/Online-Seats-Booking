@@ -63,11 +63,11 @@ const SignupForm = () => {
          axios.post("http://localhost:8080/users/register", form)
            .then((response) => {
              console.log(response.data);
-             // Here you can handle the response, for example save the user data or a JWT in the state or in local storage
+          
            })
            .catch((error) => {
              console.error("There was an error!", error);
-             // Here you can handle errors, for example show a message to the user
+           
            });
     }
 
