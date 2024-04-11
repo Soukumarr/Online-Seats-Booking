@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import styles from './SigninForm.module.css';
 import { Button, Dropdown } from 'antd';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";; 
  
 export const SigninForm = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   const [form,setForm] = useState(
     {
         email:"",
@@ -49,7 +53,29 @@ const onSubmitForm=e=>
       return; 
     }
     
-    alert(JSON.stringify(form,null,2));
+    // alert(JSON.stringify(form,null,2));
+    axios
+      .post("http://localhost:8080/users/signin", form)
+      .then((response) => {
+        console.log(response.data);
+        //localStorage.setItem("email", form.email);
+        localStorage.setItem("user", JSON.stringify(response.data));
+
+        // Here you can handle the response, for example save the user data or a JWT in the state or in local storage
+        navigate("/layout");
+      })
+      .catch((error) => {
+         if (error.response) {
+            // The request was made and the server responded with a status code that falls out of the range of 2xx
+            alert(error.response.data); // Here is where you will see the error message from the server
+            console.error("There was an error!", error.response.data);
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);
+        }});
    
 
 

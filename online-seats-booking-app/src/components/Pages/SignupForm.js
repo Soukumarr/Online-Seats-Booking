@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SigninForm.module.css";
+import axios from "axios";
 
 const SignupForm = () => {
   const [form, setForm] = useState({
@@ -56,7 +57,18 @@ const SignupForm = () => {
       alert(passwordErrorMessage); 
       return; 
     }
-        alert(JSON.stringify(form,null,2))
+        // alert(JSON.stringify(form,null,2))
+        //  e.preventDefault();
+
+         axios.post("http://localhost:8080/users/register", form)
+           .then((response) => {
+             console.log(response.data);
+             // Here you can handle the response, for example save the user data or a JWT in the state or in local storage
+           })
+           .catch((error) => {
+             console.error("There was an error!", error);
+             // Here you can handle errors, for example show a message to the user
+           });
     }
 
    

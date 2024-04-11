@@ -1,8 +1,11 @@
 import React,{useState} from "react";
 import styles from './SigninForm.module.css';
 import Navigationbar from "./Navigationbar";
+import axios from "axios";
+
 const Resetpassword=()=>
 {
+  const user = JSON.parse(localStorage.getItem("user"));
     const [form,setForm] = useState(
         {
             currentpassword:"",
@@ -53,7 +56,32 @@ const Resetpassword=()=>
       return; // Prevent form submission if invalid
     }
         
-        alert(JSON.stringify(form,null,2))
+        // alert(JSON.stringify(form,null,2))
+        if (user) {
+          const email = user.email;
+
+          // Create reset password request
+          const resetPasswordRequest = {
+            email: email,
+            newPassword: form.confirmpassword, // Replace with the actual new password
+          };
+
+          // Send reset password request
+          axios
+            .post(
+              "http://localhost:8080/users/resetpassword",
+              resetPasswordRequest
+            )
+            .then((response) => {
+              // Handle successful password reset
+              // ...
+            })
+            .catch((error) => {
+              // Handle error
+              // ...
+            });
+        }
+
     } 
 
       
