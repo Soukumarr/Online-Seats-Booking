@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import { GridComponent } from "./GridComponent";
 import styles from "./Grid.module.css";
-
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 export const Grid = () => {
-  const [cards, setCards] = useState([
-    { id: 1, location: "Sarjah", office: "Corporate Square", seats: "35", availableSeats: "20", floor: 5 },
-    { id:2, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "10", floor: 3 },
-    { id:3, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "25", floor: 3 },
-    { id:4, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "30", floor: 3 },
-    { id:5, location: "Columbo", office: "Tech Park", seats: "45", availableSeats: "15", floor: 3 },
-    
-    // Add more cards as needed
-  ]);
-  const [newCard, setNewCard] = useState({ location: "", office: "", seats: "", floor: "" });
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/offices')
+      .then(response => {
+        const fetchedCards = response.data.map(office => ({
+          id: office.id,
+          office: office.name,
+          location: office.location,
+          floor: office.floorCount,
+          seats: office.totalSeatCount,
+          availableSeats: office.availableSeatCount
+        }));
+        setCards(fetchedCards);
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
+  }, []);
+
+  const [newCard, setNewCard] = useState({ location: "", office: "", seats: 0, floor: 0 });
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = (card) => {
@@ -32,8 +44,28 @@ export const Grid = () => {
       alert("You cannot add more than 100 seats.");
       return;
     }
-    setCards([...cards, newCard]);
-    setNewCard({ location: "", office: "", seats: "", floor: "" }); // Reset the form
+    const office = {
+      name: newCard.office,
+      location: newCard.location,
+      floorCount: newCard.floor,
+      totalSeatCount: 0, 
+      availableSeatCount: 0
+      
+    };
+    axios.post('http://localhost:8080/api/offices', office)
+    .then(response => {
+      const newCardFromBackend = {
+        id: response.data.id,
+        office: response.data.name,
+        location: response.data.location,
+        floor: response.data.floorCount,
+        seats: response.data.totalSeatCount,
+        availableSeats: response.data.availableSeatCount
+      };
+      setCards(oldCards => [...oldCards, newCardFromBackend]);
+      setNewCard({ location: "", office: "", seats: "", floor: "" }); // Reset the form
+    })
+    .catch(error => console.error(error));
   };
 
   const handleInputChange = (event) => {
@@ -46,8 +78,12 @@ export const Grid = () => {
     console.log(edit);
     setEdit(!edit);
   }
-  const handleDeleteCard = (cardToDelete) => {
-    setCards(cards.filter((card) => card.id !== cardToDelete.id));
+  const handleDeleteCard = (id) => {
+    axios.delete(`http://localhost:8080/api/offices/${id}`)
+    .then(() => {
+      setCards(oldCards => oldCards.filter(card => card.id !== id));
+    })
+    .catch(error => console.error(error));
   };
   return (
     <div>
@@ -62,10 +98,10 @@ export const Grid = () => {
           Office:
           <input type="text" name="office" value={newCard.office} onChange={handleInputChange} />
         </label>
-        <label>
+        {/* <label>
           Seats:
           <input type="number" name="seats" value={newCard.seats} onChange={handleInputChange} />
-        </label>
+        </label> */}
         <label>
           Floor:
           <input type="number" name="floor" value={newCard.floor} onChange={handleInputChange} />
@@ -84,7 +120,7 @@ export const Grid = () => {
          office={card.office}
          seats={card.seats}
          floor={card.floor}
-         onDelete={() => handleDeleteCard(card)}
+         onDelete={() => handleDeleteCard(card.id)}
          className={styles.fgh}
          selectedCard={selectedCard}
        />
