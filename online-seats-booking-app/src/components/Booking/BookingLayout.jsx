@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../Pages/layout/SeatLayout.module.css";
 import { SeatGrid } from "../Pages/layout/SeatGrid";
 import FloorsDropDown from "../dropdown/FloorsDropDown";
 import DateSelector from "../datepicker/DateSelector";
 import { BookSeatForm } from "../Forms/BookSeatForm";
+import LayoutService, {getFloorLayout} from '../util/LayoutService.js'
 
 // Dropdown list
 const items = [
@@ -21,9 +22,48 @@ export const BookingLayout = () => {
 
   const [blur, setBlur] = useState(false);
 
+
+  useEffect(
+    ()=>{
+      // getFloorLayout(3).then((response)=>{
+      //   console.log("promise completed")
+      //   return response.data 
+      // })
+
+      console.log("On Page Mount")
+
+      LayoutService.getFloorLayout(3).then(
+        (response)=>{
+          setSection1(
+              response.data[0].map(
+                (seat)=>{
+                  if (seat === null) {
+                        return 'white';
+                      } else {
+                        return 'lightgreen';
+                      }
+                }
+              )
+            )
+        }
+      )
+    },[])
+
+ 
+  // console.log("got: ", floor)
+
   let [section1, setSection1] = useState(
-    Array.from({ length: 24 }).fill("lightgreen")
-  );
+    // floor.map(item => {
+    //   if (item === null) {
+    //     return 'white';
+    //   } else {
+    //     return 'item';
+    //   }
+    // })
+    Array.from({ length: 24 }).fill("white")
+    )
+
+
   let [section2, setSection2] = useState(
     Array.from({ length: 16 }).fill("white")
   );
