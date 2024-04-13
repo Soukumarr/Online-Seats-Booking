@@ -41,6 +41,19 @@ export const GridComponent = (props) => {
     .catch(error => {
       console.error('There was an error!', error);
     });
+
+    var f = parseInt(updatedOffice.floorCount)
+
+    const url = `http://localhost:8080/api/floors/office/${props.id}/floors/${parseInt(updatedOffice.floorCount)}`;
+console.log('URL:', url);
+axios.put(url)
+  .then(response => {
+    // Handle the response here. For example, you can update the state with the updated card data
+  })
+  .catch(error => {
+    console.error('There was an error!', error);
+  });
+    console.log(props.id, f);
     
   };
   const handleSaveClick = (e) => {
