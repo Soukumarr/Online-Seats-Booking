@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./FloorsDropDown.module.css";
 
-const FloorsDropDown = ({ buttonText, menuItems, style ,props}) => {
+const FloorsDropDown = ({ buttonText, menuItems, style , floor, setFloor}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [buttonTitle, setButtonTitle] = useState(buttonText);
 
@@ -11,8 +11,8 @@ const FloorsDropDown = ({ buttonText, menuItems, style ,props}) => {
 
   const handleMenuItemClick = (item) => {
     setIsMenuOpen(false);
-    console.log(isMenuOpen)
     setButtonTitle(item.label);
+    setFloor(item.number)
   };
 
   return (

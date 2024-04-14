@@ -4,17 +4,28 @@ import { SeatGrid } from "../Pages/layout/SeatGrid";
 import FloorsDropDown from "../dropdown/FloorsDropDown";
 import DateSelector from "../datepicker/DateSelector";
 import { BookSeatForm } from "../Forms/BookSeatForm";
-import LayoutService, {getFloorLayout} from '../util/LayoutService.js'
+import LayoutService, { getFloorLayout } from "../util/LayoutService.js";
+import { useNavigate } from "react-router";
 
 // Dropdown list
-const items = [
-  { label: "Floor 1", onClick: () => console.log("Option 1 clicked") },
-  { label: "Floor 2", onClick: () => console.log("Option 2 clicked") },
-  { label: "Floor 3", onClick: () => console.log("Option 3 clicked") },
-];
+// const items = [
+//   {
+//     label: "Floor 1",
+//     number: 1,
+//     id: 2,
+//   },
+//   {
+//     label: "Floor 2",
+//     number: 2,
+//   },
+//   {
+//     label: "Floor 3",
+//     number: 3,
+//   }
+// ];
 
-export const BookingLayout = () => {
-  const options = ["Book Seat", "Swap Seat", "Cancle Request"];
+export const BookingLayout = (porps) => {
+  const options = ["Book Seat", "Swap Seat", "Cancle Request", "More"];
 
   const page = "booking";
 
@@ -22,63 +33,60 @@ export const BookingLayout = () => {
 
   const [blur, setBlur] = useState(false);
 
+  const [floor, setFloor] = useState(1);
 
-  useEffect(
-    ()=>{
-      // getFloorLayout(3).then((response)=>{
-      //   console.log("promise completed")
-      //   return response.data 
-      // })
+  const [date, setDate] = useState(new Date().toLocaleDateString());
 
-      console.log("On Page Mount")
+  const [officeId, setOfficeId] = useState(9);
 
-      LayoutService.getFloorLayout(3).then(
-        (response)=>{
-          setSection1(
-              response.data[0].map(
-                (seat)=>{
-                  if (seat === null) {
-                        return 'white';
-                      } else {
-                        return 'lightgreen';
-                      }
-                }
-              )
-            )
-        }
-      )
-    },[])
+  const [items, setItems] = useState([]);
 
- 
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    // getFloorLayout(3).then((response)=>{
+    //   console.log("promise completed")
+    //   return response.data
+    // })
+
+    console.log("On Page Mount");
+
+    LayoutService.getAllFloors(officeId)
+      .then((response) => {
+        setItems(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => console.log(e));
+
+    LayoutService.getFloorLayout(floor, date)
+      .then((response) => {
+        setSection1(response.data[0]);
+        setSection2(response.data[1]);
+        setSection3(response.data[2]);
+        setSection4(response.data[3]);
+        setSection5(response.data[4]);
+        setSection6(response.data[5]);
+      })
+      .catch((e) => {
+        // if error return empty array
+        console.log(e);
+        setSection1(Array.from({ length: 24 }).fill(null));
+        setSection2(Array.from({ length: 16 }).fill(null));
+        setSection3(Array.from({ length: 24 }).fill(null));
+        setSection4(Array.from({ length: 24 }).fill(null));
+        setSection5(Array.from({ length: 16 }).fill(null));
+        setSection6(Array.from({ length: 24 }).fill(null));
+      });
+  }, [floor, date]);
+
   // console.log("got: ", floor)
 
-  let [section1, setSection1] = useState(
-    // floor.map(item => {
-    //   if (item === null) {
-    //     return 'white';
-    //   } else {
-    //     return 'item';
-    //   }
-    // })
-    Array.from({ length: 24 }).fill("white")
-    )
-
-
-  let [section2, setSection2] = useState(
-    Array.from({ length: 16 }).fill("white")
-  );
-  let [section3, setSection3] = useState(
-    Array.from({ length: 24 }).fill("white")
-  );
-  let [section4, setSection4] = useState(
-    Array.from({ length: 24 }).fill("white")
-  );
-  let [section5, setSection5] = useState(
-    Array.from({ length: 16 }).fill("white")
-  );
-  let [section6, setSection6] = useState(
-    Array.from({ length: 24 }).fill("white")
-  );
+  let [section1, setSection1] = useState([]);
+  let [section2, setSection2] = useState([]);
+  let [section3, setSection3] = useState([]);
+  let [section4, setSection4] = useState([]);
+  let [section5, setSection5] = useState([]);
+  let [section6, setSection6] = useState([]);
 
   let [noOfSeats, setNoOfSeats] = useState(128);
 
@@ -103,66 +111,102 @@ export const BookingLayout = () => {
     switch (key) {
       case 1:
         sec = section1;
-        if (sec[index] == "lightgreen"){ 
-        sec[index] = color;
-         setSection1(sec);}
-         break;
+        if (sec[index] == "lightgreen") {
+          sec[index] = color;
+          setSection1(sec);
+        }
+        break;
       case 2:
         sec = section2;
-        if (sec[index] == "lightgreen"){
-        sec[index] = color;
-        setSection2(sec);}
+        if (sec[index] == "lightgreen") {
+          sec[index] = color;
+          setSection2(sec);
+        }
         break;
       case 3:
         sec = section3;
-        if (sec[index] == "lightgreen"){
-        sec[index] = color;
-        setSection3(sec);}
+        if (sec[index] == "lightgreen") {
+          sec[index] = color;
+          setSection3(sec);
+        }
         break;
       case 4:
         sec = section4;
-        if (sec[index] == "lightgreen"){
-        sec[index] = color;
-        setSection4(sec);}
+        if (sec[index] == "lightgreen") {
+          sec[index] = color;
+          setSection4(sec);
+        }
         break;
       case 5:
         sec = section5;
-        if (sec[index] == "lightgreen"){
-        sec[index] = color;
-        setSection5(sec);}
+        if (sec[index] == "lightgreen") {
+          sec[index] = color;
+          setSection5(sec);
+        }
         break;
       case 6:
         sec = section6;
-        if (sec[index] == "lightgreen"){
-        sec[index] = color;
-        setSection6(sec);}
+        if (sec[index] == "lightgreen") {
+          sec[index] = color;
+          setSection6(sec);
+        }
         break;
       default:
         return null;
     }
   };
-  const handleReset = () => {
-    // window.location.reload();
-    setSection1(Array.from({ length: 24 }).fill("white"));
-    setSection2(Array.from({ length: 16 }).fill("white"));
-    setSection3(Array.from({ length: 24 }).fill("white"));
-    setSection4(Array.from({ length: 24 }).fill("white"));
-    setSection5(Array.from({ length: 16 }).fill("white"));
-    setSection6(Array.from({ length: 24 }).fill("white"));
-    setNoOfSeats(128);
-    setReset(true);
+
+  const goBack = () => {
+    navigate(-1);
   };
+
+  function getSection(key) {
+    switch (key) {
+      case 1:
+        return section1;
+      case 2:
+        return section2;
+      case 3:
+        return section3;
+      case 4:
+        return section4;
+      case 5:
+        return section5;
+      case 6:
+        return section6;
+      default:
+        return "unknown"; // Handle unknown keys (optional)
+    }
+  }
 
   return (
     <div>
       <div className={styles.formContainer}>
-        {blur ? <BookSeatForm setBlur={setBlur} selectedSeat={selectedSeat} updateSection={updateSecton} /> : null}
+        {blur ? (
+          <BookSeatForm
+            setBlur={setBlur}
+            selectedSeat={ selectedSeat}
+            getSection = {getSection}
+            updateSection={updateSecton}
+            date = {date}
+            userId={1} // set userId from global state
+            items={items}
+            // setFloor={setFloor  }
+            selectDate = {setDate}
+          />
+        ) : null}
       </div>
       <div className={blur ? styles.seatBookingContainer : {}}>
         {/* CONTAINER SECTION */}
         <div className={styles.contSectionBooking}>
           {/* EDIT WORKPLACE */}
           <div className={styles.workplace}>
+            {/* BACK BUTTON */}
+            <div className={styles.buttonContainer}>
+              <button className= {styles.backButton} onClick={goBack}>
+                Back
+              </button>
+            </div>
             {/* Info Section */}
             <div className={styles.info}>
               <span className={styles.infoElement}>
@@ -201,10 +245,12 @@ export const BookingLayout = () => {
                 <FloorsDropDown
                   menuItems={items}
                   buttonText={"FLOORS"}
+                  floor={floor}
+                  setFloor={setFloor}
                 ></FloorsDropDown>
 
                 {/* Date Selector */}
-                <DateSelector></DateSelector>
+                <DateSelector date={date} selectDate={setDate}></DateSelector>
               </div>
               {/* SEATS LAYOUT */}
               <div className={styles.outerGrid}>
