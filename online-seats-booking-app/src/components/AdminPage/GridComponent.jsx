@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider';
 
 export const GridComponent = (props) => {
   const redirectTo = useRedirect();
@@ -16,6 +18,8 @@ export const GridComponent = (props) => {
   const [showTable, setShowTable] = useState(false);
   const [availableSeats, setAvailableSeats] = useState(props.availableSeats);
   const navigate = useNavigate(); 
+    const { isLoggedIn, logOut, roles, logIn, setRoles } =
+      useContext(AuthContext);
 
 
   const handleClick = (e) => {
@@ -71,7 +75,11 @@ axios.put(url)
   const handleFloorClick = (floor) => {
     // Do something with the clicked floor
     console.log(`Floor ${floor} was clicked.`);
-    navigate('/layout');
+    if (isLoggedIn && roles.includes("ROLE_ADMIN")) {
+      navigate("/layout");
+    } else {
+      navigate("/bookseats");
+    }
   };
   const handleDeleteClick = (e) => {
     e.stopPropagation(); // Prevent the card click event from being triggered
@@ -134,12 +142,13 @@ axios.put(url)
                   {floor === undefined ? "" : <span style={{ marginLeft: '5px' }}>{floor}</span>}
                 </b></span>
                 <div className={styles.plusButtonWrapper}>
+              {isLoggedIn && !roles.includes('ROLE_USER') && (<>
                   <button className={styles.editButton} onClick={handleClick}>
-                  <FontAwesomeIcon icon={faEdit} />
+                    <FontAwesomeIcon icon={faEdit} />
                   </button>
                   <button className={styles.deleteButton} onClick={handleDeleteClick}>
-            <FontAwesomeIcon icon={faTrashAlt} />
-          </button>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </button> </>)}
                 </div>
               </>
             )}

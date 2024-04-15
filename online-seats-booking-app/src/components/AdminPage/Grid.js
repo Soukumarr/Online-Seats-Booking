@@ -3,11 +3,16 @@ import { GridComponent } from "./GridComponent";
 import styles from "./Grid.module.css";
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider';
+
+
 
 
 export const Grid = () => {
   const [cards, setCards] = useState([]);
   const [floors, setFloors] = useState([]);
+  const { isLoggedIn, logOut, roles, logIn, setRoles } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/offices')
@@ -111,7 +116,7 @@ export const Grid = () => {
   return (
     <div>
       {/* <h1>Admin DashBorad</h1> */}
-      <button className={styles.newCard} onClick={()=> handleEdit()}>Add new card</button>
+       {isLoggedIn && !roles.includes('ROLE_USER') &&(<button className={styles.newCard} onClick={()=> handleEdit()}>Add new card</button>)}
       { edit==true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
         <label>
           Location:

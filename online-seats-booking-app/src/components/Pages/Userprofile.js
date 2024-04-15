@@ -2,14 +2,14 @@ import { React, useState } from "react";
 import styles from './SigninForm.module.css';
 //import Navbar from "./Navbar";
 import Navigationbar from "./Navigationbar";
-
+import axios from "axios";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const Userprofile = () => {
     const [form, setForm] = useState(
         {
-            firstname: "",
-            lastName: "",
-            email: "",
+            name: "",
             phone: "",
             address: "",
 
@@ -30,7 +30,35 @@ const Userprofile = () => {
             return; // Prevent form submission if invalid
         }
 
-        alert(JSON.stringify(form, null, 2))
+        //alert(JSON.stringify(form, null, 2))
+
+         const token = localStorage.getItem("jwtToken");
+         console.log(token);
+         axios
+           .put(
+             "http://localhost:8080/auth/user/editProfile",
+             form,
+             {
+               headers: {
+                 Authorization: `Bearer ${token}`,
+               },
+             }
+           )
+           .then((response) => {
+             toast.success("Profile Updated successfully!");
+             if (response.status === 200) {
+               console.log("Profile Updated successful");
+             } else {
+               console.log("Profile Updated failed");
+             }
+           })
+           .catch((error) => {
+             if (error.message === "Network Error") {
+               console.log("Unable to connect to server");
+             } else {
+               console.log(error.message);
+             }
+           });
     }
 
 
@@ -57,30 +85,17 @@ const Userprofile = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label className={styles.formLabel}>
-                            <h2>First Name</h2>{" "}
+                            <h2>Name</h2>{" "}
                         </label>
                         <input
                             type="text"
-                            name="firstname"
+                            name="name"
                             onChange={onUpdateField}
                             className={styles.formInputs}
-                            placeholder="First Name"
+                            placeholder="Enter your name"
                             required
                         />
                     </div>
-                    {/* <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>
-                            <h2>Last Name:</h2>{" "}
-                        </label>
-                        <input
-                            type="text"
-                            name="lastname"
-                            onChange={onUpdateField}
-                            className={styles.formInputs}
-                            placeholder="Last Name"
-                            required
-                        />
-                    </div> */}
                 </div>
 
                 <div className={styles.contactform}>
@@ -88,7 +103,7 @@ const Userprofile = () => {
                         <h3 className={styles.divtitle}> Contact Information</h3>
                     </div>
 
-                    <div className={styles.formGroup}>
+                    {/* <div className={styles.formGroup}>
                         <label className={styles.formLabel}>
                             <h2>Email:</h2>{" "}
                         </label>
@@ -100,7 +115,7 @@ const Userprofile = () => {
                             placeholder="Enter your email"
                             required
                         />
-                    </div>
+                    </div> */}
 
                     {/* <div className={styles.formGroups}>
                                     <label className={styles.formLabel}><h3>Mobile Number:</h3> </label>
@@ -144,7 +159,7 @@ const Userprofile = () => {
                     </div>
                 </div>
             </form>
-
+            <ToastContainer/>
             <div className={styles.clearFooter}></div> {/* Add this div to clear the float */}
         </div>
     );

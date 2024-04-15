@@ -9,7 +9,7 @@ import { Signup } from "./components/Pages/Signup";
 // import Seatbooking from "./components/Pages/Seatbooking";
 import { Calender } from "./components/Pages/calendar/Calender";
 import { Demo } from "./components/Card/Demo.jsx";
-import { useNavigate } from "react-router-dom";
+
 import { SeatLayout } from "./components/Pages/layout/SeatLayout";
 import Header from "./components/Pages/Header/Header.jsx";
 import Footer from "./components/Pages/Footer/Footer.jsx";
@@ -18,9 +18,10 @@ import Bookings from "./components/Pages/Bookings";
 import Resetpassword from "./components/Pages/ResetPassword";
 import AdminDashboad from "./components/AdminDashboard/AdminDashboad";
 // import { SeatBooking } from "./components/Pages/SeatBooking/SeatBookingPage.jsx";
-import { BookingLayout, SeatsLayout } from "./components/Booking/BookingLayout.jsx";
-import FloorsDropDown from "./components/dropdown/FloorsDropDown.jsx";
-import { AuthProvider } from "./components/AuthProvider"; 
+import { BookingLayout} from "./components/Booking/BookingLayout.jsx";
+
+import { AuthProvider } from "./components/AuthProvider";
+import {Grid} from "./components/AdminPage/Grid.js"; 
 
 
 import History from "./components/Pages/History.js";
@@ -44,6 +45,7 @@ function App() {
               {/* <Route path="/seatbook" element={<Seatbooking />} /> */}
               <Route path="/calender" element={<Calender />} />
               <Route path="/demo" element={<Demo />} />
+              <Route path="/bookingscard" element={<Grid />} />
               <Route
                 path="/layout"
                 element={

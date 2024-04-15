@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import styles from './SigninForm.module.css';
 import Navigationbar from "./Navigationbar";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Resetpassword=()=>
 {
@@ -75,8 +77,7 @@ const Resetpassword=()=>
               }
             )
             .then((response) => {
-              // Handle successful password reset
-              // ...
+              toast.success("Password changed successfully!");
               if (response.status === 200) {
                 console.log("Password reset successful");
               } else {
@@ -95,52 +96,67 @@ const Resetpassword=()=>
     } 
 
       
-    return(
-        <div className={styles.userprofile}>
-          <header className={styles.header}>
-            <br></br>
-            <h1>Reset Password</h1>
-            
-          </header>
-          
-          <Navigationbar/>
-          
-        <form className={styles.resetform} onSubmit={onSubmitForm}>
-        
-            
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Current Password</h3> </label>
-                <input type="password"
-                name="currentpassword"
-                onChange={onUpdateField}
-                className={styles.formField}
-                placeholder="Current password" required/>
-            </div>
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>New Password</h3> </label>
-                <input type="password"
-                name="newpassword"
-                value={form.password}
-                onChange={onUpdateField}
-                className={styles.formField} 
-                placeholder="Password" required/>
-            </div>
+    return (
+      <div className={styles.userprofile}>
+        <header className={styles.header}>
+          <br></br>
+          <h1>Reset Password</h1>
+        </header>
 
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Confirm Password</h3> </label>
-                <input type="password"
-                name="confirmpassword"
-                value={form.confirmPassword}
-                onChange={onUpdateField}
-                className={styles.formField} 
-                placeholder="Confirm Password" required/>
-            </div>
- 
-            <div className={styles.formActions}>
-                <button className={styles.resetformBtn} type="submit">Send Request</button>
-            </div>
+        <Navigationbar />
+
+        <form className={styles.resetform} onSubmit={onSubmitForm}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>
+              <h3>Current Password</h3>{" "}
+            </label>
+            <input
+              type="password"
+              name="currentpassword"
+              onChange={onUpdateField}
+              className={styles.formField}
+              placeholder="Current password"
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>
+              <h3>New Password</h3>{" "}
+            </label>
+            <input
+              type="password"
+              name="newpassword"
+              value={form.password}
+              onChange={onUpdateField}
+              className={styles.formField}
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>
+              <h3>Confirm Password</h3>{" "}
+            </label>
+            <input
+              type="password"
+              name="confirmpassword"
+              value={form.confirmPassword}
+              onChange={onUpdateField}
+              className={styles.formField}
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+
+          <div className={styles.formActions}>
+            <button className={styles.resetformBtn} type="submit">
+              Send Request
+            </button>
+          </div>
         </form>
-        </div>
+        <ToastContainer />
+      </div>
     );
 }
  
