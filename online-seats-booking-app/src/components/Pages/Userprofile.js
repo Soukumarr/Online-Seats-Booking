@@ -68,7 +68,7 @@ const Userprofile = () => {
                             required
                         />
                     </div>
-                    <div className={styles.formGroup}>
+                    {/* <div className={styles.formGroup}>
                         <label className={styles.formLabel}>
                             <h2>Last Name:</h2>{" "}
                         </label>
@@ -80,7 +80,7 @@ const Userprofile = () => {
                             placeholder="Last Name"
                             required
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className={styles.contactform}>

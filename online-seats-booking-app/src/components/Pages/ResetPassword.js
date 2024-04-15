@@ -57,30 +57,40 @@ const Resetpassword=()=>
     }
         
         // alert(JSON.stringify(form,null,2))
-        if (user) {
-          const email = user.email;
-
           // Create reset password request
           const resetPasswordRequest = {
-            email: email,
             newPassword: form.confirmpassword, // Replace with the actual new password
           };
-
+          const token = localStorage.getItem("jwtToken");
+          console.log(token);
           // Send reset password request
           axios
-            .post(
-              "http://localhost:8080/users/resetpassword",
-              resetPasswordRequest
+            .put(
+              "http://localhost:8080/auth/user/resetpassword",
+              resetPasswordRequest,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
             )
             .then((response) => {
               // Handle successful password reset
               // ...
+              if (response.status === 200) {
+                console.log("Password reset successful");
+              } else {
+                console.log("Password reset failed");
+              }
             })
             .catch((error) => {
-              // Handle error
-              // ...
+              if (error.message === "Network Error") {
+                console.log("Unable to connect to server");
+              } else {
+                console.log(error.message);
+              }
             });
-        }
+        
 
     } 
 
