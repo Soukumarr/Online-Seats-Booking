@@ -16,6 +16,11 @@
 .navbar-brand {
     color: var(--clr-white);
 }
+.navbar-brand:active,
+.navbar-brand:focus {
+    color: var(--clr-white);
+    /* This will keep the color the same as it was before the click */
+}
 
 .hamburger-menu {
     display: flex;

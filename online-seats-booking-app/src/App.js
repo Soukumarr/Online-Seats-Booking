@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import { Home } from "./components/Pages/Home";
 import About from "./components/Pages/About/About.jsx";
 import { SigninForm } from "./components/Pages/SigninForm.js";
-import { Contact } from "./components/Pages/Contact";
+// import { Contact } from "./components/Pages/Contact";
 import { Signup } from "./components/Pages/Signup";
 // import Seatbooking from "./components/Pages/Seatbooking";
 import { Calender } from "./components/Pages/calendar/Calender";
@@ -22,7 +22,7 @@ import { BookingLayout} from "./components/Booking/BookingLayout.jsx";
 
 import { AuthProvider } from "./components/AuthProvider";
 import {Grid} from "./components/AdminPage/Grid.js"; 
-
+import Contact from "./components/Pages/Contact/Contact.jsx";
 
 import History from "./components/Pages/History.js";
 import Seatswapform from "./components/Pages/Seatswapform.js";
@@ -42,6 +42,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/signin" element={<SigninForm />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/contacts" element={<Contact />} />
               {/* <Route path="/seatbook" element={<Seatbooking />} /> */}
               <Route path="/calender" element={<Calender />} />
               <Route path="/demo" element={<Demo />} />

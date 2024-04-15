@@ -7,31 +7,47 @@ const { Sider, Content } = Layout;
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Username",
+    dataIndex: "username",
+    key: "username",
     render: (text) => <a>{text}</a>,
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Booking ID",
+    dataIndex: "bookingid",
+    key: "bookingid",
+  },
+  {
+    title: "Start Time",
+    dataIndex: "starttime",
+    key: "starttime",
+  },
+  {
+    title: "End Time",
+    dataIndex: "endtime",
+    key: "endtime",
   },
   {
     title: "Location",
-    dataIndex: "address",
-    key: "address",
+    dataIndex: "location",
+    key: "location",
   },
   {
-    title: "Floor number",
+    title: "Office",
+    dataIndex: "office",
+    key: "office",
+  },
+  {
+    title: "Seat ID",
+    dataIndex: "seatid",
+    key: "seatid",
+  },
+  {
+    title: "Floor",
     dataIndex: "floor",
     key: "floor",
   },
-  {
-    title: "Room Number",
-    dataIndex: "room",
-    key: "room",
-  },
+,
   // {
   //   title: "Action",
   //   key: "action",
@@ -66,28 +82,27 @@ const columns = [
 const data = [
   {
     key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    floor: 1,
-    room: 101,
+    username: "John Doe",
+    bookingid: "B001",
+    starttime: "10:00 AM",
+    endtime: "12:00 PM",
+    location: "New York",
+    office: "Office 1",
+    seatid: "S001",
+    floor: "1",
   },
   {
     key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    floor: 2,
-    room: 201,
+    username: "Jane Doe",
+    bookingid: "B002",
+    starttime: "1:00 PM",
+    endtime: "3:00 PM",
+    location: "London",
+    office: "Office 2",
+    seatid: "S002",
+    floor: "2",
   },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    floor: 3,
-    room: 301,
-  },
+  // Add more objects here for more rows in the table
 ];
 const AdminDashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("dashboard");

@@ -139,6 +139,7 @@ select {
     font-size: 19px;
     color: var(--clr-grey);
     font-weight: 400;
+    text-align: justify;
 }
 
 .text-lead {

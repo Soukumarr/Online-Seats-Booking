@@ -67,12 +67,12 @@ const Navbar = () => {
                   <Link to="/calender">Calender</Link>
                 </li>
                 <li className="text-white">
-                  <Link to="/">Contacts</Link>
+                  <Link to="/contacts">Contacts</Link>
                 </li>
               </ul>
               <ul className="navbar-social flex">
                 <li className="text-white">
-                  <Link to="" className="flex flex-center">
+                  <Link to="https://twitter.com" className="flex flex-center">
                     <FaTwitter />
                   </Link>
                 </li>
@@ -114,16 +114,17 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {isLoggedIn && !roles.includes('ROLE_ADMIN') && (
-        <div className="userprofile">
-          <Link to="/userprofile" className="flex flex-center text-white">
-            <FaRegUserCircle size={45} />
-          </Link>
-        </div>
-      ) 
-      // : (
-      //   <></>
-      // )
+      {
+        isLoggedIn && !roles.includes("ROLE_ADMIN") && (
+          <div className="userprofile">
+            <Link to="/userprofile" className="flex flex-center text-white">
+              <FaRegUserCircle size={45} />
+            </Link>
+          </div>
+        )
+        // : (
+        //   <></>
+        // )
       }
     </nav>
   );
