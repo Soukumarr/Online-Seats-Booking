@@ -168,8 +168,24 @@ export const SeatLayout = () => {
       }
     )
 
+    //  Make sure the newSeat Array is clear
+    setNewSeats([])
+
     //make the delete requests for all the seat objs present in the deleteSeate array
     // console.log(JSON.stringify("Deleted Seats: " + deleteSeats))
+
+    deleteSeats.map(
+      (seat)=>{
+        console.log("Deleting.... "+ seat)
+        SeatService.deleteSeats(seat.id).then((respose)=>
+        console.log("Made Request:", respose.status)
+    ).catch((e)=> console.log(e))
+      }
+    )
+       //  Make sure the deleteSeat Array is clear
+    setDeleteSeats([])
+
+
     };
 
   return (

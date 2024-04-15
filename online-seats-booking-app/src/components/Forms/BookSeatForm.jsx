@@ -65,6 +65,9 @@ export const BookSeatForm = (props) => {
       .catch((e) => console.log(e));
   };
 
+  const handleCancel = (event) => {
+    props.setBlur(false);
+  }
   return (
     <div className={styles.bookingForm}>
       <h2>DURATION : </h2>
@@ -106,10 +109,10 @@ export const BookSeatForm = (props) => {
               setFloor={props.setFloor}
             ></FloorsDropDown>
           </label> */}
-          <label className={styles.formLabel} onClick={handlePreventDefault}>
+          {/* <label className={styles.formLabel} onClick={handlePreventDefault}> */}
             {/* Date Selector */}
-            <DateSelector selectDate={props.selectDate}></DateSelector>
-          </label>
+            {/* <DateSelector selectDate={props.selectDate}></DateSelector> */}
+          {/* </label> */}
         </div>
         <div className={styles.formRow}>
           <button
@@ -118,6 +121,14 @@ export const BookSeatForm = (props) => {
             onClick={props.handleBook}
           >
             Book
+          </button>
+        </div>
+        <div className={styles.formRow}>
+          <button
+            className={styles.formButton}
+            onClick={handleCancel}
+          >
+            Cancle
           </button>
         </div>
       </form>

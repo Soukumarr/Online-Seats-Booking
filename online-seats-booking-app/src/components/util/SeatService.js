@@ -13,8 +13,8 @@ class SeatService{
         var officeId = seatObj.officeId
         return axios.post("http://localhost:8080/api/seat/office/"+officeId,seatObj)
     }  
-    deleteProduct(id){
-        return axios.delete(`http://localhost:8080/products/${id}`)
+    deleteSeats(seatId){
+        return axios.delete("http://localhost:8080/api/seat/"+ seatId)
     } 
 
     getAllFloors(officeId) {
