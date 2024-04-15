@@ -269,3 +269,40 @@ button {
     height: 100vh;  */
 
 }
+
+/* Back Botton */
+
+.backButton {
+    background-color: #0f98b087; /* Red background color */
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  /* Hover effect */
+  .backButton:hover {
+    background-color: #d32f2f; /* Darker red */
+  }
+  
+  /* Active effect */
+  .backButton:active {
+    background-color: #f44336; /* Red */
+  }
+
+  .buttonContainer {
+
+  }
+
+  .contSectionLayout{
+    display: grid;
+    grid-template-columns: 10% 100%;  
+  }

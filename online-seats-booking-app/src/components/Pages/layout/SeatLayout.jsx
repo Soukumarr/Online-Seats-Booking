@@ -1,30 +1,81 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SeatGrid } from "./SeatGrid";
 import styles from "./SeatLayout.module.css";
-import { redirect } from "react-router";
+import { createPath, redirect } from "react-router";
 import { useRedirect } from "../../util/useRedirect";
+import FloorsDropDown from "../../dropdown/FloorsDropDown";
+import DateSelector from "../../datepicker/DateSelector";
+import LayoutService from "../../util/LayoutService";
+import SeatService from "../../util/SeatService";
 
 export const SeatLayout = () => {
-
   const options = ["Allow Booking", "Accept Swap", "Cancle Booking", "Details"];
   let [section1, setSection1] = useState(
-    Array.from({ length: 24 }).fill("white")
+    Array.from({ length: 24 }).fill("null")
   );
   let [section2, setSection2] = useState(
-    Array.from({ length: 16 }).fill("white")
+    Array.from({ length: 16 }).fill("null")
   );
   let [section3, setSection3] = useState(
-    Array.from({ length: 24 }).fill("white")
+    Array.from({ length: 24 }).fill("null")
   );
   let [section4, setSection4] = useState(
-    Array.from({ length: 24 }).fill("white")
+    Array.from({ length: 24 }).fill("null")
   );
   let [section5, setSection5] = useState(
-    Array.from({ length: 16 }).fill("white")
+    Array.from({ length: 16 }).fill("null")
   );
   let [section6, setSection6] = useState(
-    Array.from({ length: 24 }).fill("white")
+    Array.from({ length: 24 }).fill("null")
   );
+
+  const [officeId, setOfficeId] = useState(9);
+
+  const [floor, setFloor] = useState(1);
+
+  const [date, setDate] = useState(new Date().toLocaleDateString());
+
+  useEffect(() => {
+    // getFloorLayout(3).then((response)=>{
+    //   console.log("promise completed")
+    //   return response.data
+    // })
+
+    console.log("On Page Mount");
+
+    LayoutService.getAllFloors(officeId)
+      .then((response) => {
+        setItems(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => console.log(e));
+      let reqObj = {
+        officeId: officeId,
+        floor: floor,
+        date: date
+      }
+    LayoutService.getFloorLayout(reqObj)
+      .then((response) => {
+        setSection1(response.data[0]);
+        setSection2(response.data[1]);
+        setSection3(response.data[2]);
+        setSection4(response.data[3]);
+        setSection5(response.data[4]);
+        setSection6(response.data[5]);
+      })
+      .catch((e) => {
+        // if error return empty array
+        console.log(e);
+        setSection1(Array.from({ length: 24 }).fill(null));
+        setSection2(Array.from({ length: 16 }).fill(null));
+        setSection3(Array.from({ length: 24 }).fill(null));
+        setSection4(Array.from({ length: 24 }).fill(null));
+        setSection5(Array.from({ length: 16 }).fill(null));
+        setSection6(Array.from({ length: 24 }).fill(null));
+      });
+  }, [floor, date]);
+
+  const [items, setItems] = useState([]);
 
   let [noOfSeats, setNoOfSeats] = useState(128);
 
@@ -34,9 +85,9 @@ export const SeatLayout = () => {
   let [edit, setEdit] = useState(false);
 
   const redirectTo = useRedirect();
+  const page = "layout";
 
   const [isOpen, setIsOpen] = useState(false);
-  
 
   const handleView = () => {
     setPagestate("view");
@@ -76,16 +127,73 @@ export const SeatLayout = () => {
     setReset(true);
   };
 
+  // Logic to add or remove seats
+  let [newSeats, setNewSeats] = useState([]);
+  let [deleteSeats, setDeleteSeats] = useState([]);
+  // console.log(typeof newSeats)
+
+
+  const addNewSeats = (seat) => {
+    // console.log(typeof newSeats)
+    var updateSeats = [...newSeats];
+    updateSeats.push(seat)
+    // console.log(typeof updateSeats)
+    setNewSeats(updateSeats);
+  };
+  const removeSeats = (seat) => {
+    var updateSeats=[];
+    if (newSeats.includes(seat)) {
+      updateSeats = [...newSeats]
+      updateSeats.splice(newSeats.indexOf(seat), 1)
+      // console.log("Delete Array: "+ JSON.stringify(updateSeats))
+      setNewSeats(updateSeats);
+    } else {
+      updateSeats = [...deleteSeats];
+      updateSeats.push(seat);
+      
+      setDeleteSeats(updateSeats);
+    }
+  };
+
   const handleSave = () => {
     setEdit(false);
-  };
+    // make the post requests for all the seat objs present in the newSeats array
+    // console.log("New Seats: "+JSON.stringify(newSeats));
+
+    newSeats.map(
+      (seat)=>{
+        SeatService.addNewSeat(seat).then((respose)=>
+        console.log("Made Request:", respose.status)
+    ).catch((e)=> console.log(e))
+      }
+    )
+
+    //  Make sure the newSeat Array is clear
+    setNewSeats([])
+
+    //make the delete requests for all the seat objs present in the deleteSeate array
+    // console.log(JSON.stringify("Deleted Seats: " + deleteSeats))
+
+    deleteSeats.map(
+      (seat)=>{
+        console.log("Deleting.... "+ seat)
+        SeatService.deleteSeats(seat.id).then((respose)=>
+        console.log("Made Request:", respose.status)
+    ).catch((e)=> console.log(e))
+      }
+    )
+       //  Make sure the deleteSeat Array is clear
+    setDeleteSeats([])
+
+
+    };
 
   return (
     <div>
       {/* Main  */}
       <div>
         {/* CONTAINER SECTION */}
-        <div className={styles.contSection}>
+        <div className={styles.contSectionLayout}>
           {/* SIDE BAR */}
           <div className={styles.sidebar}>
             <div className={styles.sidebarHeader}>Operations</div>
@@ -104,134 +212,166 @@ export const SeatLayout = () => {
 
           {/* EDIT WORKPLACE */}
           <div className={styles.workplace}>
-
-
+            {/* BACK BUTTON
+            <div className={styles.buttonContainer}>
+              <button className={styles.backButton} onClick={goBack}>
+                Back
+              </button>
+            </div> */}
             {/* Info Section */}
-      <div className={styles.info}>
-        <span className={styles.infoElement}> 
-        <div className={styles.infoColor} style={{backgroundColor:'lightgreen'}}></div>
-        <div className={styles.infoText}>Available Seats</div>
-        </span>
+            <div className={styles.info}>
+              <span className={styles.infoElement}>
+                <div
+                  className={styles.infoColor}
+                  style={{ backgroundColor: "lightgreen" }}
+                ></div>
+                <div className={styles.infoText}>Available Seats</div>
+              </span>
 
-        <span className={styles.infoElement}> 
-        <div className={styles.infoColor}style={{backgroundColor:'red'}}></div>
-        <div className={styles.infoText} >Booked Seats</div>
-        </span>
+              <span className={styles.infoElement}>
+                <div
+                  className={styles.infoColor}
+                  style={{ backgroundColor: "red" }}
+                ></div>
+                <div className={styles.infoText}>Booked Seats</div>
+              </span>
 
-        <span className={styles.infoElement}> 
-        <div className={styles.infoColor} style={{backgroundColor:'purple'}}></div>
-        <div className={styles.infoText}>Swap Requests</div>
-        </span>
-      </div>
+              <span className={styles.infoElement}>
+                <div
+                  className={styles.infoColor}
+                  style={{ backgroundColor: "purple" }}
+                ></div>
+                <div className={styles.infoText}>Swap Requests</div>
+              </span>
+            </div>
             {/* SEATS COUNT */}
             {pagestate == "layout" && (
               <h3 className={styles.availableSeat}>
                 Seats Available: {noOfSeats}
               </h3>
             )}
+            <div className={styles.midSection}>
+              <div className={styles.ddContainer}>
+                {/* Dropdown Floors */}
+                <FloorsDropDown
+                  menuItems={items}
+                  buttonText={"FLOORS"}
+                  floor={floor}
+                  setFloor={setFloor}
+                ></FloorsDropDown>
 
-            {/* SEATS LAYOUT */}
-            <div className={styles.outerGrid}>
-              {
-                <>
-                  <div className={styles.outerGridItem}>
-                    <SeatGrid
-                      onSelect={updateCount}
-                      page={"layout"}
-                      state={pagestate}
-                      edit={edit}
-                      isSelected={isOpen}
-                      setSelected={setIsOpen}
-                      options={options}
-                      seats={section1}
-                      setSeats={setSection1}
-                      key={1}
-                      rows={4}
-                      columns={6}
-                    ></SeatGrid>
-                  </div>
-                  <div className={styles.outerGridItem}>
-                    <SeatGrid
-                      onSelect={updateCount}
-                      state={pagestate}
-                      isSelected={isOpen}
-                      setSelected={setIsOpen}
-                      options={options}
-                      edit={edit}
-                      seats={section2}
-                      setSeats={setSection2}
-                      key={2}
-                      page = {"layout"}
-                      rows={4}
-                      columns={4}
-                    ></SeatGrid>
-                  </div>
-                  <div className={styles.outerGridItem}>
-                    <SeatGrid
-                      onSelect={updateCount}
-                      state={pagestate}
-                      isSelected={isOpen}
-                      setSelected={setIsOpen}
-                      options={options}
-                      edit={edit}
-                      seats={section3}
-                      setSeats={setSection3}
-                      key={3}
-                      page = {"layout"}
-                      rows={4}
-                      columns={6}
-                    ></SeatGrid>
-                  </div>
-                  <div className={styles.outerGridItem}>
-                    <SeatGrid
-                      onSelect={updateCount}
-                      state={pagestate}
-                      isSelected={isOpen}
-                      setSelected={setIsOpen}
-                      options={options}
-                      edit={edit}
-                      seats={section4}
-                      setSeats={setSection4}
-                      key={4}
-                      page = {"layout"}
-                      rows={4}
-                      columns={6}
-                    ></SeatGrid>
-                  </div>
-                  <div className={styles.outerGridItem}>
-                    <SeatGrid
-                      onSelect={updateCount}
-                      state={pagestate}
-                      isSelected={isOpen}
-                      setSelected={setIsOpen}
-                      options={options}
-                      edit={edit}
-                      seats={section5}
-                      setSeats={setSection5}
-                      key={5}
-                      page = {"layout"}
-                      rows={4}
-                      columns={4}
-                    ></SeatGrid>
-                  </div>
-                  <div className={styles.outerGridItem}>
-                    <SeatGrid
-                      onSelect={updateCount}
-                      state={pagestate}
-                      isSelected={isOpen}
-                      setSelected={setIsOpen}
-                      options={options}
-                      edit={edit}
-                      seats={section6}
-                      setSeats={setSection6}
-                      key={6}
-                      page = {"layout"}
-                      rows={4}
-                      columns={6}
-                    ></SeatGrid>
-                  </div>
-                </>
-              }
+                {/* Date Selector */}
+                <DateSelector date={date} selectDate={setDate}></DateSelector>
+              </div>
+              {/* SEATS LAYOUT */}
+              <div className={styles.outerGrid}>
+                {
+                  <>
+                    <div className={styles.outerGridItem}>
+                      <SeatGrid
+                        updateCount={updateCount}
+                        page={page}
+                        state={pagestate}
+                        addNewSeats={addNewSeats}
+                        removeSeats={removeSeats}
+                        floor={floor}
+                        officeId={officeId}
+                        date={date}
+                        edit={edit}
+                        isSelected={isOpen}
+                        options={options}
+                        setSelected={setIsOpen}
+                        seats={section1}
+                        setSeats={setSection1}
+                        sectionKey={1}
+                        rows={4}
+                        columns={6}
+                        sectionId={1}
+                      ></SeatGrid>
+                    </div>
+                    <div className={styles.outerGridItem}>
+                      <SeatGrid
+                        updateCount={updateCount}
+                        page={page}
+                        state={pagestate}
+                        edit={edit}
+                        isSelected={isOpen}
+                        options={options}
+                        setSelected={setIsOpen}
+                        seats={section2}
+                        setSeats={setSection2}
+                        sectionKey={2}
+                        rows={4}
+                        columns={4}
+                      ></SeatGrid>
+                    </div>
+                    <div className={styles.outerGridItem}>
+                      <SeatGrid
+                        updateCount={updateCount}
+                        page={page}
+                        state={pagestate}
+                        edit={edit}
+                        isSelected={isOpen}
+                        options={options}
+                        setSelected={setIsOpen}
+                        seats={section3}
+                        setSeats={setSection3}
+                        sectionKey={3}
+                        rows={4}
+                        columns={6}
+                      ></SeatGrid>
+                    </div>
+                    <div className={styles.outerGridItem}>
+                      <SeatGrid
+                        updateCount={updateCount}
+                        page={page}
+                        state={pagestate}
+                        edit={edit}
+                        isSelected={isOpen}
+                        options={options}
+                        setSelected={setIsOpen}
+                        seats={section4}
+                        setSeats={setSection4}
+                        sectionKey={4}
+                        rows={4}
+                        columns={6}
+                      ></SeatGrid>
+                    </div>
+                    <div className={styles.outerGridItem}>
+                      <SeatGrid
+                        updateCount={updateCount}
+                        page={page}
+                        state={pagestate}
+                        edit={edit}
+                        isSelected={isOpen}
+                        options={options}
+                        setSelected={setIsOpen}
+                        seats={section5}
+                        setSeats={setSection5}
+                        sectionKey={5}
+                        rows={4}
+                        columns={4}
+                      ></SeatGrid>
+                    </div>
+                    <div className={styles.outerGridItem}>
+                      <SeatGrid
+                        updateCount={updateCount}
+                        page={page}
+                        state={pagestate}
+                        edit={edit}
+                        isSelected={isOpen}
+                        options={options}
+                        setSelected={setIsOpen}
+                        seats={section6}
+                        setSeats={setSection6}
+                        sectionKey={6}
+                        rows={4}
+                        columns={6}
+                      ></SeatGrid>
+                    </div>
+                  </>
+                }
+              </div>
             </div>
 
             {/* LOWER BUTTONS */}

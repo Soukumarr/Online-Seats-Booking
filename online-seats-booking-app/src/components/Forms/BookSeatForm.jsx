@@ -4,17 +4,24 @@ import { Form } from "react-router-dom";
 import { useState } from "react";
 import FloorsDropDown from "../dropdown/FloorsDropDown";
 import DateSelector from "../datepicker/DateSelector";
+import BookingService from "../util/BookingService";
+import LayoutService from "../util/LayoutService";
 
 // Dropdown list
-const items = [
-  { label: "Floor 1", onClick: () => console.log("Option 1 clicked") },
-  { label: "Floor 2", onClick: () => console.log("Option 2 clicked") },
-  { label: "Floor 3", onClick: () => console.log("Option 3 clicked") },
-];
 
 export const BookSeatForm = (props) => {
   const [fromTime, setFromTime] = useState("09:00");
   const [toTime, setToTime] = useState("21:00");
+  const seatId = useState(props.getSection(props.selectedSeat.key).at(props.selectedSeat.index)).at(0).id
+
+  const [formData, setFormData] = useState({
+    userId: props.userId,
+    seatId: seatId,
+    startTime: `${LayoutService.formatDate(props.date)}T${fromTime}:00`,
+    endTime: `${LayoutService.formatDate(props.date)}T${toTime}:00`,
+    date: props.date,
+    status: "BOOKED",
+  });
 
   const handleFromTimeChange = (event) => {
     setFromTime(event.target.value);
@@ -29,14 +36,38 @@ export const BookSeatForm = (props) => {
   };
 
   const handleSubmit = (event) => {
-    props.setBlur(false)
-    console.log(props.selectedSeat)
-    props.updateSection(props.selectedSeat.key, props.selectedSeat.index, "red")
+
+    const startTimeString = `${LayoutService.formatDate(props.date)}T${fromTime}:00`;
+    const endTimeString = `${LayoutService.formatDate(props.date)}T${toTime}:00`;
+    props.setBlur(false);
+    // console.log("Selected Seat : "+ JSON.stringify(seat.at(0).id));
+    props.updateSection(
+      props.selectedSeat.key,
+      props.selectedSeat.index,
+      "red"
+    );
     event.preventDefault();
-    console.log("From:", fromTime, "To:", toTime);
-    // You can perform any further actions here, such as sending data to the server
+    setFormData({
+      userId: props.userId,
+      seatId: seatId,
+      startTime: startTimeString,
+      endTime: endTimeString,
+      date: props.date,
+      status: "BOOKED",
+    });
+    // console.log("FORM DATA" + JSON.stringify(formData));
+    // Perform any further actions here, such as sending data to the server
+    BookingService.addBooking(formData)
+      .then((response) => {
+        props.setBlur(false);
+        console.log(response.status);
+      })
+      .catch((e) => console.log(e));
   };
 
+  const handleCancel = (event) => {
+    props.setBlur(false);
+  }
   return (
     <div className={styles.bookingForm}>
       <h2>DURATION : </h2>
@@ -69,22 +100,35 @@ export const BookSeatForm = (props) => {
               className={styles.formInput}
             />
           </label>
-          <label className={styles.formLabel} onClick={handlePreventDefault}>
+          {/* <label className={styles.formLabel} onClick={handlePreventDefault}>
             <FloorsDropDown
-              menuItems={items}
+              menuItems={props.items}
               buttonText={"FLOORS"}
               className={styles.longButton}
               style={styles.longButton}
+              setFloor={props.setFloor}
             ></FloorsDropDown>
-          </label>
-          <label className={styles.formLabel} onClick={handlePreventDefault}>
+          </label> */}
+          {/* <label className={styles.formLabel} onClick={handlePreventDefault}> */}
             {/* Date Selector */}
-            <DateSelector></DateSelector>
-          </label>
+            {/* <DateSelector selectDate={props.selectDate}></DateSelector> */}
+          {/* </label> */}
         </div>
         <div className={styles.formRow}>
-          <button type="submit" className={styles.formButton} onClick={props.handleBook}>
+          <button
+            type="submit"
+            className={styles.formButton}
+            onClick={props.handleBook}
+          >
             Book
+          </button>
+        </div>
+        <div className={styles.formRow}>
+          <button
+            className={styles.formButton}
+            onClick={handleCancel}
+          >
+            Cancle
           </button>
         </div>
       </form>
