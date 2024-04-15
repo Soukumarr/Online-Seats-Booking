@@ -4,6 +4,7 @@ import styles from "./GridComponents.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const GridComponent = (props) => {
   const redirectTo = useRedirect();
@@ -14,6 +15,7 @@ export const GridComponent = (props) => {
   const [floor, setFloor] = useState(props.floor);
   const [showTable, setShowTable] = useState(false);
   const [availableSeats, setAvailableSeats] = useState(props.availableSeats);
+  const navigate = useNavigate(); 
 
 
   const handleClick = (e) => {
@@ -39,6 +41,19 @@ export const GridComponent = (props) => {
     .catch(error => {
       console.error('There was an error!', error);
     });
+
+    var f = parseInt(updatedOffice.floorCount)
+
+    const url = `http://localhost:8080/api/floors/office/${props.id}/floors/${parseInt(updatedOffice.floorCount)}`;
+console.log('URL:', url);
+axios.put(url)
+  .then(response => {
+    // Handle the response here. For example, you can update the state with the updated card data
+  })
+  .catch(error => {
+    console.error('There was an error!', error);
+  });
+    console.log(props.id, f);
     
   };
   const handleSaveClick = (e) => {
@@ -56,6 +71,7 @@ export const GridComponent = (props) => {
   const handleFloorClick = (floor) => {
     // Do something with the clicked floor
     console.log(`Floor ${floor} was clicked.`);
+    navigate('/layout');
   };
   const handleDeleteClick = (e) => {
     e.stopPropagation(); // Prevent the card click event from being triggered
