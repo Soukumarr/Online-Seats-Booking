@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import styles from './SigninForm.module.css';
 import Navigationbar from "./Navigationbar";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Resetpassword=()=>
 {
@@ -57,80 +59,104 @@ const Resetpassword=()=>
     }
         
         // alert(JSON.stringify(form,null,2))
-        if (user) {
-          const email = user.email;
-
           // Create reset password request
           const resetPasswordRequest = {
-            email: email,
             newPassword: form.confirmpassword, // Replace with the actual new password
           };
-
+          const token = localStorage.getItem("jwtToken");
+          console.log(token);
           // Send reset password request
           axios
-            .post(
-              "http://localhost:8080/users/resetpassword",
-              resetPasswordRequest
+            .put(
+              "http://localhost:8080/auth/user/resetpassword",
+              resetPasswordRequest,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
             )
             .then((response) => {
-              // Handle successful password reset
-              // ...
+              toast.success("Password changed successfully!");
+              if (response.status === 200) {
+                console.log("Password reset successful");
+              } else {
+                console.log("Password reset failed");
+              }
             })
             .catch((error) => {
-              // Handle error
-              // ...
+              if (error.message === "Network Error") {
+                console.log("Unable to connect to server");
+              } else {
+                console.log(error.message);
+              }
             });
-        }
+        
 
     } 
 
       
-    return(
-        <div className={styles.userprofile}>
-          <header className={styles.header}>
-            <br></br>
-            <h1>Reset Password</h1>
-            
-          </header>
-          
-          <Navigationbar/>
-          
-        <form className={styles.resetform} onSubmit={onSubmitForm}>
-        
-            
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Current Password</h3> </label>
-                <input type="password"
-                name="currentpassword"
-                onChange={onUpdateField}
-                className={styles.formField}
-                placeholder="Current password" required/>
-            </div>
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>New Password</h3> </label>
-                <input type="password"
-                name="newpassword"
-                value={form.password}
-                onChange={onUpdateField}
-                className={styles.formField} 
-                placeholder="Password" required/>
-            </div>
+    return (
+      <div className={styles.userprofile}>
+        <header className={styles.header}>
+          <br></br>
+          <h1>Reset Password</h1>
+        </header>
 
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel}><h3>Confirm Password</h3> </label>
-                <input type="password"
-                name="confirmpassword"
-                value={form.confirmPassword}
-                onChange={onUpdateField}
-                className={styles.formField} 
-                placeholder="Confirm Password" required/>
-            </div>
- 
-            <div className={styles.formActions}>
-                <button className={styles.resetformBtn} type="submit">Send Request</button>
-            </div>
+        <Navigationbar />
+
+        <form className={styles.resetform} onSubmit={onSubmitForm}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>
+              <h3>Current Password</h3>{" "}
+            </label>
+            <input
+              type="password"
+              name="currentpassword"
+              onChange={onUpdateField}
+              className={styles.formField}
+              placeholder="Current password"
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>
+              <h3>New Password</h3>{" "}
+            </label>
+            <input
+              type="password"
+              name="newpassword"
+              value={form.password}
+              onChange={onUpdateField}
+              className={styles.formField}
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>
+              <h3>Confirm Password</h3>{" "}
+            </label>
+            <input
+              type="password"
+              name="confirmpassword"
+              value={form.confirmPassword}
+              onChange={onUpdateField}
+              className={styles.formField}
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+
+          <div className={styles.formActions}>
+            <button className={styles.resetformBtn} type="submit">
+              Send Request
+            </button>
+          </div>
         </form>
-        </div>
+        <ToastContainer />
+      </div>
     );
 }
  

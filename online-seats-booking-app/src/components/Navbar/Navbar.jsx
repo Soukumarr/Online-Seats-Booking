@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import "../Common.css";
@@ -9,11 +9,24 @@ import {
   FaRegUserCircle,
 } from "react-icons/fa";
 import { IoMdRocket } from "react-icons/io";
+import { AuthContext } from "../AuthProvider";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
   const [navToggle, setNavToggle] = useState(false);
+  const { isLoggedIn, logOut,roles } = useContext(AuthContext);
+  const navigate = useNavigate();
+  console.log(isLoggedIn);
+
   const navHandler = () => {
     setNavToggle((prevData) => !prevData);
+  };
+
+  const handleLogout = () => {
+    logOut(); // Set isLoggedIn to false
+    localStorage.clear(); // Clear local storage
+    navigate("/"); // Navigate to home page
   };
 
   return (
@@ -74,22 +87,44 @@ const Navbar = () => {
                   </Link>
                 </li>
               </ul>
-              <div className="navbar-btns">
+              {isLoggedIn ? (
+                <div className="navbar-btns">
+                  <button type="button" className="btn" onClick={handleLogout}>
+                    <IoMdRocket /> <span>logout</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="navbar-btns">
+                  <Link to="/signin">
+                    <button type="button" className="btn">
+                      <IoMdRocket /> <span>login</span>
+                    </button>
+                  </Link>
+                </div>
+              )}
+
+              {/* <div className="navbar-btns">
                 <Link to="/signin">
                   <button type="button" className="btn">
                     <IoMdRocket /> <span>login</span>
                   </button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
-      <div className="userprofile">
-        <Link to="/userprofile" className="flex flex-center text-white">
-          <FaRegUserCircle size={45} />
-        </Link>
-      </div>
+      {isLoggedIn && !roles.includes('ROLE_ADMIN') && (
+        <div className="userprofile">
+          <Link to="/userprofile" className="flex flex-center text-white">
+            <FaRegUserCircle size={45} />
+          </Link>
+        </div>
+      ) 
+      // : (
+      //   <></>
+      // )
+      }
     </nav>
   );
 };

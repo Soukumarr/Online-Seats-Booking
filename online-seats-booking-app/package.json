@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.16.1",
     "axios": "^1.6.8",
+    "jwt-decode": "^4.0.0",
     "mdb-react-ui-kit": "^7.2.0",
     "react": "^18.2.0",
     "react-datepicker": "^6.6.0",
@@ -19,6 +20,7 @@
     "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "styled-components": "^5.3.10",
     "web-vitals": "^2.1.4"
   },

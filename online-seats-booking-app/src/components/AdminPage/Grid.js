@@ -3,10 +3,16 @@ import { GridComponent } from "./GridComponent";
 import styles from "./Grid.module.css";
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider';
+
+
 
 
 export const Grid = () => {
   const [cards, setCards] = useState([]);
+  const [floors, setFloors] = useState([]);
+  const { isLoggedIn, logOut, roles, logIn, setRoles } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/offices')
@@ -34,7 +40,7 @@ export const Grid = () => {
     setSelectedCard(card);
   };
 
-  const handleAddCard = (event) => {
+  const handleAddCard = async (event) => {
     event.preventDefault();
     if (newCard.floor > 10) {
       alert("You cannot add more than 10 floors.");
@@ -50,10 +56,9 @@ export const Grid = () => {
       floorCount: newCard.floor,
       totalSeatCount: 0, 
       availableSeatCount: 0
-      
     };
-    axios.post('http://localhost:8080/api/offices', office)
-    .then(response => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/offices', office);
       const newCardFromBackend = {
         id: response.data.id,
         office: response.data.name,
@@ -64,10 +69,25 @@ export const Grid = () => {
       };
       setCards(oldCards => [...oldCards, newCardFromBackend]);
       setNewCard({ location: "", office: "", seats: "", floor: "" }); // Reset the form
-    })
-    .catch(error => console.error(error));
+  
+      // After creating the office, create the floors
+      for (let i = 1; i <= newCard.floor; i++) {
+        const newFloor = {
+          floorNumber: i,
+          seatCapacity: 0, // Replace with actual seat capacity if available
+          office: { id: response.data.id }
+        };
+        try {
+          const floorResponse = await axios.post('http://localhost:8080/api/floors', newFloor);
+          // Handle the response here. For example, you can update the state with the new floor data
+        } catch (error) {
+          console.error('There was an error!', error);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
-
   const handleInputChange = (event) => {
     setNewCard({ ...newCard, [event.target.name]: event.target.value });
   };
@@ -84,11 +104,19 @@ export const Grid = () => {
       setCards(oldCards => oldCards.filter(card => card.id !== id));
     })
     .catch(error => console.error(error));
+    axios.delete(`http://localhost:8080/api/floors/office/${id}`)
+        .then(() => {
+          // Handle the response here. For example, you can update the state with the updated card data
+        }
+        )
+        .catch(error => {
+          console.error('There was an error!', error);
+        });
   };
   return (
     <div>
       {/* <h1>Admin DashBorad</h1> */}
-      <button className={styles.newCard} onClick={()=> handleEdit()}>Add new card</button>
+       {isLoggedIn && !roles.includes('ROLE_USER') &&(<button className={styles.newCard} onClick={()=> handleEdit()}>Add new card</button>)}
       { edit==true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
         <label>
           Location:
