@@ -3,12 +3,11 @@ import axios from "axios"
 class LayoutService{
 
     
-    getFloorLayout(floor, date){
+    getFloorLayout(form){
 
-        console.log("Making Get Request : ")
-        console.log("dateFormat : " + this.formatDate(date).toString() )
-        console.log(floor)
-        return axios.get("http://localhost:8080/api/layout/map/floor/"+floor+"/date/"+ this.formatDate(date))
+        console.log("Making Get Request : ")   
+        console.log(JSON.stringify(form)) 
+        return axios.get("http://localhost:8080/api/layout/map/office/"+form.officeId+"/floor/"+form.floor+"/date/"+ this.formatDate(form.date))
     }
     addNewProduct(product){
         return axios.post("http://localhost:8080/products",product)

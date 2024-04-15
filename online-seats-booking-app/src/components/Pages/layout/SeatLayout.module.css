@@ -301,3 +301,8 @@ button {
   .buttonContainer {
 
   }
+
+  .contSectionLayout{
+    display: grid;
+    grid-template-columns: 10% 100%;  
+  }

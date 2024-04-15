@@ -27,27 +27,17 @@ export const SeatGrid = (props) => {
         {options.map((option) => {
           // console.log(props.seats.at(index).status)
 
-            if (props.seats.at(index).status == "AVAILABLE") {
-              return (
-                <li
-                  key={option}
-                  className={styles.popupRow}
-                  onClick={() => onOptionClick(option, index)}
-                >
-                  {option}
-                </li>
-              );
-            }
-            // else if (props.seats.at(index).status == "BOOKED") {
-            //   return (<li
-            //     key={option}
-            //     className={styles.popupRow}
-            //     onClick={() => onOptionClick(option, index)}
-            //   >
-            //     {option}
-            //   </li>);
-            // }
-          
+          if (props.seats.at(index).status == "AVAILABLE") {
+            return (
+              <li
+                key={option}
+                className={styles.popupRow}
+                onClick={() => onOptionClick(option, index)}
+              >
+                {option}
+              </li>
+            );
+          }
         })}
       </ul>
     );
@@ -78,17 +68,17 @@ export const SeatGrid = (props) => {
   if (props.page == "layout") {
     seatStyle = (index) => ({
       "--seat-color":
-        props.seats.at(index) == "white"
-          ? props.state == "layout"
-            ? props.seats.at(index)
-            : "rgb(0,0,0,0)"
-          : props.seats.at(index),
+        props.state == "layout" && props.seats.at(index) == null
+          ? getColor("white")
+          : props.seats.at(index) == null
+          ? "rgb(0,0,0,0)"
+          : getColor(props.seats.at(index).status),
 
       border:
-        (props.state == "view" || props.state == "booking") &&
-        props.seats.at(index) == "white"
-          ? "0px"
-          : "2px solid black",
+        props.state == "layout" || props.seats.at(index) != null
+          ? "2px solid black"
+          : "0px",
+
       zIndex: 10,
     });
   }
@@ -105,32 +95,52 @@ export const SeatGrid = (props) => {
 
       border: props.seats.at(index) == null ? "0px" : "2px solid black",
       zIndex: 10,
-  
     });
   }
 
   const handleClick = (index) => {
-    // Create a copy of the seatColors array to avoid mutation
     if (props.state == "booking" || props.page == "booking") {
       handlePopupClick(index);
     }
     console.log("Seat Clicked!");
-    const updatedColors = [...props.seats];
     if (props.state == "layout") {
-      console.log("Layout mode");
+      console.log("Layout mode: " + props.edit);
       if (props.edit) {
-        if (updatedColors[index] == "white") {
-          updatedColors[index] = "lightgreen";
+        var updatedSection = [...props.seats];
 
-          props.onSelect(-1);
-        } else if (updatedColors[index] == "lightgreen") {
-          updatedColors[index] = "white";
-          props.onSelect(1);
+        if (props.seats.at(index) == null) {
+          // Update Seat Color to white and include seat into layout
+          // Create a seat obj and add it to the section array at index
+          // also append this object to the newSeats array
+          console.log("Seat Added to Layout!");
+          updatedSection[index] = {
+            officeId: props.officeId,
+            seatIndex: index,
+            section: props.sectionId,
+            status: "AVAILABLE",
+            floorId: props.floor,
+            available: true,
+          };
+          console.log(JSON.stringify(updatedSection.at(index)))
+          props.addNewSeats(updatedSection.at(index))
+          props.setSeats(updatedSection)
+          props.updateCount(-1);
+        } else if (props.seats.at(index).status == "AVAILABLE") {
+          //  DELETE SEAT from the layout
+          // remove the seat obj from section array
+          // append the obj in the deleteSeats array
+          // if obj present in newSeats just remove it from there
+
+          updatedSection[index] = null;
+          props.setSeats(updatedSection)
+          props.removeSeats(props.seats.at(index))
+          console.log(
+            "Seat Removed from Layout! " + JSON.stringify(props.seats.at(index))
+          );
+          props.updateCount(1);
         }
       }
     }
-    // Update the state with the modified array
-    props.setSeats(updatedColors);
   };
 
   var gridStyles = {
@@ -146,7 +156,7 @@ export const SeatGrid = (props) => {
         return "lightgrey";
       case "SWAP":
         return "purple";
-      case "CACLE":
+      case "CANCLE":
         return "brown";
       default:
         return "white";
@@ -165,7 +175,8 @@ export const SeatGrid = (props) => {
               style={seatStyle(index)}
               onClick={() => handleClick(index)}
             ></div>
-            {(selectedElementIndex === index && props.seats.at(index) != null) &&
+            {selectedElementIndex === index &&
+              props.seats.at(index) != null &&
               renderPopup(props.options, index)}
           </div>
         ))}

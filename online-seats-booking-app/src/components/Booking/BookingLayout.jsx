@@ -58,7 +58,12 @@ export const BookingLayout = (porps) => {
       })
       .catch((e) => console.log(e));
 
-    LayoutService.getFloorLayout(floor, date)
+      let reqObj = {
+        officeId: officeId,
+        floor: floor,
+        date: date
+      }
+    LayoutService.getFloorLayout(reqObj)
       .then((response) => {
         setSection1(response.data[0]);
         setSection2(response.data[1]);
@@ -77,7 +82,7 @@ export const BookingLayout = (porps) => {
         setSection5(Array.from({ length: 16 }).fill(null));
         setSection6(Array.from({ length: 24 }).fill(null));
       });
-  }, [floor, date]);
+  }, [floor, date, blur]);
 
   // console.log("got: ", floor)
 
