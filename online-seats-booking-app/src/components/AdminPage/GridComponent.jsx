@@ -76,9 +76,9 @@ axios.put(url)
     // Do something with the clicked floor
     console.log(`Floor ${floor} was clicked.`);
     if (isLoggedIn && roles.includes("ROLE_ADMIN")) {
-      navigate("/layout");
+      navigate(`/layout/${props.id}`);
     } else {
-      navigate("/bookseats");
+      navigate(`/bookseats/${props.id}`);
     }
   };
   const handleDeleteClick = (e) => {

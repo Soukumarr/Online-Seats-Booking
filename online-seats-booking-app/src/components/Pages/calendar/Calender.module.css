@@ -1,0 +1,72 @@
+
+/* Card Component */
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border: "1px solid #ddd";
+    margin: 10;
+    border-radius: 50px;
+    background-color: #aab3e7;
+    backdrop-filter: 2px;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  
+  }
+  .plusButton:hover {
+    background-color: yellow;
+    color: black;
+  }
+  
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding-left: 50px;
+    padding-top: 30px ;
+  }
+  .plusButtonWrapper {
+    display: flex; /* Make container a flex container */
+    justify-content: flex-end; /* Align items to the end of the container */
+    align-items: flex-end;
+    margin-bottom: 20px;
+    margin-right: 10px 
+  }
+  
+  .plusButton {
+    width: 50px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #4CAF50; /* Change background color */
+    color: white; /* Change text color */
+    border: none;
+    border-radius: 50%; /* Make the button circular */
+    cursor: pointer; /* Indicate clickable area */
+    font-size: 20px; /* Adjust font size for plus sign */
+    display: flex; /* Allow centering the plus sign */
+    justify-content: center; /* Center the plus sign horizontally */
+    align-items: center; /* Center the plus sign vertically */
+   
+  }
+  
+  
+  
+  /* GRID CSS */
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    gap: 50px 50px;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  
+  .gridItem {
+    display: inline-grid;
+  }
+  
+  h1 {
+    text-align-last: center;
+  }

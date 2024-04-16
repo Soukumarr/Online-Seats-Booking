@@ -1,5 +1,5 @@
 import { useRedirect } from "../util/useRedirect";
-import styles from "./CardComponent.module.css";
+import styles from "../Pages/calendar/Calender.module.css";
 
 export const CardComponent = (props) => {
   const redirectTo = useRedirect();
@@ -12,8 +12,8 @@ export const CardComponent = (props) => {
   };
 
   return (
-    <div class="card">
-      <div class="container">
+    <div class={styles.card}>
+      <div class={styles.container}>
         <h4>
           <b>{props.day}</b>
         </h4>
@@ -45,8 +45,8 @@ export const CardComponent = (props) => {
           </span>
 
         {/* add button for booking  */}
-        <div className="plus-button-wrapper">
-          <button class="plus-button" onClick={handleClick}>
+        <div className={styles.plusButtonWrapper}>
+          <button class={styles.plusButton} onClick={handleClick}>
             +
           </button>
         </div>

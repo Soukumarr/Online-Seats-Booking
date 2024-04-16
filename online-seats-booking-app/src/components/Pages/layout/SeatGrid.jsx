@@ -156,7 +156,7 @@ export const SeatGrid = (props) => {
         return "lightgrey";
       case "SWAP":
         return "purple";
-      case "CANCLE":
+      case "CANCEL":
         return "brown";
       default:
         return "white";

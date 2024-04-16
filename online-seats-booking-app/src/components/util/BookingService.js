@@ -7,7 +7,6 @@ import LayoutService from "./LayoutService"
 
 const headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer your_token_here',
     'Access-Control-Allow-Origin': '*'
 };
 class BookingService {

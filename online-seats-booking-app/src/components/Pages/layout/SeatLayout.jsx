@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SeatGrid } from "./SeatGrid";
 import styles from "./SeatLayout.module.css";
-import { createPath, redirect } from "react-router";
+import { createPath, redirect, useParams } from "react-router";
 import { useRedirect } from "../../util/useRedirect";
 import FloorsDropDown from "../../dropdown/FloorsDropDown";
 import DateSelector from "../../datepicker/DateSelector";
@@ -29,7 +29,10 @@ export const SeatLayout = () => {
     Array.from({ length: 24 }).fill("null")
   );
 
-  const [officeId, setOfficeId] = useState(9);
+  let { office } = useParams();
+  console.log("OFFICE ID: "+ Number.parseInt(office))
+
+  const [officeId, setOfficeId] = useState(Number.parseInt(office));
 
   const [floor, setFloor] = useState(1);
 
@@ -243,6 +246,14 @@ export const SeatLayout = () => {
                 ></div>
                 <div className={styles.infoText}>Swap Requests</div>
               </span>
+              <span className={styles.infoElement}>
+                <div
+                  className={styles.infoColor}
+                  style={{ backgroundColor: "brown" }}
+                ></div>
+                <div className={styles.infoText}>Cancel Requests</div>
+              </span>
+
             </div>
             {/* SEATS COUNT */}
             {pagestate == "layout" && (

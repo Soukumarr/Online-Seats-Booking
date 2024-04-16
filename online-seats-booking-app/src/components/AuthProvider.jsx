@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 // Create Auth context provider
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [roles, setRoles] = useState([]);
   // Function to log in the user
   const logIn = () => {

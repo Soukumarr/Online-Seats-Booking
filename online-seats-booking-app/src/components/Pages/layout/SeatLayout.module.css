@@ -205,7 +205,7 @@ button {
 .info {
     /* background-color: #444; */
     display: grid;
-    grid-template-columns: 20% 20% 20%;
+    grid-template-columns: 20% 20% 20% 20%;
     justify-content: center;
     height:90px
 

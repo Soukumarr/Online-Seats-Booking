@@ -68,7 +68,7 @@ export const SigninForm = () => {
         if (roles.includes("ROLE_ADMIN")) {
           navigate("/admin_dashboard");
         } else {
-          navigate("/bookingscard");
+          navigate("/calender");
         }
       })
       .catch((error) => {

@@ -5,7 +5,7 @@ import FloorsDropDown from "../dropdown/FloorsDropDown";
 import DateSelector from "../datepicker/DateSelector";
 import { BookSeatForm } from "../Forms/BookSeatForm";
 import LayoutService, { getFloorLayout } from "../util/LayoutService.js";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 // Dropdown list
 // const items = [
@@ -37,7 +37,10 @@ export const BookingLayout = (porps) => {
 
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
-  const [officeId, setOfficeId] = useState(9);
+  let { office } = useParams();
+  console.log("OFFICE ID: "+ Number.parseInt(office))
+
+  const [officeId, setOfficeId] = useState(Number.parseInt(office));
 
   const [items, setItems] = useState([]);
 

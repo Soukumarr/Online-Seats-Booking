@@ -119,9 +119,9 @@ const SignupForm = () => {
             required
           >
             <option value="ROLE_ADMIN" required>
-              Admin
+              ADMIN
             </option>
-            <option value="ROLE_USER">User</option>
+            <option value="ROLE_USER">USER</option>
           </select>
         </div>
 
