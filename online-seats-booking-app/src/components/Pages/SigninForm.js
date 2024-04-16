@@ -59,7 +59,9 @@ export const SigninForm = () => {
         // Decode the token and extract the roles
         const decodedToken = jwtDecode(token);
         const roles = decodedToken.roles || [];
-
+        const id = decodedToken.id;
+        console.log("Roles:", roles);
+        console.log("ID:", id);
         // Save the roles in the state or context
         setRoles(roles);
 
@@ -68,7 +70,7 @@ export const SigninForm = () => {
         if (roles.includes("ROLE_ADMIN")) {
           navigate("/admin_dashboard");
         } else {
-          navigate("/calender");
+          navigate("/bookingscard");
         }
       })
       .catch((error) => {
@@ -126,6 +128,9 @@ export const SigninForm = () => {
             onChange={onUpdateField}
             required
           >
+            <option value="" disabled selected>
+              Select Role
+            </option>
             <option value="admin">Admin</option>
             <option value="user">User</option>
           </select>

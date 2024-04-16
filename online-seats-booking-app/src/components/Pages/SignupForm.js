@@ -29,6 +29,7 @@ const SignupForm = () => {
     let passwordValid = false;
     let passwordErrorMessage = "";
 
+
     if (form.password.length < 8) {
       passwordValid = false;
       passwordErrorMessage =
@@ -73,6 +74,7 @@ const SignupForm = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
+
   };
 
   // const handleGoogleLogin = () => {
@@ -118,6 +120,9 @@ const SignupForm = () => {
             onChange={onUpdateField}
             required
           >
+            <option value="" disabled selected>
+              Select Role
+            </option>
             <option value="ROLE_ADMIN" required>
               ADMIN
             </option>

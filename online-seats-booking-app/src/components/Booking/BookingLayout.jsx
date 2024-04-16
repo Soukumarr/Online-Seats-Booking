@@ -6,6 +6,7 @@ import DateSelector from "../datepicker/DateSelector";
 import { BookSeatForm } from "../Forms/BookSeatForm";
 import LayoutService, { getFloorLayout } from "../util/LayoutService.js";
 import { useNavigate, useParams } from "react-router";
+import { jwtDecode } from "jwt-decode";
 
 // Dropdown list
 // const items = [
@@ -187,6 +188,13 @@ export const BookingLayout = (porps) => {
     }
   }
 
+  const token = localStorage.getItem("jwtToken")
+
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.id|| [];
+
+  console.log("USER_ID" + userId)
+
   return (
     <div>
       <div className={styles.formContainer}>
@@ -197,7 +205,7 @@ export const BookingLayout = (porps) => {
             getSection = {getSection}
             updateSection={updateSecton}
             date = {date}
-            userId={1} // set userId from global state
+            userId={userId} // set userId from global state
             items={items}
             // setFloor={setFloor  }
             selectDate = {setDate}
