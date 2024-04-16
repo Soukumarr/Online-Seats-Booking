@@ -8,7 +8,6 @@ import DateSelector from "../../datepicker/DateSelector";
 import LayoutService from "../../util/LayoutService";
 import SeatService from "../../util/SeatService";
 
-
 export const SeatLayout = () => {
   const options = ["Allow Booking", "Accept Swap", "Cancle Booking", "Details"];
   let [section1, setSection1] = useState(
@@ -33,7 +32,7 @@ export const SeatLayout = () => {
   let navigate = useNavigate();
 
   let { office } = useParams();
-  console.log("OFFICE ID: "+ Number.parseInt(office))
+  console.log("OFFICE ID: " + Number.parseInt(office));
 
   const [officeId, setOfficeId] = useState(Number.parseInt(office));
 
@@ -41,8 +40,7 @@ export const SeatLayout = () => {
 
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
-
-  const [updateSeats, setUpdateSeats] = useState(false)
+  const [updateSeats, setUpdateSeats] = useState(false);
 
   useEffect(() => {
     // getFloorLayout(3).then((response)=>{
@@ -58,15 +56,15 @@ export const SeatLayout = () => {
         console.log(response.data);
       })
       .catch((e) => console.log(e));
-      let reqObj = {
-        officeId: officeId,
-        floor: floor,
-        date: date
-      }
+    let reqObj = {
+      officeId: officeId,
+      floor: floor,
+      date: date,
+    };
 
     LayoutService.getFloorLayout(reqObj)
       .then((response) => {
-        console.log("USE EFFECT: " + JSON.stringify(response.data.at(0).at(0)))
+        console.log("USE EFFECT: " + JSON.stringify(response.data.at(1)));
         setSection1(response.data[0]);
         setSection2(response.data[1]);
         setSection3(response.data[2]);
@@ -99,7 +97,6 @@ export const SeatLayout = () => {
   const page = "layout";
 
   const [isOpen, setIsOpen] = useState(false);
-
 
   const handleView = () => {
     setPagestate("view");
@@ -148,25 +145,24 @@ export const SeatLayout = () => {
   let [deleteSeats, setDeleteSeats] = useState([]);
   // console.log(typeof newSeats)
 
-
   const addNewSeats = (seat) => {
     // console.log(typeof newSeats)
     var updateSeats = [...newSeats];
-    updateSeats.push(seat)
+    updateSeats.push(seat);
     // console.log(typeof updateSeats)
     setNewSeats(updateSeats);
   };
   const removeSeats = (seat) => {
-    var updateSeats=[];
+    var updateSeats = [];
     if (newSeats.includes(seat)) {
-      updateSeats = [...newSeats]
-      updateSeats.splice(newSeats.indexOf(seat), 1)
+      updateSeats = [...newSeats];
+      updateSeats.splice(newSeats.indexOf(seat), 1);
       // console.log("Delete Array: "+ JSON.stringify(updateSeats))
       setNewSeats(updateSeats);
     } else {
       updateSeats = [...deleteSeats];
       updateSeats.push(seat);
-      
+
       setDeleteSeats(updateSeats);
     }
   };
@@ -176,45 +172,36 @@ export const SeatLayout = () => {
     // make the post requests for all the seat objs present in the newSeats array
     // console.log("New Seats: "+JSON.stringify(newSeats));
 
-    newSeats.map(
-      (seat)=>{
-        SeatService.addNewSeat(seat).then((respose)=>
-        console.log("Made Request:", respose.status)
-    ).catch((e)=> console.log(e))
-      }
-    )
+    newSeats.map((seat) => {
+      SeatService.addNewSeat(seat)
+        .then((respose) => console.log("Made Request:", respose.status))
+        .catch((e) => console.log(e));
+    });
 
     //  Make sure the newSeat Array is clear
-    setNewSeats([])
+    setNewSeats([]);
 
     //make the delete requests for all the seat objs present in the deleteSeate array
     // console.log(JSON.stringify("Deleted Seats: " + deleteSeats))
 
-    deleteSeats.map(
-      (seat)=>{
-        console.log("Deleting.... "+ seat)
-        SeatService.deleteSeats(seat.id).then((respose)=>
-        console.log("Made Request:", respose.status)
-    ).catch((e)=> console.log(e))
-      }
-    )
-       //  Make sure the deleteSeat Array is clear
-    setDeleteSeats([])
+    deleteSeats.map((seat) => {
+      console.log("Deleting.... " + seat);
+      SeatService.deleteSeats(seat.id)
+        .then((respose) => console.log("Made Request:", respose.status))
+        .catch((e) => console.log(e));
+    });
+    //  Make sure the deleteSeat Array is clear
+    setDeleteSeats([]);
+  };
 
-
-    };
-
-
-  const renderSeats=()=>{
-    setUpdateSeats(!updateSeats)
-  }
-   
+  const renderSeats = () => {
+    setUpdateSeats(!updateSeats);
+  };
 
   return (
     <div>
       {/* Main  */}
       <div>
-      
         {/* CONTAINER SECTION */}
         <div className={styles.contSectionLayout}>
           {/* SIDE BAR */}
@@ -273,7 +260,6 @@ export const SeatLayout = () => {
                 ></div>
                 <div className={styles.infoText}>Cancel Requests</div>
               </span>
-
             </div>
             {/* SEATS COUNT */}
             {pagestate == "layout" && (
@@ -300,8 +286,8 @@ export const SeatLayout = () => {
                   <>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
-                         updateSeats={updateSeats}
-                         renderSeats={renderSeats}
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}
@@ -319,11 +305,18 @@ export const SeatLayout = () => {
                         sectionKey={1}
                         rows={4}
                         columns={6}
-                        sectionId={1}
                       ></SeatGrid>
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
+                        addNewSeats={addNewSeats}
+                        removeSeats={removeSeats}
+                        floor={floor}
+                        officeId={officeId}
+                        date={date}
+                        sectionId={1}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}
@@ -340,6 +333,14 @@ export const SeatLayout = () => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
+                        addNewSeats={addNewSeats}
+                        removeSeats={removeSeats}
+                        floor={floor}
+                        officeId={officeId}
+                        date={date}
+                        sectionId={1}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}
@@ -356,6 +357,14 @@ export const SeatLayout = () => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
+                        addNewSeats={addNewSeats}
+                        removeSeats={removeSeats}
+                        floor={floor}
+                        officeId={officeId}
+                        date={date}
+                        sectionId={1}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}
@@ -372,6 +381,14 @@ export const SeatLayout = () => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
+                        addNewSeats={addNewSeats}
+                        removeSeats={removeSeats}
+                        floor={floor}
+                        officeId={officeId}
+                        date={date}
+                        sectionId={1}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}
@@ -388,6 +405,14 @@ export const SeatLayout = () => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
+                        addNewSeats={addNewSeats}
+                        removeSeats={removeSeats}
+                        floor={floor}
+                        officeId={officeId}
+                        date={date}
+                        sectionId={1}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}

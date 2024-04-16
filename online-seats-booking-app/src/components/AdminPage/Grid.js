@@ -36,7 +36,7 @@ export const Grid = () => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = (card) => {
-    
+
     setSelectedCard(card);
   };
 
@@ -54,7 +54,7 @@ export const Grid = () => {
       name: newCard.office,
       location: newCard.location,
       floorCount: newCard.floor,
-      totalSeatCount: 0, 
+      totalSeatCount: 0,
       availableSeatCount: 0
     };
     try {
@@ -69,7 +69,7 @@ export const Grid = () => {
       };
       setCards(oldCards => [...oldCards, newCardFromBackend]);
       setNewCard({ location: "", office: "", seats: "", floor: "" }); // Reset the form
-  
+
       // After creating the office, create the floors
       for (let i = 1; i <= newCard.floor; i++) {
         const newFloor = {
@@ -100,24 +100,26 @@ export const Grid = () => {
   }
   const handleDeleteCard = (id) => {
     axios.delete(`http://localhost:8080/api/offices/${id}`)
-    .then(() => {
-      setCards(oldCards => oldCards.filter(card => card.id !== id));
-    })
-    .catch(error => console.error(error));
+      .then(() => {
+        setCards(oldCards => oldCards.filter(card => card.id !== id));
+      })
+      .catch(error => console.error(error));
     axios.delete(`http://localhost:8080/api/floors/office/${id}`)
-        .then(() => {
-          // Handle the response here. For example, you can update the state with the updated card data
-        }
-        )
-        .catch(error => {
-          console.error('There was an error!', error);
-        });
+      .then(() => {
+        // Handle the response here. For example, you can update the state with the updated card data
+      }
+      )
+      .catch(error => {
+        console.error('There was an error!', error);
+
+        alert("This office has booked seats. Please delete the bookings first.");
+      });
   };
   return (
     <div>
       {/* <h1>Admin DashBorad</h1> */}
-       {isLoggedIn && !roles.includes('ROLE_USER') &&(<button className={styles.newCard} onClick={()=> handleEdit()}>Add new card</button>)}
-      { edit==true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
+      {isLoggedIn && !roles.includes('ROLE_USER') && (<button className={styles.newCard} onClick={() => handleEdit()}>Add new card</button>)}
+      {edit == true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
         <label>
           Location:
           <input type="text" name="location" value={newCard.location} onChange={handleInputChange} />
@@ -136,25 +138,25 @@ export const Grid = () => {
         </label>
         <button type="submit">Add Card</button>
       </form>}
-      
+
 
       <div className={styles.box}>
         {cards.map((card, index) => (
-         <GridComponent
-         onClick={() => handleCardClick(card)}
-         key={card.id}
+          <GridComponent
+            onClick={() => handleCardClick(card)}
+            key={card.id}
             {...card}
-         location={card.location}
-         office={card.office}
-         seats={card.seats}
-         floor={card.floor}
-         onDelete={() => handleDeleteCard(card.id)}
-         className={styles.fgh}
-         selectedCard={selectedCard}
-       />
+            location={card.location}
+            office={card.office}
+            seats={card.seats}
+            floor={card.floor}
+            onDelete={() => handleDeleteCard(card.id)}
+            className={styles.fgh}
+            selectedCard={selectedCard}
+          />
         ))}
       </div>
-      
+
     </div>
   );
 };

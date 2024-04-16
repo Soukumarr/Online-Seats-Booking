@@ -39,7 +39,7 @@ export const BookingLayout = (porps) => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
   let { office } = useParams();
-  console.log("OFFICE ID: "+ Number.parseInt(office))
+  console.log("OFFICE ID: " + Number.parseInt(office));
 
   const [officeId, setOfficeId] = useState(Number.parseInt(office));
 
@@ -47,7 +47,7 @@ export const BookingLayout = (porps) => {
 
   let navigate = useNavigate();
 
-  const [updateSeats, setUpdateSeats] = useState(false)
+  const [updateSeats, setUpdateSeats] = useState(false);
 
   useEffect(() => {
     // getFloorLayout(3).then((response)=>{
@@ -64,14 +64,14 @@ export const BookingLayout = (porps) => {
       })
       .catch((e) => console.log(e));
 
-      let reqObj = {
-        officeId: officeId,
-        floor: floor,
-        date: date
-      }
+    let reqObj = {
+      officeId: officeId,
+      floor: floor,
+      date: date,
+    };
     LayoutService.getFloorLayout(reqObj)
       .then((response) => {
-        console.log("USE EFFECT: " + JSON.stringify(response.data.at(0).at(0)))
+        console.log("USE EFFECT: " + JSON.stringify(response.data));
         setSection1(response.data[0]);
         setSection2(response.data[1]);
         setSection3(response.data[2]);
@@ -191,16 +191,16 @@ export const BookingLayout = (porps) => {
     }
   }
 
-  const token = localStorage.getItem("jwtToken")
+  const token = localStorage.getItem("jwtToken");
 
   const decodedToken = jwtDecode(token);
-  const userId = decodedToken.id|| [];
+  const userId = decodedToken.id || [];
 
-  console.log("USER_ID" + userId)
+  console.log("USER_ID" + userId);
 
-  const renderSeats=()=>{
-    setUpdateSeats(!updateSeats)
-  }
+  const renderSeats = () => {
+    setUpdateSeats(!updateSeats);
+  };
 
   return (
     <div>
@@ -208,14 +208,14 @@ export const BookingLayout = (porps) => {
         {blur ? (
           <BookSeatForm
             setBlur={setBlur}
-            selectedSeat={ selectedSeat}
-            getSection = {getSection}
+            selectedSeat={selectedSeat}
+            getSection={getSection}
             updateSection={updateSecton}
-            date = {date}
+            date={date}
             userId={userId} // set userId from global state
             items={items}
             // setFloor={setFloor  }
-            selectDate = {setDate}
+            selectDate={setDate}
           />
         ) : null}
       </div>
@@ -226,7 +226,7 @@ export const BookingLayout = (porps) => {
           <div className={styles.workplace}>
             {/* BACK BUTTON */}
             <div className={styles.buttonContainer}>
-              <button className= {styles.backButton} onClick={goBack}>
+              <button className={styles.backButton} onClick={goBack}>
                 Back
               </button>
             </div>
@@ -281,8 +281,8 @@ export const BookingLayout = (porps) => {
                   <>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
-                      updateSeats={updateSeats}
-                      renderSeats={renderSeats}
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
@@ -300,6 +300,8 @@ export const BookingLayout = (porps) => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
@@ -317,6 +319,8 @@ export const BookingLayout = (porps) => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
@@ -334,6 +338,8 @@ export const BookingLayout = (porps) => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
@@ -351,6 +357,8 @@ export const BookingLayout = (porps) => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}
@@ -368,6 +376,8 @@ export const BookingLayout = (porps) => {
                     </div>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                        updateSeats={updateSeats}
+                        renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}

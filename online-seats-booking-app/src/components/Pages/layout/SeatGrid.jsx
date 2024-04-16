@@ -228,13 +228,13 @@ export const SeatGrid = (props) => {
           updatedSection[index] = {
             officeId: props.officeId,
             seatIndex: index,
-            section: props.sectionId,
+            section: props.sectionKey,
             status: "AVAILABLE",
             floorId: props.floor,
             available: true,
             bookingId: null,
           };
-          console.log(JSON.stringify(updatedSection.at(index)));
+          console.log("New Seat :" + JSON.stringify(updatedSection.at(index)));
           props.addNewSeats(updatedSection.at(index));
           props.setSeats(updatedSection);
           props.updateCount(-1);
