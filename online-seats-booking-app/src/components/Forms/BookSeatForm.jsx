@@ -10,9 +10,23 @@ import LayoutService from "../util/LayoutService";
 // Dropdown list
 
 export const BookSeatForm = (props) => {
-  const [fromTime, setFromTime] = useState("09:00");
-  const [toTime, setToTime] = useState("21:00");
-  const seatId = useState(props.getSection(props.selectedSeat.key).at(props.selectedSeat.index)).at(0).id
+  const today = new Date();
+  // today.setHours(22);
+
+  //  Set 3hrs as a prior booking limit
+  const [fromTime, setFromTime] = useState(
+    today.getDate() == props.date.getDate() && today.getHours() > 7
+      ? `${today.getHours() + 2}:00`
+      : "09:00"
+  );
+  const [toTime, setToTime] = useState(
+    today.getDate() == props.date.getDate() && today.getHours() >= 7
+      ? `${Number.parseInt(fromTime.slice(0,2)) + 1}:00`
+      : "10:00"
+  );
+  const seatId = useState(
+    props.getSection(props.selectedSeat.key).at(props.selectedSeat.index)
+  ).at(0).id;
 
   const [formData, setFormData] = useState({
     userId: props.userId,
@@ -36,9 +50,12 @@ export const BookSeatForm = (props) => {
   };
 
   const handleSubmit = (event) => {
-
-    const startTimeString = `${LayoutService.formatDate(props.date)}T${fromTime}:00`;
-    const endTimeString = `${LayoutService.formatDate(props.date)}T${toTime}:00`;
+    const startTimeString = `${LayoutService.formatDate(
+      props.date
+    )}T${fromTime}:00`;
+    const endTimeString = `${LayoutService.formatDate(
+      props.date
+    )}T${toTime}:00`;
     props.setBlur(false);
     // console.log("Selected Seat : "+ JSON.stringify(seat.at(0).id));
     props.updateSection(
@@ -67,9 +84,12 @@ export const BookSeatForm = (props) => {
 
   const handleCancel = (event) => {
     props.setBlur(false);
-  }
+  };
   return (
     <div className={styles.bookingForm}>
+
+      { 
+      (today.getHours() < 22) ? <>
       <h2>DURATION : </h2>
       <br></br>
       <form onSubmit={handleSubmit} className={styles.timeForm}>
@@ -80,7 +100,12 @@ export const BookSeatForm = (props) => {
               type="time"
               value={fromTime}
               onChange={handleFromTimeChange}
-              min="09:00"
+              //  Set 3hrs as a prior booking limit
+              min={
+                today.getDate() == props.date.getDate() && today.getHours() > 7
+                  ? `${today.getHours() + 2}:00`
+                  : "09:00"
+              }
               max="21:00"
               required
               className={styles.formInput}
@@ -94,7 +119,11 @@ export const BookSeatForm = (props) => {
               type="time"
               value={toTime}
               onChange={handleToTimeChange}
-              min="09:00"
+              min={
+                today.getDate() == props.date.getDate() && today.getHours() >= 7
+                ? `${Number.parseInt(fromTime.slice(0,2)) + 1}:00`
+                : "10:00"
+              }
               max="21:00"
               required
               className={styles.formInput}
@@ -110,8 +139,8 @@ export const BookSeatForm = (props) => {
             ></FloorsDropDown>
           </label> */}
           {/* <label className={styles.formLabel} onClick={handlePreventDefault}> */}
-            {/* Date Selector */}
-            {/* <DateSelector selectDate={props.selectDate}></DateSelector> */}
+          {/* Date Selector */}
+          {/* <DateSelector selectDate={props.selectDate}></DateSelector> */}
           {/* </label> */}
         </div>
         <div className={styles.formRow}>
@@ -124,14 +153,24 @@ export const BookSeatForm = (props) => {
           </button>
         </div>
         <div className={styles.formRow}>
-          <button
-            className={styles.formButton}
-            onClick={handleCancel}
-          >
+          <button className={styles.formButton} onClick={handleCancel}>
             Cancle
           </button>
         </div>
       </form>
+
+      </>:
+      <div>
+        <div className={styles.formRow}>
+          Sorry Can't Book For Today!!
+        </div>
+        <div className={styles.formRow}>
+          <button className={styles.formButton} onClick={handleCancel}>
+            OK
+          </button>
+        </div>
+        </div>
+      }
     </div>
   );
 };

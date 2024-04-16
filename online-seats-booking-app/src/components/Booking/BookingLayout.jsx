@@ -26,6 +26,8 @@ import { jwtDecode } from "jwt-decode";
 // ];
 
 export const BookingLayout = (porps) => {
+
+  let { office, floorNumber } = useParams();
   const options = ["Book Seat", "Swap Seat", "Cancle Request", "More"];
 
   const page = "booking";
@@ -34,11 +36,11 @@ export const BookingLayout = (porps) => {
 
   const [blur, setBlur] = useState(false);
 
-  const [floor, setFloor] = useState(1);
+  const [floor, setFloor] = useState(Number.parseInt(floorNumber));
 
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
-  let { office } = useParams();
+ 
   console.log("OFFICE ID: " + Number.parseInt(office));
 
   const [officeId, setOfficeId] = useState(Number.parseInt(office));
@@ -273,7 +275,7 @@ export const BookingLayout = (porps) => {
                 ></FloorsDropDown>
 
                 {/* Date Selector */}
-                <DateSelector date={date} selectDate={setDate}></DateSelector>
+                <DateSelector date={date}  selectDate={setDate}></DateSelector>
               </div>
               {/* SEATS LAYOUT */}
               <div className={styles.outerGrid}>

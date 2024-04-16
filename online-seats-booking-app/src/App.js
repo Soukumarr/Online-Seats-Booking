@@ -47,7 +47,7 @@ function App() {
               <Route path="/demo" element={<Demo />} />
               <Route path="/bookingscard" element={<Grid />} />
               <Route
-                path="/layout/:office"
+                path="/layout/:office/floors/:floorNumber"
                 element={
                   <PrivateRoute>
                     <SeatLayout />
@@ -87,7 +87,7 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/bookseats/:office"
+                path="/bookseats/:office/floors/:floorNumber"
                 element={
                   <PrivateRoute>
                     <BookingLayout />

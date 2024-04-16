@@ -3,7 +3,6 @@ import styles from "./FloorsDropDown.module.css";
 
 const FloorsDropDown = ({ buttonText, menuItems, style , floor, setFloor}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [buttonTitle, setButtonTitle] = useState(buttonText);
 
   const handleButtonClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -11,14 +10,13 @@ const FloorsDropDown = ({ buttonText, menuItems, style , floor, setFloor}) => {
 
   const handleMenuItemClick = (item) => {
     setIsMenuOpen(false);
-    setButtonTitle(item.label);
     setFloor(item.number)
   };
 
   return (
     <div className={(style==undefined)? styles.longButtonWithDropdown:style}>
       <button className={styles.longButton} onClick={() => handleButtonClick()}>
-        {buttonTitle} &#9660;
+        {"FLOOR " + floor} &#9660;
       </button>
       {isMenuOpen && (
         <ul className={styles.dropdownMenu}>

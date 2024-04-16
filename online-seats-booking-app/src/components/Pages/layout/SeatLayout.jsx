@@ -31,12 +31,13 @@ export const SeatLayout = () => {
 
   let navigate = useNavigate();
 
-  let { office } = useParams();
-  console.log("OFFICE ID: " + Number.parseInt(office));
+  let { office, floorNumber } = useParams();
+  console.log("FLoorNo: " + Number.parseInt(floorNumber));
 
   const [officeId, setOfficeId] = useState(Number.parseInt(office));
 
-  const [floor, setFloor] = useState(1);
+  const [floor, setFloor] = useState(Number.parseInt(floorNumber));
+  
 
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
