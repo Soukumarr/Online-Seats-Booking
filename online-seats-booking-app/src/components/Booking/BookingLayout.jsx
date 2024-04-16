@@ -69,6 +69,7 @@ export const BookingLayout = (porps) => {
       }
     LayoutService.getFloorLayout(reqObj)
       .then((response) => {
+        console.log("USE EFFECT: " + JSON.stringify(response.data.at(0).at(0)))
         setSection1(response.data[0]);
         setSection2(response.data[1]);
         setSection3(response.data[2]);

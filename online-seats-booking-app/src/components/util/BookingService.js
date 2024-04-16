@@ -21,8 +21,11 @@ class BookingService {
         console.log("Updated Form : " + JSON.stringify(formData))
         return axios.post("http://localhost:8080/api/booking/", formData, { headers })
     }
-    deleteProduct(bookingId) {
-        return null
+    cancleRequest(bookingId) {
+        return axios.delete("http://localhost:8080/api/booking/cancel/" + bookingId)
+    }
+    deleteBooking(bookingId) {
+        return axios.delete("http://localhost:8080/api/booking/" + bookingId)
     }
 }
 

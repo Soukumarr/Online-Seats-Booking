@@ -1,101 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios'; // Import axios to make HTTP requests
 import {Grid} from "../AdminPage/Grid.js";
-import { Space, Table, Tag, Menu, Layout } from "antd";
-const { Column, ColumnGroup } = Table;
+import { Table, Menu, Layout } from "antd";
 const { Sider, Content } = Layout;
-
-
+ 
+ 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Username",
+    dataIndex: "username",
+    key: "username",
     render: (text) => <a>{text}</a>,
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Booking ID",
+    dataIndex: "bookingid",
+    key: "bookingid",
+  },
+  {
+    title: "Start Time",
+    dataIndex: "starttime",
+    key: "starttime",
+  },
+  {
+    title: "End Time",
+    dataIndex: "endtime",
+    key: "endtime",
   },
   {
     title: "Location",
-    dataIndex: "address",
-    key: "address",
+    dataIndex: "location",
+    key: "location",
   },
   {
-    title: "Floor number",
-    dataIndex: "floor",
-    key: "floor",
+    title: "Office",
+    dataIndex: "office",
+    key: "office",
   },
   {
-    title: "Room Number",
-    dataIndex: "room",
-    key: "room",
-  },
-  // {
-  //   title: "Action",
-  //   key: "action",
-  //   render: (_, record) => (
-  //     <Space size="middle">
-  //       <button
-  //         style={{
-  //           backgroundColor: "blue",
-  //           color: "white",
-  //           borderRadius: "5px",
-  //           fontSize: "12px",
-  //           padding: "6px",
-  //         }}
-  //       >
-  //         Swap Request
-  //       </button>
-  //       <button
-  //         style={{
-  //           backgroundColor: "blue",
-  //           color: "white",
-  //           borderRadius: "5px",
-  //           fontSize: "12px",
-  //           padding: "6px",
-  //         }}
-  //       >
-  //         Accept Booking
-  //       </button>
-  //     </Space>
-  //   ),
-  // },
+    title: "Seat ID",
+    dataIndex: "seatid",
+    key: "seatid",
+  }
+ 
+ 
+  
 ];
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    floor: 1,
-    room: 101,
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    floor: 2,
-    room: 201,
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    floor: 3,
-    room: 301,
-  },
-];
+ 
 const AdminDashboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("dashboard");
-
+  const [data, setData] = useState([]); // Add a state to store the fetched data
+ 
+  useEffect(() => {
+    // Fetch the data when the component mounts
+    axios.get('http://localhost:8080/api/booking/dashboard')
+      .then(response => {
+        // When the data is fetched successfully, update the state
+        setData(response.data);
+      })
+      .catch(error => {
+        // If there's an error, log it
+        console.error('There was an error fetching the data!', error);
+      });
+  }, []);
+ 
   const handleMenuClick = (e) => {
     setSelectedMenu(e.key);
   };
-
+ 
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider>
@@ -123,5 +95,5 @@ const AdminDashboard = () => {
     </Layout>
   );
 };
-
+ 
 export default AdminDashboard;

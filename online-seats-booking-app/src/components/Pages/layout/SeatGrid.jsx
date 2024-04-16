@@ -3,6 +3,7 @@ import styles from "./SeatLayout.module.css";
 import Seat from "./Seat";
 import { useRef } from "react";
 import { BookSeatForm } from "../../Forms/BookSeatForm";
+import BookingService from "../../util/BookingService";
 
 export const SeatGrid = (props) => {
   // bY CHANGING ELEMENTS OF THIS ARRAY we can alter number of rows and columns
@@ -11,7 +12,7 @@ export const SeatGrid = (props) => {
 
   const [selectedElementIndex, setSelectedElementIndex] = useState(null);
 
-  const renderPopup = (options, index) => {
+  const renderPopup = (options, elementIndex) => {
     return (
       <ul
         style={{
@@ -24,24 +25,88 @@ export const SeatGrid = (props) => {
           padding: 0,
         }}
       >
-        {options.map((option) => {
-          // console.log(props.seats.at(index).status)
-
-          if (props.seats.at(index).status == "AVAILABLE") {
-            return (
-              <li
-                key={option}
-                className={styles.popupRow}
-                onClick={() => onOptionClick(option, index)}
-              >
-                {option}
-              </li>
-            );
-          }
-        })}
+        {props.page == "booking"
+          ? options.map((option, index) => {
+              // console.log(props.seats.at(index).status)
+              console.log("STATUS" + props.seats.at(elementIndex).status);
+              if (
+                props.seats.at(elementIndex).status == "AVAILABLE" ||
+                props.seats.at(elementIndex).status == "CANCEL"
+              ) {
+                console.log("AVAILABLE SEAT OPTIONS ");
+                if (index == 0 || index == 3) {
+                  return (
+                    <li
+                      key={index}
+                      className={styles.popupRow}
+                      onClick={() => onOptionClick(option, elementIndex)}
+                    >
+                      {option}
+                    </li>
+                  );
+                }
+              } else if (props.seats.at(elementIndex).status == "BOOKED") {
+                console.log("AVAILABLE SEAT OPTIONS ");
+                if (index == 1 || index == 2) {
+                  return (
+                    <li
+                      key={index}
+                      className={styles.popupRow}
+                      onClick={() => onOptionClick(option, elementIndex)}
+                    >
+                      {option}
+                    </li>
+                  );
+                }
+              }
+            })
+          : options.map((option, index) => {
+              // console.log(props.seats.at(index).status)
+              console.log("STATUS" + props.seats.at(elementIndex).status);
+              if (props.seats.at(elementIndex).status == "BOOKED") {
+                if (index == 3 || index == 0 || index == 2) {
+                  return (
+                    <li
+                      key={index}
+                      className={styles.popupRow}
+                      onClick={() => onOptionClick(option, index)}
+                    >
+                      {option}
+                    </li>
+                  );
+                }
+              } else if (props.seats.at(elementIndex).status == "CANCEL") {
+                console.log("AVAILABLE SEAT OPTIONS ");
+                if (index == 3 || index == 2) {
+                  return (
+                    <li
+                      key={index}
+                      className={styles.popupRow}
+                      onClick={() => onOptionClick(option, index)}
+                    >
+                      {option}
+                    </li>
+                  );
+                }
+              } else if (props.seats.at(elementIndex).status == "SWAP") {
+                console.log("AVAILABLE SEAT OPTIONS ");
+                if (index == 1 || index == 3) {
+                  return (
+                    <li
+                      key={index}
+                      className={styles.popupRow}
+                      onClick={() => onOptionClick(option, elementIndex)}
+                    >
+                      {option}
+                    </li>
+                  );
+                }
+              }
+            })}
       </ul>
     );
   };
+
   const onOptionClick = (option, index) => {
     console.log("Options Clicked !!");
     // const updatedColors = [...props.seats];
@@ -53,7 +118,43 @@ export const SeatGrid = (props) => {
       }
       setSelectedElementIndex(null);
     }
+    // SET options Functionalities here
+    else if (option == "Cancle Request") {
+      handleCancelRequest(index);
+    } else if (option == "Cancle Booking") {
+      deleteBooking(index);
+    } else if (option == "Swap Seat") {
+      makeSwapRequest(index);
+    } else if (option == "Accept Swap") {
+      acceptSwapRequest(index);
+    }
+
     // props.setSeats(updatedColors);
+  };
+
+  const handleCancelRequest = (elementIndex) => {
+    // console.log("Cancel Request Generated: " + props.seats.at(elementIndex));
+    BookingService.cancleRequest(props.seats.at(selectedElementIndex).bookingId)
+      .then((response) => {
+        console.log("Created Cancel Request Successfully");
+      })
+      .catch((e) => console.log(e));
+  };
+  const deleteBooking = (elementIndex) => {
+    console.log("Delete Booking Generated");
+    //  Fetch booking Id for a seat
+    // console.log(props.seats.at(selectedElementIndex));
+    BookingService.deleteBooking(props.seats.at(selectedElementIndex).bookingId)
+      .then((response) => {
+        console.log("Deleted Booking Successfully");
+      })
+      .catch((e) => console.log(e));
+  };
+  const makeSwapRequest = (index) => {
+    console.log("SWAP Request Generated");
+  };
+  const acceptSwapRequest = (index) => {
+    console.log("ACCEPT SWAP Request Generated");
   };
 
   const handlePopupClick = (index) => {
@@ -87,11 +188,11 @@ export const SeatGrid = (props) => {
   else if (props.page == "booking") {
     seatStyle = (index) => ({
       "--seat-color":
-        props.seats.at(index) == null
+        props.state == "layout" && props.seats.at(index) == null
+          ? getColor("white")
+          : props.seats.at(index) == null
           ? "rgb(0,0,0,0)"
-          : props.seats.at(index).status == "AVAILABLE"
-          ? getColor("AVAILABLE")
-          : getColor("BOOKED"),
+          : getColor(props.seats.at(index).status),
 
       border: props.seats.at(index) == null ? "0px" : "2px solid black",
       zIndex: 10,
@@ -120,10 +221,11 @@ export const SeatGrid = (props) => {
             status: "AVAILABLE",
             floorId: props.floor,
             available: true,
+            bookingId: null,
           };
-          console.log(JSON.stringify(updatedSection.at(index)))
-          props.addNewSeats(updatedSection.at(index))
-          props.setSeats(updatedSection)
+          console.log(JSON.stringify(updatedSection.at(index)));
+          props.addNewSeats(updatedSection.at(index));
+          props.setSeats(updatedSection);
           props.updateCount(-1);
         } else if (props.seats.at(index).status == "AVAILABLE") {
           //  DELETE SEAT from the layout
@@ -132,8 +234,8 @@ export const SeatGrid = (props) => {
           // if obj present in newSeats just remove it from there
 
           updatedSection[index] = null;
-          props.setSeats(updatedSection)
-          props.removeSeats(props.seats.at(index))
+          props.setSeats(updatedSection);
+          props.removeSeats(props.seats.at(index));
           console.log(
             "Seat Removed from Layout! " + JSON.stringify(props.seats.at(index))
           );
@@ -158,6 +260,8 @@ export const SeatGrid = (props) => {
         return "purple";
       case "CANCEL":
         return "brown";
+      case "USERBOOKED":
+        return "red";
       default:
         return "white";
     }
