@@ -47,6 +47,8 @@ export const BookingLayout = (porps) => {
 
   let navigate = useNavigate();
 
+  const [updateSeats, setUpdateSeats] = useState(false)
+
   useEffect(() => {
     // getFloorLayout(3).then((response)=>{
     //   console.log("promise completed")
@@ -87,7 +89,7 @@ export const BookingLayout = (porps) => {
         setSection5(Array.from({ length: 16 }).fill(null));
         setSection6(Array.from({ length: 24 }).fill(null));
       });
-  }, [floor, date, blur]);
+  }, [floor, date, blur, updateSeats]);
 
   // console.log("got: ", floor)
 
@@ -196,6 +198,10 @@ export const BookingLayout = (porps) => {
 
   console.log("USER_ID" + userId)
 
+  const renderSeats=()=>{
+    setUpdateSeats(!updateSeats)
+  }
+
   return (
     <div>
       <div className={styles.formContainer}>
@@ -275,6 +281,8 @@ export const BookingLayout = (porps) => {
                   <>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                      updateSeats={updateSeats}
+                      renderSeats={renderSeats}
                         onSelect={updateCount}
                         page={page}
                         isSelected={isOpen}

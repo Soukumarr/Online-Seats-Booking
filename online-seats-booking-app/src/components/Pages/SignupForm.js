@@ -74,6 +74,7 @@ const SignupForm = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
+      // navigate()
 
   };
 

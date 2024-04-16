@@ -134,12 +134,17 @@ export const SeatGrid = (props) => {
 
   const handleCancelRequest = (elementIndex) => {
     // console.log("Cancel Request Generated: " + props.seats.at(elementIndex));
+    var s = props.seats.at(selectedElementIndex);
+    alert("Cancelling Seat :   FLOOR: "+s.floor+"   SECTION: "+ s.section +"  STATUS: "+s.status )
     BookingService.cancleRequest(props.seats.at(selectedElementIndex).bookingId)
       .then((response) => {
         console.log("Created Cancel Request Successfully");
       })
       .catch((e) => console.log(e));
+      setSelectedElementIndex(null)
+      props.renderSeats()
   };
+
   const deleteBooking = (elementIndex) => {
     console.log("Delete Booking Generated");
     //  Fetch booking Id for a seat
@@ -147,12 +152,18 @@ export const SeatGrid = (props) => {
     BookingService.deleteBooking(props.seats.at(selectedElementIndex).bookingId)
       .then((response) => {
         console.log("Deleted Booking Successfully");
+        alert("Deleted User Successfully")
+        setSelectedElementIndex(null)
+      
       })
       .catch((e) => console.log(e));
+      props.renderSeats()
   };
+
   const makeSwapRequest = (index) => {
     console.log("SWAP Request Generated");
   };
+
   const acceptSwapRequest = (index) => {
     console.log("ACCEPT SWAP Request Generated");
   };

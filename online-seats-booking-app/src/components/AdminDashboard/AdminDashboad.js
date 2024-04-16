@@ -14,18 +14,18 @@ const columns = [
   },
   {
     title: "Booking ID",
-    dataIndex: "bookingid",
-    key: "bookingid",
+    dataIndex: "bookingId",
+    key: "bookingId",
   },
   {
     title: "Start Time",
-    dataIndex: "starttime",
-    key: "starttime",
+    dataIndex: "startTime",
+    key: "startTime",
   },
   {
     title: "End Time",
-    dataIndex: "endtime",
-    key: "endtime",
+    dataIndex: "endTime",
+    key: "endTime",
   },
   {
     title: "Location",
@@ -34,13 +34,13 @@ const columns = [
   },
   {
     title: "Office",
-    dataIndex: "office",
-    key: "office",
+    dataIndex: "officename",
+    key: "officename",
   },
   {
     title: "Seat ID",
-    dataIndex: "seatid",
-    key: "seatid",
+    dataIndex: "seatId",
+    key: "seatId",
   }
  
  

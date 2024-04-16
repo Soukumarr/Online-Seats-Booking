@@ -31,8 +31,8 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 function App() {
   return (
     <>
+    <Router>
       <AuthProvider>
-        <Router>
           <Navbar />
           {/* <Navbar op1="Dashboard" op2="Profile"/> */}
           <div className="pages">
@@ -113,8 +113,8 @@ function App() {
             </Routes>
           </div>
           <Footer />
-        </Router>
       </AuthProvider>
+      </Router>
     </>
   );
 }

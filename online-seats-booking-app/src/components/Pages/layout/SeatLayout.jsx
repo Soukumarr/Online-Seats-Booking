@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { SeatGrid } from "./SeatGrid";
 import styles from "./SeatLayout.module.css";
-import { createPath, redirect, useParams } from "react-router";
+import { createPath, redirect, useNavigate, useParams } from "react-router";
 import { useRedirect } from "../../util/useRedirect";
 import FloorsDropDown from "../../dropdown/FloorsDropDown";
 import DateSelector from "../../datepicker/DateSelector";
 import LayoutService from "../../util/LayoutService";
 import SeatService from "../../util/SeatService";
+
 
 export const SeatLayout = () => {
   const options = ["Allow Booking", "Accept Swap", "Cancle Booking", "Details"];
@@ -29,6 +30,8 @@ export const SeatLayout = () => {
     Array.from({ length: 24 }).fill("null")
   );
 
+  let navigate = useNavigate();
+
   let { office } = useParams();
   console.log("OFFICE ID: "+ Number.parseInt(office))
 
@@ -37,6 +40,9 @@ export const SeatLayout = () => {
   const [floor, setFloor] = useState(1);
 
   const [date, setDate] = useState(new Date().toLocaleDateString());
+
+
+  const [updateSeats, setUpdateSeats] = useState(false)
 
   useEffect(() => {
     // getFloorLayout(3).then((response)=>{
@@ -78,7 +84,7 @@ export const SeatLayout = () => {
         setSection5(Array.from({ length: 16 }).fill(null));
         setSection6(Array.from({ length: 24 }).fill(null));
       });
-  }, [floor, date]);
+  }, [floor, date, updateSeats]);
 
   const [items, setItems] = useState([]);
 
@@ -93,6 +99,7 @@ export const SeatLayout = () => {
   const page = "layout";
 
   const [isOpen, setIsOpen] = useState(false);
+
 
   const handleView = () => {
     setPagestate("view");
@@ -118,6 +125,10 @@ export const SeatLayout = () => {
     console.log("Called bookings handler!");
     setPagestate("booking");
     setEdit(false);
+  };
+
+  const goBack = () => {
+    navigate(-1);
   };
 
   const handleReset = () => {
@@ -193,10 +204,17 @@ export const SeatLayout = () => {
 
     };
 
+
+  const renderSeats=()=>{
+    setUpdateSeats(!updateSeats)
+  }
+   
+
   return (
     <div>
       {/* Main  */}
       <div>
+      
         {/* CONTAINER SECTION */}
         <div className={styles.contSectionLayout}>
           {/* SIDE BAR */}
@@ -217,12 +235,12 @@ export const SeatLayout = () => {
 
           {/* EDIT WORKPLACE */}
           <div className={styles.workplace}>
-            {/* BACK BUTTON
+            {/* BACK BUTTON */}
             <div className={styles.buttonContainer}>
               <button className={styles.backButton} onClick={goBack}>
                 Back
               </button>
-            </div> */}
+            </div>
             {/* Info Section */}
             <div className={styles.info}>
               <span className={styles.infoElement}>
@@ -282,6 +300,8 @@ export const SeatLayout = () => {
                   <>
                     <div className={styles.outerGridItem}>
                       <SeatGrid
+                         updateSeats={updateSeats}
+                         renderSeats={renderSeats}
                         updateCount={updateCount}
                         page={page}
                         state={pagestate}
