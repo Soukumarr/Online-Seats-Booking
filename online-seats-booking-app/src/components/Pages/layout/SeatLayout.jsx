@@ -126,7 +126,7 @@ export const SeatLayout = () => {
   };
 
   const goBack = () => {
-    navigate(-1);
+    navigate(-2);
   };
 
   const handleReset = () => {
@@ -242,7 +242,7 @@ export const SeatLayout = () => {
               <span className={styles.infoElement}>
                 <div
                   className={styles.infoColor}
-                  style={{ backgroundColor: "red" }}
+                  style={{ backgroundColor: "lightgrey" }}
                 ></div>
                 <div className={styles.infoText}>Booked Seats</div>
               </span>

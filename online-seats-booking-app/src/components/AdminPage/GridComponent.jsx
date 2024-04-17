@@ -123,7 +123,7 @@ axios.put(url)
               <>
                 <h4><b>{location}</b></h4>
                 <h6><b>{office}</b></h6>
-                <p style={{ fontSize: "20px", color: "gray" }}>
+                {/* <p style={{ fontSize: "20px", color: "gray" }}>
                   <span style={{ marginLeft: "50px" }}>
                     SeatingCapacity
                     {seats === undefined ? "     ---" : " " + seats}
@@ -136,7 +136,7 @@ axios.put(url)
                     {availableSeats === undefined ? "     ---" : " " + availableSeats}
                   </span>
                   <br></br>
-                </p>
+                </p> */}
                 <span className={styles.floornew}><b>
                   Total Floors :
                   {floor === undefined ? "" : <span style={{ marginLeft: '5px' }}>{floor}</span>}

@@ -60,12 +60,16 @@ const Navbar = () => {
                 <li className="text-white">
                   <Link to={"/about"}>About</Link>
                 </li>
-                <li className="text-white">
-                  <Link to="/layout">Bookings</Link>
-                </li>
-                <li className="text-white">
-                  <Link to="/calender">Calender</Link>
-                </li>
+                {isLoggedIn && (
+                  <>
+                    <li className="text-white">
+                      <Link to="admin_dashboard">Bookings</Link>
+                    </li>
+                    <li className="text-white">
+                      <Link to="/calender">Calender</Link>
+                    </li>
+                  </>
+                )}
                 <li className="text-white">
                   <Link to="/">Contacts</Link>
                 </li>

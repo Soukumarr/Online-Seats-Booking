@@ -118,7 +118,7 @@ export const Grid = () => {
   return (
     <div>
       {/* <h1>Admin DashBorad</h1> */}
-      {isLoggedIn && !roles.includes('ROLE_USER') && (<button className={styles.newCard} onClick={() => handleEdit()}>Add new card</button>)}
+      {isLoggedIn && !roles.includes('ROLE_USER') && (<button className={styles.newCard} onClick={() => handleEdit()}>Add Office</button>)}
       {edit == true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
         <label>
           Location:

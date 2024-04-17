@@ -171,7 +171,7 @@ export const BookingLayout = (porps) => {
   };
 
   const goBack = () => {
-    navigate(-1);
+    navigate(-2);
   };
 
   function getSection(key) {

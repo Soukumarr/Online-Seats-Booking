@@ -11,7 +11,7 @@ import LayoutService from "../util/LayoutService";
 
 export const BookSeatForm = (props) => {
   const today = new Date();
-  // today.setHours(22);
+  // today.setHours(1);
 
   //  Set 3hrs as a prior booking limit
   const [fromTime, setFromTime] = useState(
@@ -89,7 +89,7 @@ export const BookSeatForm = (props) => {
     <div className={styles.bookingForm}>
 
       { 
-      (today.getHours() < 22) ? <>
+      (today.getHours() < 22 || today.getDate() < props.date.getDate()) ? <>
       <h2>DURATION : </h2>
       <br></br>
       <form onSubmit={handleSubmit} className={styles.timeForm}>
