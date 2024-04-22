@@ -18,11 +18,10 @@ import Bookings from "./components/Pages/Bookings";
 import Resetpassword from "./components/Pages/ResetPassword";
 import AdminDashboad from "./components/AdminDashboard/AdminDashboad";
 // import { SeatBooking } from "./components/Pages/SeatBooking/SeatBookingPage.jsx";
-import { BookingLayout} from "./components/Booking/BookingLayout.jsx";
+import { BookingLayout } from "./components/Booking/BookingLayout.jsx";
 
 import { AuthProvider } from "./components/AuthProvider";
-import {Grid} from "./components/AdminPage/Grid.js"; 
-
+import { Grid } from "./components/AdminPage/Grid.js";
 
 import History from "./components/Pages/History.js";
 import Seatswapform from "./components/Pages/Seatswapform.js";
@@ -31,8 +30,8 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 function App() {
   return (
     <>
-    <Router>
-      <AuthProvider>
+      <Router>
+        <AuthProvider>
           <Navbar />
           {/* <Navbar op1="Dashboard" op2="Profile"/> */}
           <div className="pages">
@@ -49,7 +48,7 @@ function App() {
               <Route
                 path="/layout/:office/floors/:floorNumber"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_ADMIN"}>
                     <SeatLayout />
                   </PrivateRoute>
                 }
@@ -57,7 +56,7 @@ function App() {
               <Route
                 path="/userprofile"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_USER"}>
                     <Userprofile />
                   </PrivateRoute>
                 }
@@ -65,7 +64,7 @@ function App() {
               <Route
                 path="/bookings"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_USER"}>
                     <Bookings />
                   </PrivateRoute>
                 }
@@ -73,7 +72,7 @@ function App() {
               <Route
                 path="/resetpassword"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_USER"}>
                     <Resetpassword />{" "}
                   </PrivateRoute>
                 }
@@ -81,7 +80,7 @@ function App() {
               <Route
                 path="/admin_dashboard"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_ADMIN"}>
                     <AdminDashboad />
                   </PrivateRoute>
                 }
@@ -97,7 +96,7 @@ function App() {
               <Route
                 path="/history"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_USER"}>
                     <History />
                   </PrivateRoute>
                 }
@@ -105,7 +104,7 @@ function App() {
               <Route
                 path="/seatswap"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_USER"}>
                     <Seatswapform />
                   </PrivateRoute>
                 }
@@ -113,7 +112,7 @@ function App() {
             </Routes>
           </div>
           <Footer />
-      </AuthProvider>
+        </AuthProvider>
       </Router>
     </>
   );
