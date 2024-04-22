@@ -16,7 +16,7 @@ const Navbar = () => {
   const [navToggle, setNavToggle] = useState(false);
   const { isLoggedIn, logOut, roles } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(isLoggedIn);
+  //console.log(isLoggedIn);
 
   const navHandler = () => {
     setNavToggle((prevData) => !prevData);

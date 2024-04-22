@@ -48,7 +48,7 @@ function App() {
               <Route
                 path="/layout/:office/floors/:floorNumber"
                 element={
-                  <PrivateRoute roles={"ROLE_ADMIN"}>
+                  <PrivateRoute role={"ROLE_ADMIN"}>
                     <SeatLayout />
                   </PrivateRoute>
                 }
@@ -56,7 +56,7 @@ function App() {
               <Route
                 path="/userprofile"
                 element={
-                  <PrivateRoute roles={"ROLE_USER"}>
+                  <PrivateRoute role={"ROLE_USER"}>
                     <Userprofile />
                   </PrivateRoute>
                 }
@@ -64,7 +64,7 @@ function App() {
               <Route
                 path="/bookings"
                 element={
-                  <PrivateRoute roles={"ROLE_USER"}>
+                  <PrivateRoute role={"ROLE_USER"}>
                     <Bookings />
                   </PrivateRoute>
                 }
@@ -72,7 +72,7 @@ function App() {
               <Route
                 path="/resetpassword"
                 element={
-                  <PrivateRoute roles={"ROLE_USER"}>
+                  <PrivateRoute role={"ROLE_USER"}>
                     <Resetpassword />{" "}
                   </PrivateRoute>
                 }
@@ -80,7 +80,7 @@ function App() {
               <Route
                 path="/admin_dashboard"
                 element={
-                  <PrivateRoute roles={"ROLE_ADMIN"}>
+                  <PrivateRoute role={"ROLE_ADMIN"}>
                     <AdminDashboad />
                   </PrivateRoute>
                 }
@@ -88,7 +88,7 @@ function App() {
               <Route
                 path="/bookseats/:office/floors/:floorNumber"
                 element={
-                  <PrivateRoute roles={"ROLE_USER"}>
+                  <PrivateRoute role={"ROLE_USER"}>
                     <BookingLayout />
                   </PrivateRoute>
                 }
@@ -96,7 +96,7 @@ function App() {
               <Route
                 path="/history"
                 element={
-                  <PrivateRoute roles={"ROLE_USER"}>
+                  <PrivateRoute role={"ROLE_USER"}>
                     <History />
                   </PrivateRoute>
                 }
@@ -104,7 +104,7 @@ function App() {
               <Route
                 path="/seatswap"
                 element={
-                  <PrivateRoute roles={"ROLE_USER"}>
+                  <PrivateRoute role={"ROLE_USER"}>
                     <Seatswapform />
                   </PrivateRoute>
                 }
