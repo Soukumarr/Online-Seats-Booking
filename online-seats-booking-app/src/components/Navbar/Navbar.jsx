@@ -12,10 +12,9 @@ import { IoMdRocket } from "react-icons/io";
 import { AuthContext } from "../AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-
 const Navbar = () => {
   const [navToggle, setNavToggle] = useState(false);
-  const { isLoggedIn, logOut,roles } = useContext(AuthContext);
+  const { isLoggedIn, logOut, roles } = useContext(AuthContext);
   const navigate = useNavigate();
   console.log(isLoggedIn);
 
@@ -60,15 +59,15 @@ const Navbar = () => {
                 <li className="text-white">
                   <Link to={"/about"}>About</Link>
                 </li>
-                {isLoggedIn && (
-                  <>
-                    <li className="text-white">
-                      <Link to="admin_dashboard">Bookings</Link>
-                    </li>
-                    <li className="text-white">
-                      <Link to="/calender">Calender</Link>
-                    </li>
-                  </>
+                {isLoggedIn && roles.includes("ROLE_ADMIN") && (
+                  <li className="text-white">
+                    <Link to="admin_dashboard">Bookings</Link>
+                  </li>
+                )}
+                {isLoggedIn && roles.includes("ROLE_USER") && (
+                  <li className="text-white">
+                    <Link to="/calender">Calender</Link>
+                  </li>
                 )}
                 <li className="text-white">
                   <Link to="/">Contacts</Link>
@@ -118,16 +117,17 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {isLoggedIn && !roles.includes('ROLE_ADMIN') && (
-        <div className="userprofile">
-          <Link to="/userprofile" className="flex flex-center text-white">
-            <FaRegUserCircle size={45} />
-          </Link>
-        </div>
-      ) 
-      // : (
-      //   <></>
-      // )
+      {
+        isLoggedIn && !roles.includes("ROLE_ADMIN") && (
+          <div className="userprofile">
+            <Link to="/userprofile" className="flex flex-center text-white">
+              <FaRegUserCircle size={45} />
+            </Link>
+          </div>
+        )
+        // : (
+        //   <></>
+        // )
       }
     </nav>
   );

@@ -88,7 +88,7 @@ function App() {
               <Route
                 path="/bookseats/:office/floors/:floorNumber"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute roles={"ROLE_USER"}>
                     <BookingLayout />
                   </PrivateRoute>
                 }

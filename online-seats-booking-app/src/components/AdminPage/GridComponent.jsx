@@ -17,6 +17,7 @@ export const GridComponent = (props) => {
   const [floor, setFloor] = useState(props.floor);
   const [showTable, setShowTable] = useState(false);
   const [availableSeats, setAvailableSeats] = useState(props.availableSeats);
+  const token = localStorage.getItem("jwtToken");
   const navigate = useNavigate(); 
     const { isLoggedIn, logOut, roles, logIn, setRoles } =
       useContext(AuthContext);
@@ -43,24 +44,34 @@ export const GridComponent = (props) => {
   
   };
 
-  axios.put(`http://localhost:8080/api/offices/${props.id}`, updatedOffice)
-    .then(response => {
+  axios
+    .put(`http://localhost:8080/api/offices/${props.id}`, updatedOffice, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
       // Handle the response here. For example, you can update the state with the updated card data
     })
-    .catch(error => {
-      console.error('There was an error!', error);
+    .catch((error) => {
+      console.error("There was an error!", error);
     });
 
     var f = parseInt(updatedOffice.floorCount)
 
     const url = `http://localhost:8080/api/floors/office/${props.id}/floors/${parseInt(updatedOffice.floorCount)}`;
 console.log('URL:', url);
-axios.put(url)
-  .then(response => {
+axios
+  .put(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((response) => {
     // Handle the response here. For example, you can update the state with the updated card data
   })
-  .catch(error => {
-    console.error('There was an error!', error);
+  .catch((error) => {
+    console.error("There was an error!", error);
   });
     console.log(props.id, f);
     

@@ -1,51 +1,67 @@
 import React, { useState } from "react";
 import { GridComponent } from "./GridComponent";
 import styles from "./Grid.module.css";
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { AuthContext } from '../AuthProvider';
-
-
-
+import axios from "axios";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
 
 export const Grid = () => {
   const [cards, setCards] = useState([]);
   const [floors, setFloors] = useState([]);
-  const { isLoggedIn, logOut, roles, logIn, setRoles } = useContext(AuthContext);
-
+  const { isLoggedIn, logOut, roles, logIn, setRoles } =
+    useContext(AuthContext);
+const token = localStorage.getItem("jwtToken");
   useEffect(() => {
-    axios.get('http://localhost:8080/api/offices')
-      .then(response => {
-        const fetchedCards = response.data.map(office => ({
+    axios
+      .get("http://localhost:8080/api/offices", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const fetchedCards = response.data.map((office) => ({
           id: office.id,
           office: office.name,
           location: office.location,
           floor: office.floorCount,
           seats: office.totalSeatCount,
-          availableSeats: office.availableSeatCount
+          availableSeats: office.availableSeatCount,
         }));
         setCards(fetchedCards);
       })
-      .catch(error => {
-        console.error('There was an error!', error);
+      .catch((error) => {
+        console.error("There was an error!", error);
       });
   }, []);
 
-  const [newCard, setNewCard] = useState({ location: "", office: "", seats: 0, floor: 0 });
+  const [newCard, setNewCard] = useState({
+    location: "",
+    office: "",
+    seats: 0,
+    floor: 0,
+  });
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = (card) => {
-
     setSelectedCard(card);
   };
 
   const handleAddCard = async (event) => {
     event.preventDefault();
-    const response = await axios.get('http://localhost:8080/api/offices');
+    const response = await axios.get("http://localhost:8080/api/offices",{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     const offices = response.data;
     // Check if an office with the same name and location already exists
-    if (offices.some(office => office.name === newCard.office && office.location === newCard.location)) {
+    if (
+      offices.some(
+        (office) =>
+          office.name === newCard.office && office.location === newCard.location
+      )
+    ) {
       alert("An office with the same name and location already exists.");
       return;
     }
@@ -62,19 +78,27 @@ export const Grid = () => {
       location: newCard.location,
       floorCount: newCard.floor,
       totalSeatCount: 0,
-      availableSeatCount: 0
+      availableSeatCount: 0,
     };
     try {
-      const response = await axios.post('http://localhost:8080/api/offices', office);
+      const response = await axios.post(
+        "http://localhost:8080/api/offices",
+        office,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const newCardFromBackend = {
         id: response.data.id,
         office: response.data.name,
         location: response.data.location,
         floor: response.data.floorCount,
         seats: response.data.totalSeatCount,
-        availableSeats: response.data.availableSeatCount
+        availableSeats: response.data.availableSeatCount,
       };
-      setCards(oldCards => [...oldCards, newCardFromBackend]);
+      setCards((oldCards) => [...oldCards, newCardFromBackend]);
       setNewCard({ location: "", office: "", seats: "", floor: "" }); // Reset the form
 
       // After creating the office, create the floors
@@ -82,13 +106,21 @@ export const Grid = () => {
         const newFloor = {
           floorNumber: i,
           seatCapacity: 0, // Replace with actual seat capacity if available
-          office: { id: response.data.id }
+          office: { id: response.data.id },
         };
         try {
-          const floorResponse = await axios.post('http://localhost:8080/api/floors', newFloor);
+          const floorResponse = await axios.post(
+            "http://localhost:8080/api/floors",
+            newFloor,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           // Handle the response here. For example, you can update the state with the new floor data
         } catch (error) {
-          console.error('There was an error!', error);
+          console.error("There was an error!", error);
         }
       }
     } catch (error) {
@@ -106,46 +138,77 @@ export const Grid = () => {
     setEdit(!edit);
   }
   const handleDeleteCard = (id) => {
-    axios.delete(`http://localhost:8080/api/offices/${id}`)
-      .then(() => {
-        setCards(oldCards => oldCards.filter(card => card.id !== id));
+    axios
+      .delete(`http://localhost:8080/api/offices/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch(error => console.error(error));
-    axios.delete(`http://localhost:8080/api/floors/office/${id}`)
+      .then(() => {
+        setCards((oldCards) => oldCards.filter((card) => card.id !== id));
+      })
+      .catch((error) => console.error(error));
+    axios
+      .delete(`http://localhost:8080/api/floors/office/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         // Handle the response here. For example, you can update the state with the updated card data
-      }
-      )
-      .catch(error => {
-        console.error('There was an error!', error);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
 
-        alert("This office has booked seats. Please delete the bookings first.");
+        alert(
+          "This office has booked seats. Please delete the bookings first."
+        );
       });
   };
   return (
     <div>
       {/* <h1>Admin DashBorad</h1> */}
-      {isLoggedIn && !roles.includes('ROLE_USER') && (<button className={styles.newCard} onClick={() => handleEdit()}>Add Office</button>)}
-      {edit == true && <form className={styles.DashBoard} onSubmit={handleAddCard}>
-        <label>
-          Location:
-          <input type="text" name="location" value={newCard.location} onChange={handleInputChange} />
-        </label>
-        <label>
-          Office:
-          <input type="text" name="office" value={newCard.office} onChange={handleInputChange} />
-        </label>
-        {/* <label>
+      {isLoggedIn && !roles.includes("ROLE_USER") && (
+        <button className={styles.newCard} onClick={() => handleEdit()}>
+          Add Office
+        </button>
+      )}
+      {edit == true && (
+        <form className={styles.DashBoard} onSubmit={handleAddCard}>
+          <label>
+            Location:
+            <input
+              type="text"
+              name="location"
+              value={newCard.location}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Office:
+            <input
+              type="text"
+              name="office"
+              value={newCard.office}
+              onChange={handleInputChange}
+            />
+          </label>
+          {/* <label>
           Seats:
           <input type="number" name="seats" value={newCard.seats} onChange={handleInputChange} />
         </label> */}
-        <label>
-          Floor:
-          <input type="number" name="floor" value={newCard.floor} onChange={handleInputChange} />
-        </label>
-        <button type="submit">Add Card</button>
-      </form>}
-
+          <label>
+            Floor:
+            <input
+              type="number"
+              name="floor"
+              value={newCard.floor}
+              onChange={handleInputChange}
+            />
+          </label>
+          <button type="submit">Add Card</button>
+        </form>
+      )}
 
       <div className={styles.box}>
         {cards.map((card, index) => (
@@ -163,7 +226,6 @@ export const Grid = () => {
           />
         ))}
       </div>
-
     </div>
   );
 };
