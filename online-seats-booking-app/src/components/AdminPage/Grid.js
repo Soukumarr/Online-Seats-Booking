@@ -42,6 +42,13 @@ export const Grid = () => {
 
   const handleAddCard = async (event) => {
     event.preventDefault();
+    const response = await axios.get('http://localhost:8080/api/offices');
+    const offices = response.data;
+    // Check if an office with the same name and location already exists
+    if (offices.some(office => office.name === newCard.office && office.location === newCard.location)) {
+      alert("An office with the same name and location already exists.");
+      return;
+    }
     if (newCard.floor > 10) {
       alert("You cannot add more than 10 floors.");
       return;

@@ -29,6 +29,11 @@ export const GridComponent = (props) => {
 
   const handleSave = (e) => {
     e.preventDefault(); // Prevent the form from being submitted
+     
+    if (floor > 10) {
+      alert("You cannot add more than 10 floors.");
+      return;
+    }
   
   setIsEditing(false);
   const updatedOffice = {
