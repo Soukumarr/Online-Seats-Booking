@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     name: "",
@@ -30,7 +30,6 @@ const SignupForm = () => {
 
     let passwordValid = false;
     let passwordErrorMessage = "";
-
 
     if (form.password.length < 8) {
       passwordValid = false;
@@ -76,11 +75,9 @@ const SignupForm = () => {
         }, 2000); // 2000 milliseconds = 2 seconds
       })
       .catch((error) => {
-        toast.error("User registration failed!");
+        toast.error("User Already Exists!");
         console.error("There was an error!", error);
       });
-      // navigate()
-
   };
 
   return (
