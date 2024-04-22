@@ -72,6 +72,7 @@ const SignupForm = () => {
         })
       })
       .catch((error) => {
+        toast.error("User registration failed!");
         console.error("There was an error!", error);
       });
       // navigate()
