@@ -239,13 +239,13 @@ export const BookingLayout = (porps) => {
                   className={styles.infoColor}
                   style={{ backgroundColor: "lightgreen" }}
                 ></div>
-                <div className={styles.infoText}>Available Seats</div>
+                <div className={styles.infoText}>Fully Available</div>
               </span>
 
               <span className={styles.infoElement}>
                 <div
                   className={styles.infoColor}
-                  style={{ backgroundColor: "red" }}
+                  style={{ backgroundColor: "lightgrey" }}
                 ></div>
                 <div className={styles.infoText}>Booked Seats</div>
               </span>
@@ -256,6 +256,13 @@ export const BookingLayout = (porps) => {
                   style={{ backgroundColor: "purple" }}
                 ></div>
                 <div className={styles.infoText}>Swap Requests</div>
+              </span>
+              <span className={styles.infoElement}>
+                <div
+                  className={styles.infoColor}
+                  style={{ backgroundColor: "pink" }}
+                ></div>
+                <div className={styles.infoText}>Partially Available</div>
               </span>
             </div>
             {/* SEATS COUNT */}

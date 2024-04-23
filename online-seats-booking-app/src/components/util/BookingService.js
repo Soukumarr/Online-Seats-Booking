@@ -31,9 +31,13 @@ class BookingService {
     }
     getAllBookingsBySeatDate(seatId, date) {
         console.log("SEAT-id : " + seatId)
-        date = LayoutService.formatDate(date);
+        date =  LayoutService.formatDate(date);
         console.log("date" + date)
         return axios.get("http://localhost:8080/api/booking/all/date/"+date+"/seat/"+seatId)
+    }
+
+    getBookingsHistory(userId) {
+        return axios.get("http://localhost:8080/api/booking/history/user/" + userId)
     }
 }
 
