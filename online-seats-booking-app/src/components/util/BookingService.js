@@ -29,6 +29,12 @@ class BookingService {
     deleteBooking(bookingId) {
         return axios.delete("http://localhost:8080/api/booking/" + bookingId)
     }
+    getAllBookingsBySeatDate(seatId, date) {
+        console.log("SEAT-id : " + seatId)
+        date = LayoutService.formatDate(date);
+        console.log("date" + date)
+        return axios.get("http://localhost:8080/api/booking/all/date/"+date+"/seat/"+seatId)
+    }
 }
 
 export default new BookingService()

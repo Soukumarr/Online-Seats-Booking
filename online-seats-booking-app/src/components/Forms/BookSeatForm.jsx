@@ -15,8 +15,10 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 export const BookSeatForm = (props) => {
   // let startTimeString;
 
+  let [reservedDuration,setReserved] = useState([]);
+
   const today = new Date();
-  today.setHours(10);
+  // today.setHours(10);
 
   //  Set 3hrs as a prior booking limit
   const [fromTime, setFromTime] = useState(
@@ -59,6 +61,7 @@ export const BookSeatForm = (props) => {
 
   useEffect(() => {
     updateFormData(); // Call updateFormData on component mount
+    bookingsList();
   }, []); // Empty dependency array: run only once after mount
 
   useEffect(() => {
@@ -107,15 +110,49 @@ export const BookSeatForm = (props) => {
   };
 
   const handleCancel = (event) => {
+    setReserved([]);
     props.setBlur(false);
   };
 
   //  Logic of disabling the time slots
 
   const availableTimes = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+  
+  const bookingsList = () => {
+    // get All booking using seatId
+    const bookingsPresent = BookingService.getAllBookingsBySeatDate(seatId, props.date).then(
+      (response) => {
+      console.log("Fetched Bookings successfully !")
+      const temp = [...reservedDuration]
+      response.data.map(
+        (booking)=>{
+          var start = parseInt(booking.startTime.substring(11, 13));
+          var end =  parseInt(booking.endTime.substring(11, 13));
+          console.log("start: " + start)
+          console.log("end: " + end )
+          // for ( var i = 16; i < 18 ; i++){
+          //   console.log(i)
+          //   return i;
+          // }
+          for (let i = start; i < end; i++) {
+            // console.log(i)
+            temp.push(i);
+          }
+        }
+      )
+      setReserved(temp)
+      console.log("RESERVED TIMESLOTS: " + reservedDuration)
+    }
+    ).catch(e=> console.log(e))
+  }
 
   const isTimeDisabled = (time) => {
-    return parseInt(time) < 16;
+    console.log(reservedDuration)
+    if (reservedDuration.includes(parseInt(time))){
+      console.log(reservedDuration)
+        return true
+    }
+    return false;
   };
   return (
     <div className={styles.bookingForm}>
