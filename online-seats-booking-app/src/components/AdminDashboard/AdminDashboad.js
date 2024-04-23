@@ -97,19 +97,24 @@ const AdminDashboard = () => {
           mode="vertical"
         >
           <Menu.Item key="dashboard">Dashboard</Menu.Item>
-          <Menu.Item key="create_update">
-            Office Locations
-          </Menu.Item>
+          <Menu.Item key="create_update">Office Locations</Menu.Item>
           <Menu.Item key="users">Users Info</Menu.Item>
         </Menu>
       </Sider>
       <Content>
         {selectedMenu === "users" && (
-          <Table columns={columns} dataSource={data} onChange={onChange}/>
+          <Table
+            columns={columns}
+            dataSource={data}
+            onChange={onChange}
+            pagination={{ pageSize: 5 }}
+          />
         )}
         {selectedMenu === "dashboard" && <div>Dashboard content goes here</div>}
         {selectedMenu === "create_update" && (
-          <div><Grid></Grid></div>
+          <div>
+            <Grid></Grid>
+          </div>
         )}
       </Content>
     </Layout>
