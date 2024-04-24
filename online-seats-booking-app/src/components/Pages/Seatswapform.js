@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import styles from './SigninForm.module.css';
+import SwapService from "../util/SwapService";
 
 
 const Seatswapform=()=>
@@ -33,7 +34,16 @@ const Seatswapform=()=>
       
           if (confirmSwap) {
             // Submit form data to backend or perform other actions (replace with your logic)
-            alert(JSON.stringify(form, null, 2)); // For demonstration purposes
+            SwapService.swapRequest(form).then(
+                (response)=>{
+                    console.log(response.data)
+                    if(response.data.id!= null){
+                    alert("Swap Request Generated" + JSON.stringify(form, null, 2)); // For demonstration purposes
+                    }else{
+                        alert("Seat Swap Successfull!")
+                    }
+                }
+            ).catch((e)=>console.log(e));
           } else {
             console.log("Seat swap cancelled"); // Optional logging
           }
