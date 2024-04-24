@@ -133,7 +133,7 @@ export const SigninForm = () => {
             <option value="admin">Admin</option>
             <option value="user">User</option>
           </select>
-        </div>*/}
+        </div> */}
 
         <div className={styles.formActions}>
           <button className={styles.formSubmitBtn} type="submit">

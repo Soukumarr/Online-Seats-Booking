@@ -28,7 +28,7 @@ import { jwtDecode } from "jwt-decode";
 export const BookingLayout = (porps) => {
 
   let { office, floorNumber } = useParams();
-  const options = ["Book Seat", "Swap Seat", "Cancle Request", "More"];
+  const options = ["Book Seat", "Swap Seat", "Cancel Request", "More"];
 
   const page = "booking";
 
@@ -41,7 +41,7 @@ export const BookingLayout = (porps) => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
  
-  console.log("OFFICE ID: " + Number.parseInt(office));
+  // console.log("OFFICE ID: " + Number.parseInt(office));
 
   const [officeId, setOfficeId] = useState(Number.parseInt(office));
 
@@ -62,7 +62,7 @@ export const BookingLayout = (porps) => {
     LayoutService.getAllFloors(officeId)
       .then((response) => {
         setItems(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((e) => console.log(e));
 
@@ -73,7 +73,7 @@ export const BookingLayout = (porps) => {
     };
     LayoutService.getFloorLayout(reqObj)
       .then((response) => {
-        console.log("USE EFFECT: " + JSON.stringify(response.data));
+        // console.log("USE EFFECT: " + JSON.stringify(response.data));
         setSection1(response.data[0]);
         setSection2(response.data[1]);
         setSection3(response.data[2]);
@@ -198,7 +198,7 @@ export const BookingLayout = (porps) => {
   const decodedToken = jwtDecode(token);
   const userId = decodedToken.id || [];
 
-  console.log("USER_ID" + userId);
+  // console.log("USER_ID" + userId);
 
   const renderSeats = () => {
     setUpdateSeats(!updateSeats);
@@ -239,13 +239,13 @@ export const BookingLayout = (porps) => {
                   className={styles.infoColor}
                   style={{ backgroundColor: "lightgreen" }}
                 ></div>
-                <div className={styles.infoText}>Available Seats</div>
+                <div className={styles.infoText}>Fully Available</div>
               </span>
 
               <span className={styles.infoElement}>
                 <div
                   className={styles.infoColor}
-                  style={{ backgroundColor: "red" }}
+                  style={{ backgroundColor: "lightgrey" }}
                 ></div>
                 <div className={styles.infoText}>Booked Seats</div>
               </span>
@@ -256,6 +256,13 @@ export const BookingLayout = (porps) => {
                   style={{ backgroundColor: "purple" }}
                 ></div>
                 <div className={styles.infoText}>Swap Requests</div>
+              </span>
+              <span className={styles.infoElement}>
+                <div
+                  className={styles.infoColor}
+                  style={{ backgroundColor: "pink" }}
+                ></div>
+                <div className={styles.infoText}>Partially Available</div>
               </span>
             </div>
             {/* SEATS COUNT */}

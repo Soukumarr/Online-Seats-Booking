@@ -11,6 +11,8 @@ import {
 import { IoMdRocket } from "react-icons/io";
 import { AuthContext } from "../AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+
 
 const Navbar = () => {
   const [navToggle, setNavToggle] = useState(false);
@@ -18,6 +20,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   //console.log(isLoggedIn);
 
+  let role;
+  let token;
+  let decodedToken;
+
+  if (isLoggedIn == true){
+  token = localStorage.getItem("jwtToken");
+  decodedToken = jwtDecode(token);
+  role = decodedToken.roles || [];
+  }
   const navHandler = () => {
     setNavToggle((prevData) => !prevData);
   };
@@ -73,6 +84,16 @@ const Navbar = () => {
                   <li className="text-white">
                     <Link to="/calender">Calender</Link>
                   </li>
+                )}
+                {(isLoggedIn && role == "ROLE_USER") && (
+                  <>
+                    <li className="text-white">
+                      <Link to="bookingscard">Bookings</Link>
+                    </li>
+                    <li className="text-white">
+                      <Link to="/calender">Calender</Link>
+                    </li>
+                  </>
                 )}
                 <li className="text-white">
                   <Link to="/">Contacts</Link>

@@ -9,7 +9,7 @@ import LayoutService from "../../util/LayoutService";
 import SeatService from "../../util/SeatService";
 
 export const SeatLayout = () => {
-  const options = ["Allow Booking", "Accept Swap", "Cancle Booking", "Details"];
+  const options = ["Allow Booking", "Accept Swap", "Cancel Booking", "Details"];
   let [section1, setSection1] = useState(
     Array.from({ length: 24 }).fill("null")
   );

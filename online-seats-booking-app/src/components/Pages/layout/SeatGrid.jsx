@@ -28,12 +28,12 @@ export const SeatGrid = (props) => {
         {props.page == "booking"
           ? options.map((option, index) => {
               // console.log(props.seats.at(index).status)
-              console.log("STATUS" + props.seats.at(elementIndex).status);
+              // console.log("STATUS" + props.seats.at(elementIndex).status);
               if (
                 props.seats.at(elementIndex).status == "AVAILABLE" ||
-                props.seats.at(elementIndex).status == "CANCEL"
+                props.seats.at(elementIndex).status == "EXPIRED" 
               ) {
-                console.log("AVAILABLE SEAT OPTIONS ");
+                // console.log("AVAILABLE SEAT OPTIONS ");
                 if (index == 0 || index == 3) {
                   return (
                     <li
@@ -46,7 +46,7 @@ export const SeatGrid = (props) => {
                   );
                 }
               } else if (props.seats.at(elementIndex).status == "BOOKED") {
-                console.log("AVAILABLE SEAT OPTIONS ");
+                // console.log("AVAILABLE SEAT OPTIONS ");
                 if (index == 1 || index == 2) {
                   return (
                     <li
@@ -62,7 +62,7 @@ export const SeatGrid = (props) => {
             })
           : options.map((option, index) => {
               // console.log(props.seats.at(index).status)
-              console.log("STATUS" + props.seats.at(elementIndex).status);
+              // console.log("STATUS" + props.seats.at(elementIndex).status);
               if (props.seats.at(elementIndex).status == "BOOKED") {
                 if (index == 3 || index == 0 || index == 2) {
                   return (
@@ -76,7 +76,7 @@ export const SeatGrid = (props) => {
                   );
                 }
               } else if (props.seats.at(elementIndex).status == "CANCEL") {
-                console.log("AVAILABLE SEAT OPTIONS ");
+                // console.log("AVAILABLE SEAT OPTIONS ");
                 if (index == 3 || index == 2) {
                   return (
                     <li
@@ -89,7 +89,7 @@ export const SeatGrid = (props) => {
                   );
                 }
               } else if (props.seats.at(elementIndex).status == "SWAP") {
-                console.log("AVAILABLE SEAT OPTIONS ");
+                // console.log("AVAILABLE SEAT OPTIONS ");
                 if (index == 1 || index == 3) {
                   return (
                     <li
@@ -119,9 +119,9 @@ export const SeatGrid = (props) => {
       setSelectedElementIndex(null);
     }
     // SET options Functionalities here
-    else if (option == "Cancle Request") {
+    else if (option == "Cancel Request") {
       handleCancelRequest(index);
-    } else if (option == "Cancle Booking") {
+    } else if (option == "Cancel Booking") {
       deleteBooking(index);
     } else if (option == "Swap Seat") {
       makeSwapRequest(index);
@@ -136,7 +136,7 @@ export const SeatGrid = (props) => {
     // console.log("Cancel Request Generated: " + props.seats.at(elementIndex));
     var s = props.seats.at(selectedElementIndex);
     alert("Cancelling Seat :   FLOOR: "+s.floor+"   SECTION: "+ s.section +"  STATUS: "+s.status )
-    BookingService.cancleRequest(props.seats.at(selectedElementIndex).bookingId)
+    BookingService.cancelRequest(props.seats.at(selectedElementIndex).bookingId)
       .then((response) => {
         console.log("Created Cancel Request Successfully");
       })
@@ -152,7 +152,7 @@ export const SeatGrid = (props) => {
     BookingService.deleteBooking(props.seats.at(selectedElementIndex).bookingId)
       .then((response) => {
         console.log("Deleted Booking Successfully");
-        alert("Deleted User Successfully")
+        alert("Deleted Booking Successfully")
         setSelectedElementIndex(null)
       
       })
@@ -265,6 +265,8 @@ export const SeatGrid = (props) => {
     switch (status) {
       case "AVAILABLE":
         return "lightgreen";
+      case "EXPIRED" :
+        return "pink";
       case "BOOKED":
         return "lightgrey";
       case "SWAP":
