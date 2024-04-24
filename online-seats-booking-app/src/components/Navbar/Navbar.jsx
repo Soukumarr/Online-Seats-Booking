@@ -66,6 +66,11 @@ const Navbar = () => {
                 )}
                 {isLoggedIn && roles.includes("ROLE_USER") && (
                   <li className="text-white">
+                    <Link to="/bookingscard">Bookings</Link>
+                  </li>
+                )}
+                {isLoggedIn && roles.includes("ROLE_USER") && (
+                  <li className="text-white">
                     <Link to="/calender">Calender</Link>
                   </li>
                 )}
