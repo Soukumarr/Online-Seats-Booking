@@ -12,7 +12,6 @@ export const SigninForm = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    role: "",
   });
   const onUpdateField = (e) => {
     const nextFormState = {
@@ -118,7 +117,7 @@ export const SigninForm = () => {
           />
         </div>
 
-        {/* <div className={styles.formGroup}>
+        {/*<div className={styles.formGroup}>
           <label className={styles.formLabel}>
             <h2>Role</h2>{" "}
           </label>

@@ -4,8 +4,10 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     name: "",
@@ -28,7 +30,6 @@ const SignupForm = () => {
 
     let passwordValid = false;
     let passwordErrorMessage = "";
-
 
     if (form.password.length < 8) {
       passwordValid = false;
@@ -66,21 +67,18 @@ const SignupForm = () => {
         setForm({
           email: "",
           name: "",
-          role: "",
           password: "",
           confirmPassword: "",
-        })
+        });
+        setTimeout(() => {
+          navigate("/signin");
+        }, 2000); // 2000 milliseconds = 2 seconds
       })
       .catch((error) => {
+        toast.error("User Already Exists!");
         console.error("There was an error!", error);
       });
-      // navigate()
-
   };
-
-  // const handleGoogleLogin = () => {
-  //     window.location.href = "https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fmyaccount.google.com%2F&ddm=0&ec=GAlAwAE&flowEntry=AddSession&flowName=GlifWebSignIn&hl=en&service=accountsettings&theme=mn&dsh=S346832%3A1711285674106523";
-  //   };
 
   return (
     <div className={styles.signupcontainer}>
